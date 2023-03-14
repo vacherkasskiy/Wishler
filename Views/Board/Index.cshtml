@@ -14,8 +14,8 @@
         @foreach (var column in Model.Columns.OrderBy(x => x.Position).ThenBy(x => x).ToArray())
         {
             <section class="column">
-                <textarea class="column__name">@column.Name</textarea>
-                <ul class="tasks__list" id="@column.Id">
+                <textarea class="column__name" id="@column.Id">@column.Name</textarea>
+                <ul class="tasks__list">
                     @foreach (var row in Model.Rows.Where(x => x.ColumnId == column.Id).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
                     {
                         <li class="tasks__item"><textarea wrap="soft" name="text" id="@row.Id">@row.Text</textarea></li>
