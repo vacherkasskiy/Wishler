@@ -16,6 +16,22 @@ function addRowToDb(id, columnId, position, text, target) {
     });
 }
 
+function addColumnToDb(id, name, boardId, position, target) {
+    $.ajax({
+        type: "POST",
+        url: "/EditOrCreateColumn",
+        data: {
+            id: id,
+            name: name,
+            boardId: boardId,
+            position: position,
+        },
+        success: function (data) {
+            target.id = data.colId;
+        }
+    });
+}
+
 function getElementIndex(elem) {
     elem = elem.tagName ? elem : document.querySelector(elem)
     return [].indexOf.call(elem.parentNode.children, elem)
@@ -60,7 +76,7 @@ function giveTextareaAllStyles(textarea) {
                 event.target.parentNode.remove();
             } else {
                 let position = getElementIndex(event.target.parentNode);
-                let columnId = event.target.parentNode.parentNode.id;
+                let columnId = event.target.parentNode.parentNode.parentNode.querySelector("textarea").id;
                 addRowToDb(event.target.id, columnId, position, event.target.value, event.target);
             }
         } ,true);
@@ -96,6 +112,9 @@ function giveTextareaAllStyles(textarea) {
             } else {
                 event.target.style.zIndex = 0;
                 document.querySelector(".shadow").style.zIndex = -1;
+                let position = getElementIndex(event.target.parentNode);
+                // add board id
+                addColumnToDb(event.target.id, event.target.value, 1, position, event.target);
             }
         } ,true);
 

@@ -34,15 +34,7 @@ public class BoardController : Controller
 
     [HttpPost]
     [Route("/EditOrCreateColumn")]
-    public IActionResult CreateColumn(Column column)
-    {
-        _db.Columns.Add(column);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
-    }
-
-    [Route("/EditOrCreateRow")]
-    public IActionResult EditOrCreateRow(int id, string name, int boardId, int position)
+    public IActionResult EditOrCreateColumn(int id, string name, int boardId, int position)
     {
         var column = new Column()
         {
@@ -51,9 +43,15 @@ public class BoardController : Controller
             BoardId = boardId,
             Position = position
         };
-        _db.Columns.Update(column);
+        _db.Update(column);
         _db.SaveChanges();
-        return Json(new {cellId = column.Id});
+        return Json(new {colId = column.Id});
+    }
+
+    [Route("/EditOrCreateRow")]
+    public IActionResult EditOrCreateRow()
+    {
+        return RedirectToAction("Index");
     }
     
     [HttpPost]
