@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/shooting-star.ico">
+    <link rel="stylesheet" href="~/css/null.css">
+    <link rel="stylesheet" href="~/css/header.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    @if (IsSectionDefined("AddStyles"))
+    {
+        @await RenderSectionAsync("AddStyles", required: false)
+    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fasthand&display=swap" rel="stylesheet">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+<header id = "header">
+    <div class="anchors">
+        <div class="logo">
+            <img class = "logo-img" src = "~/pictures/shooting-star.png">
+            <p class = "logo-text">Wishler</p>
+        </div>
+        <div class = 'header_btn'><p><strong><a href="#home">Home</a></strong></p></div>
+        <div class = 'header_btn'><p><strong><a href="#about-us">About Us</a></strong></p></div>
+        <div class = 'header_btn'><p><strong><a href="#why-wishler">Why Wishler?</a></strong></p></div>
+    </div>
+    <a asp-controller="Home" asp-action="Register">
+        <button class = 'header_log-in'>Log in</button>
+    </a>
+</header>
+@RenderBody()
+<footer>
+    <div class="logo">
+        <img class = "logo-img" src = "~/pictures/white-star.png">
+        <p class = "logo-text" style = "color: white; margin-bottom: -4px;">Wishler</p>
+    </div>
+</footer>
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js"></script>
+<script src="~/js/redirect.js"></script>
+<script src="~/js/marquee.js"></script>
+@if (IsSectionDefined("AddScripts"))
+    {
+        @await RenderSectionAsync("AddScripts", required: false)
+    }
+</body>
+</html>

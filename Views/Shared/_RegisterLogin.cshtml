@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/shooting-star.ico">
+    <link rel="stylesheet" href="~/css/null.css">
+    <link rel="stylesheet" href= "~/css/register_login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mrs+Sheppards&display=swap" rel="stylesheet">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <img class = "background" src="~/pictures/starfall.jpg" alt="">
+    <div class = "register">
+        <div class="logo">
+            <img class = "logo-img" src = "~/pictures/white-star.png">
+            <p class = "logo-text" style = "color: white; margin-bottom: -4px;">Wishler</p>
+        </div>
+        <div class = "main-window">
+            @RenderBody()
+            <div class = line></div>
+            <div class = "already-user">
+                <a href="" class = "sign-up-with">
+                    <div>
+                        <img src="~/pictures/yandex.png" alt="">
+                        <p>@ViewData["Login/Register text"] with Yandex</p>
+                    </div>
+                </a>
+                <a href="" class = "sign-up-with">
+                    <div>
+                        <img src="~/pictures/google.png" alt="">
+                        <p>@ViewData["Login/Register text"] with Google</p>
+                    </div>
+                </a>
+                <p class = "redirect-user">
+                    @if (IsSectionDefined("RedirectLink"))
+                    {
+                        @await RenderSectionAsync("RedirectLink", required: true)
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

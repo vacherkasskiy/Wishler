@@ -1,0 +1,38 @@
+﻿@model BoardViewCreate
+
+@{
+    ViewData["Title"] = "Board";
+}
+
+@section AddStyles{
+    <link rel="stylesheet" href="~/css/board.css">
+}
+
+<img class = "background" src="~/pictures/starfall.jpg" alt="">
+    <div class="shadow"></div>
+    <div class="board">
+        @foreach (var column in Model.Columns.OrderBy(x => x.Position).ThenBy(x => x).ToArray())
+        {
+            <section class="column">
+                <textarea class="column__name">@column.Name</textarea>
+                <ul class="tasks__list" id="@column.Id">
+                    @foreach (var row in Model.Rows.Where(x => x.ColumnId == column.Id).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
+                    {
+                        <li class="tasks__item"><textarea wrap="soft" name="text" id="@row.Id">@row.Text</textarea></li>
+                    }
+                    <div class="new create-row"><p>Create new row</p></div>
+                </ul>
+            </section>
+        }
+        <div class="new create-column">
+            <p>Create new column</p>
+        </div>
+      </div>
+
+@section AddScripts{
+    <script src="~/js/null_textareas.js"></script>
+    <script src="~/js/drag_items.js"></script>
+    <script src="~/js/drag_lists.js"></script>
+    <script src="~/js/create_items.js"></script>
+    <script src="~/js/create_lists.js"></script>
+}

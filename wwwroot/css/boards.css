@@ -1,0 +1,202 @@
+html {
+    overflow: hidden;
+}
+
+header {
+    opacity: 1 !important;
+    transition: unset !important;
+}
+
+.new-board-box {
+    display: none;
+    z-index: 60;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.49);
+}
+
+.new-board-box form {
+    padding: 10px;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border: 2px solid #868686;
+    border-radius: 10px;
+}
+
+.new-board-box form > * {
+    font-family: sans-serif;
+}
+
+.new-board-box form h1 {
+    margin: 0 auto;
+    border-bottom: 5px solid #3059fa;
+    padding: 10px;
+    width: 60%;
+    text-align: center;
+}
+
+.new-board-box form label {
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.new-board-box form input {
+    margin: 0 auto;
+    padding: 15px;
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #333;
+}
+
+.new-board-box form .buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-board-box form .buttons > * {
+    padding: 15px;
+    width: fit-content;
+    margin: 10px;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.new-board-box form .buttons .submit {
+    background-color: #3059fa;
+}
+
+.new-board-box form .buttons .cancel {
+    background-color: #ff2222;
+}
+
+/* WRAPPER STYLES */
+
+.wrapper {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+}
+
+.boards_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.boards_folder-name {
+    margin: 30px 0 30px 0;
+    color:#3059fa;
+    font-size: 25px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.boards {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 270px);
+    grid-template-rows: repeat(3, 150px);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+}
+
+.board {
+    padding: 20px;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.board_image {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.board_name {
+    z-index: 50;
+    font-size: 22px;
+    color: white;
+    text-transform: capitalize;
+    text-shadow: 0 0 10px #333
+}
+
+.new-board {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 4px #3059fa solid;
+    border-radius: 10px;
+}
+
+.new-board p {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    color: #3059fa;
+}
+
+/* FOLDERS STYLES */
+
+b {
+    color:#3059fa;
+    font-weight: 600;
+}
+
+.folders {
+    margin-right: 50px;
+    width: 15%;
+    height:calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px #a3a3a3;
+}
+
+.folders > p {
+    width: fit-content;
+    margin: 10px 0 0 10px;
+    padding: 10px;
+    border-bottom: 2.5px #3059fa solid;
+}
+
+.folder {
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.folder:hover {
+    background-color: #e3e2e2;
+}
+
+.new-folder p {
+    color:#3059fa;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.folder_name {
+    font-size: 18px;
+}

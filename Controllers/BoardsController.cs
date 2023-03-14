@@ -1,0 +1,59 @@
+﻿using System.Diagnostics;
+using System.Net;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Mvc;
+using SixLabors.ImageSharp.Formats;
+using WebApplication2.Data;
+using Wishler.Models;
+
+
+namespace Wishler.Controllers;
+
+public class BoardsController : Controller
+{
+    private ApplicationDbContext _db;
+    
+    private bool LinkExists(string imageUrlAddress)
+    {
+        try 
+        {
+            WebRequest webRequest = WebRequest.Create(imageUrlAddress);
+            WebResponse webResponse = webRequest.GetResponse();
+        } 
+        catch //If exception thrown then couldn't get response from address 
+        {
+            return false;
+        }
+        return true;           
+    }
+    
+    public BoardsController(ApplicationDbContext db)
+    {
+        _db = db;
+    }
+    [Route("/boards")]
+    public IActionResult Index()
+    {
+        var param = new BoardsViewCreate()
+        {
+            Boards = _db.Boards,
+            Board = new Board()
+        };
+        return View(param);
+    }
+
+    [HttpPost]
+    public IActionResult Create(Board board)
+    {
+        if (!LinkExists(board.PictureSource))
+        {
+            board.PictureSource = "https://img.freepik.com/free-vector/geometrical-patterned-blue-scifi-background_53876-99847.jpg?w=1060&t=st=1678562076~exp=1678562676~hmac=af378117f9b8f711ebcc9039413951323044741d874e85a3e135b9a212dbd46c";
+        }
+        if (board.Name != null)
+        {
+            _db.Boards.Add(board);
+            _db.SaveChanges();
+        }
+        return RedirectToAction("Index");
+    }
+}

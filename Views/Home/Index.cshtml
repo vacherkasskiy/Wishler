@@ -1,0 +1,152 @@
+﻿@* @{ *@
+@*     Layout = "_Layout"; *@
+@* } *@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="main-page">
+        <a class = 'home_anchor' name = 'home'></a>
+        <a class = 'about-us_anchor' name = 'about-us'></a>
+        <img src = "~/pictures/starfall.jpg" class = "starfall">
+        <p class="main-page_text">Make a wish!<br>With Wishler</p>
+        <div class = "button-circle">
+            <img class = "next-img" src="~/pictures/next.png" alt="">
+            <button class = "redirect-button">
+                <div>
+                    <div></div>
+                </div>
+                Get Started
+            </button>
+        </div>
+    </div>
+    <div class="about-us">
+        <div class='marquee' style='overflow:hidden'>
+            <span>This is not about us, this is about <strong>Your dreams</strong></span>
+            <span>This is not about us, this is about <strong>Your dreams</strong></span>
+            <span>This is not about us, this is about <strong>Your dreams</strong></span>
+            <span>This is not about us, this is about <strong>Your dreams</strong></span>
+        </div>
+        <div class = "line"></div>
+        <div class = "about-us_box">
+            <div class = 'about-us_cards'>
+            <div>
+                <img src='~/pictures/star.svg'>
+                <p>Keep track on your <strong>dreams</strong> and wishes to stay motivated and keep going for goal</p>
+            </div>
+            <div>
+                <img src='~/pictures/friends.svg'>
+                <p>Share your lists with your friends or <strong>dreammates</strong> and make wishes together</p>
+            </div>
+            <div>
+                <img src='~/pictures/santa.png' alt="">
+                <p>Make your's friends <strong>dreams</strong> come true with "Secret Santa" function</p>
+            </div>
+        </div>
+        </div>
+        <div class = "line"></div>
+        <div class = 'about-us_text'>
+            <h1>It’s more than <strong>dreams</strong>. It’s a way of <strong>dreaming</strong> together.</h1>
+            <p>
+                Start with a <strong>Wishler</strong> board, lists, and cards. 
+                Customize and expand your desks as amount of your <strong>dreams</strong> increasing.
+                Manage your <strong>dreams</strong>, and build better version of you.
+            </p>
+        </div>
+        <button class = "redirect-button">Start dreaming</button>
+    </div>
+    <div class="quote">
+        <p class = 'quote_text'>
+            "And when you wish upon a star... You might be happier the way you are"
+        </p>
+        <p class = 'quote_author'>- Phyllis Sugar</p>
+        <a class = 'why-wishler_anchor' name = 'why-wishler'></a>
+    </div>
+<div class = 'app-description'>
+    <div class = 'app-description_card right-img'>
+        <div class="card-text">
+            <h1>Features to help your <strong>dreams</strong> become real</h1>
+            <div class="line"></div>
+            <p class = 'card-text_main'>
+                Powering a motivation for a <strong>dream</strong> means using a powerful tool. From personal
+                dreams to Secret Santa function, <strong>Wishler's</strong> intuitive features give any 
+                group of dreammates the ability to quickly set up and customize workflows for 
+                achieving any goals.
+            </p>
+        </div>
+        <div class = 'card-text_fake-img'></div>
+    </div>
+    <div class = 'app-description_card left-img'>
+        <div class="card-text">
+            <p class = 'card-text_prephrase'><strong>DIVE INTO THE DETAILS</strong></p>
+            <h1>Cards contain everything you need</h1>
+            <div class="line"></div>
+            <p class = 'card-text_main'>
+                <strong>Wishler</strong> cards are your portal to more organized <strong>dreaming</strong>, where every
+                single part of your mind can be managed, tracked, and shared with 
+                <strong>dreammates</strong>. Open any card to uncover an ecosystem of checklists, 
+                due dates, attachments, conversations, and more.
+            </p>
+            <div class = 'hidden-text'>
+                <p class = "click-to-activate"><strong>+ Learn more...</strong></p>
+                <div class = 'hidden-dropdown'>
+                    <p>
+                        Spin up a <strong>Wishler</strong> card with a click, then uncover everything it 
+                        can hold. Break down bigger card tasks into steps with file attachment 
+                        previews, reminders, checklists and comments-emoji reactions included! 
+                        Plus, gain powerful perspective by seeing all cards by list and status 
+                        at the board level.
+                    </p>
+                    <ul>
+                        <li><p>Manage your <strong>dreams</strong></p></li>
+                        <li><p>Provide and track feedback of your <strong>dreammates</strong></p></li>
+                        <li><p>Discuss each other's boards</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <img src='~/pictures/card-back.png' alt="">
+    </div>
+    <div class = 'app-description_card right-img'>
+        <div class="card-text">
+            <p class = 'card-text_prephrase'><strong>CHOOSE A VIEW</strong></p>
+            <h1>The board is just the beginning</h1>
+            <div class="line"></div>
+            <p class = 'card-text_main'>
+                Lists and cards are the building blocks of organizing work on a 
+                <strong>Wishler</strong> board. Grow from there with <strong>dream</strong>
+                tracking, timelines, calendars, and more.
+            </p>
+            <div class = 'hidden-text'>
+                <p class = "click-to-activate"><strong>+ Learn more...</strong></p>
+                <div class = 'hidden-dropdown'>
+                    <p>
+                        You and your dreammates can start up a <strong>Wishler</strong> board in seconds. With the 
+                        ability to view board data from many different angles, the entire 
+                        team stays up-to-date in the way that suits them best:
+                    </p>
+                    <ul>
+                        <li><p>Use a Timeline view for <strong>dreams</strong> planning</p></li>
+                        <li><p>Calendar helps with time management</p></li>
+                        <li><p>Table view connects your plans across boards</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <img src='~/pictures/view.png' alt="">
+    </div>
+</div>
+<div class = 'create-account'>
+    <img src="~/pictures/grid.png" alt="">
+    <h1>Sign up and get started with <strong>Wishler</strong> today. A world of <strong>dreams</strong> come true awaits!</h1>
+    <div class = "create-account_form">
+        <img src="~/pictures/next.png" alt="">
+        <input type="email" placeholder="example@gmail.com">
+        <button class = "redirect-button">Sign Up</button>
+    </div>
+</div>
+
+@section AddScripts{
+    <script src="~/js/main.js"></script>
+}

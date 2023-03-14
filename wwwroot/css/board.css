@@ -1,0 +1,167 @@
+body {
+    padding-top: 70px;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* overflow: scroll; */
+}
+
+header {
+    opacity: 1 !important;
+    transition: unset !important;
+}
+
+.background {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.shadow {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+}
+
+.shadow.active {
+    z-index: 999 !important;
+    opacity: 0.5;
+}
+
+textarea {
+    position: relative;
+    user-select: none;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    cursor: default;
+   -webkit-user-select: none;
+   -webkit-touch-callout: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   -o-user-select: none;
+}
+
+.board {
+    min-width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+
+.column {
+    margin: 0 20px 0 20px;
+    min-width: 300px;
+    max-width: 300px;
+    height: fit-content;
+    padding: 15px;
+    border: 3px solid #3059fa;
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+}
+
+.column__name {
+    margin: 10px 0 0 5px;
+    height: fit-content;
+    font-size: 17px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #3059fa;
+}
+
+.tasks__list {
+    list-style: none;
+}
+
+.tasks__item {
+    list-style: none;
+    position: relative;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 2px solid rgb(149, 149, 149);
+    background-color: white;
+    border-radius: 5px;
+}
+
+.tasks__item:hover img {
+    opacity: 1;
+}
+
+.tasks__item img {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    box-shadow: 0 0 5px 5px white;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.tasks__item textarea {
+    min-height: 20px;
+    user-select: none !important;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.new {
+    cursor: pointer;
+    height: fit-content;
+    background-color: #3059fa;
+}
+
+.new p {
+    font-family: sans-serif;
+    text-align: center;
+    color: white;
+}
+
+.create-column {
+    margin: 0 20px 0 20px;
+    min-width: 300px;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.create-column p {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.create-row {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.selected {
+    opacity: 0.6;
+}
+
+.selected_column {
+    opacity: 0.6;
+}

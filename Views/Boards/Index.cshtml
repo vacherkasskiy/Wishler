@@ -1,0 +1,66 @@
+﻿@model BoardsViewCreate
+
+@{
+    ViewData["Title"] = "Boards";
+}
+
+@section AddStyles{
+  <link rel="stylesheet" href="~/css/boards.css">
+}
+
+<div class="new-board-box">
+  <form asp-action="Create" asp-controller="Boards">
+    <h1><b>New board</b></h1>
+    <label asp-for="Board.Name">Name</label>
+    <input asp-for="Board.Name" />
+    <label asp-for="Board.PictureSource">Picture link</label>
+    <input asp-for="Board.PictureSource" />
+    <input type="hidden" asp-for="Board.UserId" value="1" />
+    <div class="buttons">
+      <button class="submit" type='submit'>Create</button>
+      <a class='cancel'>Cancel</a>
+    </div>
+  </form>
+</div>
+
+<div class="wrapper">
+  <div class="folders">
+    <p><b>Folders:</b></p>
+    <div class="folder">
+      <p class="folder_name">Folder1</p>
+    </div>
+    <div class="folder">
+      <p class="folder_name">Folder2</p>
+    </div>
+    <div class="folder">
+      <p class="folder_name">Folder3</p>
+    </div>
+    <div class="folder">
+      <p class="folder_name">Folder4</p>
+    </div>
+    <div class="folder new-folder">
+      <p class="folder_name">Create new folder</p>
+    </div>
+  </div>
+  <div class="boards_wrapper">
+    <p class="boards_folder-name">Name of folder</p>
+    <div class="boards">
+      @foreach (var board in Model.Boards.ToArray())
+      {
+        <a href="board.html">
+          <div class="board">
+            <img class="board_image" src="@board.PictureSource" alt="">
+            <p class="board_name">@board.Name</p>
+          </div>
+        </a>
+      }
+      <div class="new-board">
+        <p>+ Create new board</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section AddScripts{
+  <script src="~/js/boards.js"></script>
+}
