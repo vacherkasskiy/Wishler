@@ -113,8 +113,9 @@ function giveTextareaAllStyles(textarea) {
                 event.target.style.zIndex = 0;
                 document.querySelector(".shadow").style.zIndex = -1;
                 let position = getElementIndex(event.target.parentNode);
-                // add board id
-                addColumnToDb(event.target.id, event.target.value, 1, position, event.target);
+                let boardId = event.target.parentNode.parentNode.id;
+                
+                addColumnToDb(event.target.id, event.target.value, boardId, position, event.target);
             }
         } ,true);
 

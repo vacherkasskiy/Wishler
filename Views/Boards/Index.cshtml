@@ -47,7 +47,7 @@
     <div class="boards">
       @foreach (var board in Model.Boards.ToArray())
       {
-        <a href="board.html">
+        <a href="/board/@board.Id">
           <div class="board">
             <img class="board_image" src="@board.PictureSource" alt="">
             <p class="board_name">@board.Name</p>

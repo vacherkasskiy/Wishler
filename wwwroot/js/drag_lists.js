@@ -16,7 +16,7 @@ board.addEventListener(`dragend`, (evt) => {
     evt.target.classList.remove(`selected_column`);
     
     var lists = board.querySelectorAll(".column");
-    var boardId = 1; // change it later
+    var boardId = board.id;
 
     for (let i = 0; i < lists.length; ++i) {
       var id = lists[i].querySelector("textarea").id;
