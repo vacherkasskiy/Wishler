@@ -1,19 +1,6 @@
 var tasksListElements = document.querySelectorAll(".tasks__list");
 var taskElements = document.querySelectorAll(".tasks__item");
 
-function refreshPosition(id, position, columnId, text) {
-    $.ajax({
-        type: "POST",
-        url: "/RefreshRowPosition",
-        data: {
-            id: id,
-            position: position,
-            columnId: columnId,
-            text: text,
-        },
-    });
-}
-
 for (var task of taskElements) {
   task.draggable = true;
 }
