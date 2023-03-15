@@ -6,11 +6,26 @@ for (const task of columns) {
 }
 
 board.addEventListener(`dragstart`, (evt) => {
-  evt.target.classList.add(`selected_column`);
+  if (evt.target.classList.contains("column")) {
+    evt.target.classList.add(`selected_column`);
+  }
 });
 
 board.addEventListener(`dragend`, (evt) => {
-  evt.target.classList.remove(`selected_column`);
+  if (evt.target.classList.contains("column")) {
+    evt.target.classList.remove(`selected_column`);
+    
+    var lists = board.querySelectorAll(".column");
+    var boardId = 1; // change it later
+
+    for (let i = 0; i < lists.length; ++i) {
+      var id = lists[i].querySelector("textarea").id;
+      var name = lists[i].querySelector("textarea").value;
+      var position = getElementIndex(lists[i]);
+
+      addColumnToDb(id, name, boardId, position, lists[i].querySelector("textarea"));
+    }
+  }
 });
 
 board.addEventListener(`dragover`, (evt) => {

@@ -1,6 +1,19 @@
 var tasksListElements = document.querySelectorAll(".tasks__list");
 var taskElements = document.querySelectorAll(".tasks__item");
 
+function refreshPosition(id, position, columnId, text) {
+    $.ajax({
+        type: "POST",
+        url: "/RefreshRowPosition",
+        data: {
+            id: id,
+            position: position,
+            columnId: columnId,
+            text: text,
+        },
+    });
+}
+
 for (var task of taskElements) {
   task.draggable = true;
 }
@@ -14,7 +27,19 @@ function makeListItemsDraggable(list) {
     });
     
     list.addEventListener("dragend", (event) => {
-        event.target.classList.remove("selected");
+        if (event.target.classList.contains("tasks__item")) {
+            event.target.classList.remove("selected");
+            
+            var columnId = event.target.parentNode.parentNode.querySelector("textarea").id;
+            var ul = event.target.parentNode.querySelectorAll(".tasks__item");
+            
+            for (let i = 0; i < ul.length; ++i) {
+                var id = ul[i].querySelector("textarea").id;
+                var position = getElementIndex(ul[i]);
+                var text = ul[i].querySelector("textarea").value;
+                addRowToDb(id, columnId, position, text, ul[i].querySelector("textarea"));
+            }
+        }
     });
     
     list.addEventListener("dragover", (event) => {
