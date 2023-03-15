@@ -6,7 +6,7 @@ namespace Wishler.Controllers;
 
 public class BoardController : Controller
 {
-    private ApplicationDbContext _db;
+    private readonly ApplicationDbContext _db;
     
     public BoardController(ApplicationDbContext db)
     {
