@@ -13,11 +13,12 @@ public class BoardController : Controller
         _db = db;
     }
     
-    [Route("/board")]
-    public IActionResult Index()
+    [Route("/board/{id}")]
+    public IActionResult Index(int id)
     {
         var param = new BoardViewCreate()
         {
+            BoardId = id,
             Columns = _db.Columns,
             Rows = _db.Rows,
             Column = new Column(),

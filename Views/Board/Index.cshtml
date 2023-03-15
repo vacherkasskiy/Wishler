@@ -10,8 +10,8 @@
 
 <img class = "background" src="~/pictures/starfall.jpg" alt="">
     <div class="shadow"></div>
-    <div class="board">
-        @foreach (var column in Model.Columns.OrderBy(x => x.Position).ThenBy(x => x).ToArray())
+    <div class="board" id="@Model.BoardId">
+        @foreach (var column in Model.Columns.Where(x=> x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
         {
             <section class="column">
                 <textarea class="column__name" id="@column.Id">@column.Name</textarea>
