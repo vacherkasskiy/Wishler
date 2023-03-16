@@ -9,7 +9,7 @@
     ViewData["Login/Register text"] = "Log in";
 }
 
-<form asp-controller="Home" asp-action="Login" class = "main_register-page">
+<form asp-controller="Account" asp-action="Login" class = "main_register-page">
         <div>
             <label asp-for="Email">E-mail</label>
             <input asp-for="Email" type="text" placeholder="Example@gmail.com">
@@ -22,5 +22,5 @@
     </form>
 
 @section RedirectLink {
-    <a asp-controller="Home" asp-action="Register">Don't have an account?</a>
+    <a asp-controller="Account" asp-action="Register">Don't have an account?</a>
 }

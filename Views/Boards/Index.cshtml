@@ -1,4 +1,4 @@
-﻿@model BoardsViewCreate
+﻿@model BoardsViewModel
 
 @{
     ViewData["Title"] = "Boards";
@@ -15,7 +15,7 @@
     <input asp-for="Board.Name" />
     <label asp-for="Board.PictureSource">Picture link</label>
     <input asp-for="Board.PictureSource" />
-    <input type="hidden" asp-for="Board.UserId" value="1" />
+    <input type="hidden" asp-for="Board.UserId" value="@Model.UserId" />
     <div class="buttons">
       <button class="submit" type='submit'>Create</button>
       <a class='cancel'>Cancel</a>
@@ -45,7 +45,7 @@
   <div class="boards_wrapper">
     <p class="boards_folder-name">Name of folder</p>
     <div class="boards">
-      @foreach (var board in Model.Boards.ToArray())
+      @foreach (var board in Model.Boards.ToArray().Where(x => x.UserId == Model.UserId))
       {
         <a href="/board/@board.Id">
           <div class="board">

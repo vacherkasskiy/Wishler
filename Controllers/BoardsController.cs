@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Net;
 using System.Net.Mime;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using SixLabors.ImageSharp.Formats;
 using WebApplication2.Data;
@@ -34,10 +35,11 @@ public class BoardsController : Controller
     [Route("/boards")]
     public IActionResult Index()
     {
-        var param = new BoardsViewCreate()
+        var param = new BoardsViewModel()
         {
             Boards = _db.Boards,
-            Board = new Board()
+            Board = new Board(),
+            UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
         };
         return View(param);
     }

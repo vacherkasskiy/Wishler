@@ -1,6 +1,6 @@
 ﻿namespace Wishler.Models;
 
-public class BoardViewCreate
+public class BoardViewModel
 {
     public int BoardId { get; set; }
     public IEnumerable<Column> Columns { get; set; }

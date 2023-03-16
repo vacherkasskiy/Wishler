@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Runtime.Intrinsics.Arm;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Data;
 using Wishler.Models;
@@ -16,33 +19,6 @@ public class HomeController : Controller
     
     public IActionResult Index()
     {
-        return View();
-    }
-    
-    [Route("/login")]
-    public IActionResult Login()
-    {
-        return View();
-    }
-    
-    [Route("/register")]
-    public IActionResult Register()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    [Route("/register")]
-    public IActionResult Register(User user)
-    {
-        if (ModelState.IsValid)
-        {
-            _db.Users.Add(user);
-            _db.SaveChanges();
-            return RedirectToAction("Index", "Boards");
-        }
-
         return View();
     }
 
