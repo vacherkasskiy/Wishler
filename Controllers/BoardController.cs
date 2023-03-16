@@ -16,7 +16,7 @@ public class BoardController : Controller
     [Route("/board/{id}")]
     public IActionResult Index(int id)
     {
-        var param = new BoardViewCreate()
+        var param = new BoardViewModel()
         {
             BoardId = id,
             Columns = _db.Columns,
