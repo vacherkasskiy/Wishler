@@ -40,6 +40,7 @@ public class AccountController : Controller
     }
     
     [HttpPost]
+    [ValidateAntiForgeryToken]
     [Route("/register")]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
@@ -55,12 +56,17 @@ public class AccountController : Controller
         {
             ModelState.AddModelError("Email", "Invalid email address");
         }
+        if (model.Password != model.PasswordConfirm)
+        {
+            ModelState.AddModelError("Password", "Different passwords provided");
+        }
         if (ModelState.IsValid)
         {
             var user = new User
             {
                 Name = model.Name,
                 Email = model.Email,
+                Password = model.Password
             };
             var passwordHasher = new PasswordHasher<User>();
             user.Password = passwordHasher.HashPassword(user, user.Password);
@@ -93,10 +99,20 @@ public class AccountController : Controller
     [HttpPost]
     [Route("/login")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(User user)
+    public async Task<IActionResult> Login(LoginViewModel model)
     {
+        if (_db.Users.SingleOrDefault(x => x.Email == model.Email) == null)
+        {
+            ModelState.AddModelError("Email", "There is no user with such email");
+        }
         if (ModelState.IsValid)
         {
+            var user = new User
+            {
+                Email = model.Email,
+                Password = model.Password
+            };
+            
             var loginUser = await _db.Users.SingleOrDefaultAsync(u => u.Email == user.Email);
             var passwordHasher = new PasswordHasher<User>();
             var result = passwordHasher.VerifyHashedPassword(loginUser, loginUser.Password, user.Password);
@@ -119,4 +135,10 @@ public class AccountController : Controller
         return View();
     }
 
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Index", "Home");
+    }
 }
