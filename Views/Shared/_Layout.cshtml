@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,13 +27,41 @@
             <img class = "logo-img" src = "~/pictures/shooting-star.png">
             <p class = "logo-text">Wishler</p>
         </div>
-        <div class = 'header_btn'><p><strong><a href="#home">Home</a></strong></p></div>
-        <div class = 'header_btn'><p><strong><a href="#about-us">About Us</a></strong></p></div>
-        <div class = 'header_btn'><p><strong><a href="#why-wishler">Why Wishler?</a></strong></p></div>
+        @if (IsSectionDefined("AddToHeader"))
+        {
+            @await RenderSectionAsync("AddToHeader", required: false)
+        }
     </div>
-    <a asp-controller="Account" asp-action="Register">
-        <button class = 'header_log-in'>Log in</button>
-    </a>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Account" asp-action="Login">
+            <button class = 'header_log-in'>Log in</button>
+        </a>
+    }
+    else
+    {
+        <div class = 'header_profile'>
+            <div class="profile_picture">
+                <img src="pictures/user.png" alt="">
+            </div>
+            <div class="dropdown_wrapper">
+                <div class="profile_dropdown">
+                    <div class="overview">
+                        <img class="profile_picture" src="~/pictures/user.png" alt="">
+                        <div class="overview_data">
+                            <p>@User.FindFirstValue(ClaimTypes.Name)</p>
+                            <p>@User.FindFirstValue(ClaimTypes.Email)</p>
+                        </div>
+                    </div>
+                    <p class = 'dropdown_btn'>Profile</p>
+                    <p class = 'dropdown_btn'>Friends</p>
+                    <p class = 'dropdown_btn'>Settings</p>
+                    <p class = "dropdown_btn"><a class="boards_btn" asp-controller="Boards" asp-action="Index">Boards</a></p>
+                    <p class = "dropdown_btn"><a class="logout_btn" asp-controller="Account" asp-action="Logout">Log out</a></p>
+                </div>
+            </div>
+        </div>
+    }
 </header>
 @RenderBody()
 <footer>
@@ -44,7 +73,6 @@
 <!-- Scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js"></script>
-<script src="~/js/redirect.js"></script>
 <script src="~/js/marquee.js"></script>
 @if (IsSectionDefined("AddScripts"))
     {

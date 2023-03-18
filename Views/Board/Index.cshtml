@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="~/css/board.css">
 }
 
+@section AddToHeader {
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
+    </div>
+}
+
 <img class = "background" src="~/pictures/starfall.jpg" alt="">
     <div class="shadow"></div>
     <div class="board" id="@Model.BoardId">

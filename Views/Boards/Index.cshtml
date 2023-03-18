@@ -8,6 +8,23 @@
   <link rel="stylesheet" href="~/css/boards.css">
 }
 
+@section AddToHeader {
+  <div class="header_btn">
+    <p>
+      <strong>
+        <a asp-controller="Home" asp-action="Index">Home</a>
+      </strong>
+    </p>
+  </div>
+  <div class="header_btn">
+      <p>
+        <strong>
+          <a asp-action="Index" asp-controller="Boards">Boards</a>
+        </strong>
+      </p>
+    </div>
+}
+
 <div class="new-board-box">
   <form asp-action="Create" asp-controller="Boards">
     <h1><b>New board</b></h1>
