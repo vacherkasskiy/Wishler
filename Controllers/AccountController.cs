@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,7 @@ public class AccountController : Controller
         
             var claims = new[] {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
@@ -107,22 +109,17 @@ public class AccountController : Controller
         }
         if (ModelState.IsValid)
         {
-            var user = new User
-            {
-                Email = model.Email,
-                Password = model.Password
-            };
-            
-            var loginUser = await _db.Users.SingleOrDefaultAsync(u => u.Email == user.Email);
+            var loginUser = await _db.Users.SingleOrDefaultAsync(u => u.Email == model.Email);
             var passwordHasher = new PasswordHasher<User>();
-            var result = passwordHasher.VerifyHashedPassword(loginUser, loginUser.Password, user.Password);
+            var result = passwordHasher.VerifyHashedPassword(loginUser, loginUser.Password, model.Password);
 
             if (result == PasswordVerificationResult.Success)
             {
-                var userId = _db.Users.Where(x => x.Email == user.Email).ToArray()[0].Id;
+                var userId = _db.Users.Where(x => x.Email == model.Email).ToArray()[0].Id;
                 var claims = new[] {
                     new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-                    new Claim(ClaimTypes.Email, user.Email)
+                    new Claim(ClaimTypes.Name, loginUser.Name),
+                    new Claim(ClaimTypes.Email, loginUser.Email)
                 };
             
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -137,7 +134,7 @@ public class AccountController : Controller
         return View();
     }
 
-    [ValidateAntiForgeryToken]
+    [Route("/account/logout")]
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

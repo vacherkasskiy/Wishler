@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
 using Wishler.Models;
 using Wishler.ViewModels;
@@ -15,6 +16,7 @@ public class BoardController : Controller
     }
     
     [Route("/board/{id}")]
+    [Authorize]
     public IActionResult Index(int id)
     {
         var param = new BoardViewModel()
@@ -29,6 +31,7 @@ public class BoardController : Controller
     }
     
     [Route("/EditOrCreateColumn")]
+    [Authorize]
     public IActionResult EditOrCreateColumn()
     {
         return RedirectToAction("Index");
@@ -36,6 +39,7 @@ public class BoardController : Controller
 
     [HttpPost]
     [Route("/EditOrCreateColumn")]
+    [Authorize]
     public IActionResult EditOrCreateColumn(int id, string name, int boardId, int position)
     {
         var column = new Column()
@@ -51,6 +55,7 @@ public class BoardController : Controller
     }
 
     [Route("/EditOrCreateRow")]
+    [Authorize]
     public IActionResult EditOrCreateRow()
     {
         return RedirectToAction("Index");
@@ -58,6 +63,7 @@ public class BoardController : Controller
     
     [HttpPost]
     [Route("/EditOrCreateRow")]
+    [Authorize]
     public IActionResult EditOrCreateRow(int id, int columnId, int position, string text)
     {
         var row = new Row()

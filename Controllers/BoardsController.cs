@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Mime;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SixLabors.ImageSharp.Formats;
 using Wishler.Data;
@@ -34,6 +35,7 @@ public class BoardsController : Controller
         _db = db;
     }
     [Route("/boards")]
+    [Authorize]
     public IActionResult Index()
     {
         var param = new BoardsViewModel()
@@ -46,6 +48,7 @@ public class BoardsController : Controller
     }
 
     [HttpPost]
+    [Authorize]
     public IActionResult Create(Board board)
     {
         if (!LinkExists(board.PictureSource))
