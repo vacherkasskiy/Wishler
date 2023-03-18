@@ -1,4 +1,4 @@
-namespace Wishler.Models;
+namespace Wishler.ViewModels;
 
 public class ErrorViewModel
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wishler.Models;
 
-namespace WebApplication2.Data;
+namespace Wishler.Data;
 
 public class ApplicationDbContext : DbContext
 {

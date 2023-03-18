@@ -1,4 +1,6 @@
-﻿namespace Wishler.Models;
+﻿using Wishler.Models;
+
+namespace Wishler.ViewModels;
 
 public class BoardViewModel
 {
