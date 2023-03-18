@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebApplication2.Data;
+using Wishler.Data;
 using Wishler.Models;
+using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
 

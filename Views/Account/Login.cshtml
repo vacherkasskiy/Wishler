@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model Wishler.ViewModels.LoginViewModel
 
 @{
     Layout = "_RegisterLogin";
@@ -13,10 +13,12 @@
         <div>
             <label asp-for="Email">E-mail</label>
             <input asp-for="Email" type="text" placeholder="Example@gmail.com">
+            <span class="error" asp-validation-for="Email"></span>
         </div>
         <div>
             <label asp-for="Password">Password</label>
             <input asp-for="Password" type="password" placeholder="Password">
+            <span class="error" asp-validation-for="Password"></span>
         </div>
         <button class="register_submit" type="submit">Submit</button>
     </form>

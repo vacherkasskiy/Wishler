@@ -4,8 +4,9 @@ using System.Net.Mime;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using SixLabors.ImageSharp.Formats;
-using WebApplication2.Data;
+using Wishler.Data;
 using Wishler.Models;
+using Wishler.ViewModels;
 
 
 namespace Wishler.Controllers;

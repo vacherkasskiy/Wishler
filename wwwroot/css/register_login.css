@@ -48,11 +48,10 @@ body {
 
 .main-window {
     z-index: 1;
-    padding: 0 20px 0 20px;
+    padding: 0 20px 20px 20px !important;
     width: 400px;
-    height: 550px;
+    height: fit-content;
     max-width: 80vw;
-    max-height: 80vh;
     border: 4px solid #3059fa;
     border-radius: 20px;
     background-color: white;
@@ -79,16 +78,29 @@ body {
 }
 
 .main_register-page input {
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
     padding: 10px;
     width: 85%;
-    height: 40px;
+    height: 35px;
     border: 2px solid rgb(202, 202, 202);
     border-radius: 5px;
     color: rgb(104, 104, 104);
     font-family: sans-serif;
     font-size: 17px;
     box-shadow: 0 7px 15px rgb(104, 104, 104);
+}
+
+.main_register-page > div {
+    margin: 5px 0;
+}
+
+.error {
+    width: 85%;
+    margin: 0 auto;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #EE4B2B;
 }
 
 .register_submit {

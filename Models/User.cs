@@ -5,7 +5,7 @@ namespace Wishler.Models;
 public class User
 {
     [Key]
-    public int id { get; set; }
+    public int Id { get; set; }
     [Required]
     public string Name { get; set; }
     [EmailAddress]
