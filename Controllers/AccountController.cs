@@ -131,6 +131,8 @@ public class AccountController : Controller
 
                 return RedirectToAction("Index", "Boards");
             }
+            
+            ModelState.AddModelError("Password", "Wrong password");
         }
         return View();
     }
