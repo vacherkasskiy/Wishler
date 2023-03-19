@@ -87,7 +87,6 @@ body {
     color: rgb(104, 104, 104);
     font-family: sans-serif;
     font-size: 17px;
-    box-shadow: 0 7px 15px rgb(104, 104, 104);
 }
 
 .main_register-page > div {
@@ -104,7 +103,7 @@ body {
 }
 
 .register_submit {
-    margin: 0 auto 20px auto;
+    margin: 10px auto 20px auto;
     width: 60% !important;
     padding: 10px;
     height: 40px;
@@ -149,7 +148,7 @@ body {
     align-items: center;
     justify-content: space-around;
     border-radius: 5px;
-    box-shadow: 0 7px 15px rgb(104, 104, 104);
+    box-shadow: 0 0 5px rgb(150, 150, 150);
 }
 
 .sign-up-with div img {
