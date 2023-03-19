@@ -77,4 +77,28 @@ public class BoardController : Controller
         _db.SaveChanges();
         return Json(new {cellId = row.Id});
     }
+
+    [HttpDelete]
+    [Route("/board/deleteRow")]
+    public void DeleteRow(int id)
+    {
+        var row = _db.Rows.Find(id);
+        if (row != null)
+        {
+            _db.Rows.Remove(row);
+            _db.SaveChanges();
+        }
+    }
+    
+    [HttpDelete]
+    [Route("/board/deleteColumn")]
+    public void DeleteColumn(int id)
+    {
+        var column = _db.Columns.Find(id);
+        if (column != null)
+        {
+            _db.Columns.Remove(column);
+            _db.SaveChanges();
+        }
+    }
 }

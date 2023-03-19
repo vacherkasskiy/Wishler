@@ -32,6 +32,26 @@ function addColumnToDb(id, name, boardId, position, target) {
     });
 }
 
+function deleteRow(id) {
+    $.ajax({
+        type: "DELETE",
+        url: "/board/deleteRow",
+        data: {
+            id: id,
+        },
+    });
+}
+
+function deleteColumn(id) {
+    $.ajax({
+        type: "DELETE",
+        url: "/board/deleteColumn",
+        data: {
+            id: id,
+        },
+    });
+}
+
 function getElementIndex(elem) {
     elem = elem.tagName ? elem : document.querySelector(elem)
     return [].indexOf.call(elem.parentNode.children, elem)
@@ -42,7 +62,7 @@ function giveTextareaAllStyles(textarea) {
     if (textarea.parentNode.classList.contains("tasks__item")) {
         textarea.readOnly = true;
         var img = document.createElement("img");
-        img.src = "~/pictures/edit.png";
+        img.src = "https://cdn-icons-png.flaticon.com/512/1159/1159633.png";
         
         img.addEventListener("click", (event) => {
             event.target.previousElementSibling.readOnly = false;
@@ -74,6 +94,7 @@ function giveTextareaAllStyles(textarea) {
             document.querySelector(".shadow").classList.remove("active");
             if (event.target.value === "") {
                 event.target.parentNode.remove();
+                deleteRow(event.target.id);
             } else {
                 let position = getElementIndex(event.target.parentNode);
                 let columnId = event.target.parentNode.parentNode.parentNode.querySelector("textarea").id;
@@ -106,6 +127,7 @@ function giveTextareaAllStyles(textarea) {
                 if (column.querySelectorAll("li").length == 0) {
                     document.querySelector(".shadow").style.zIndex = -1;
                     event.target.parentNode.remove();
+                    deleteColumn(event.target.id);
                     return;
                 }
                 setTimeout(event.target.focus(), 1);

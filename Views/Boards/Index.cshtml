@@ -5,79 +5,87 @@
 }
 
 @section AddStyles{
-  <link rel="stylesheet" href="~/css/boards.css">
+    <link rel="stylesheet" href="~/css/boards.css">
 }
 
 @section AddToHeader {
-  <div class="header_btn">
-    <p>
-      <strong>
-        <a asp-controller="Home" asp-action="Index">Home</a>
-      </strong>
-    </p>
-  </div>
-  <div class="header_btn">
-      <p>
-        <strong>
-          <a asp-action="Index" asp-controller="Boards">Boards</a>
-        </strong>
-      </p>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
     </div>
 }
 
 <div class="new-board-box">
-  <form asp-action="Create" asp-controller="Boards">
-    <h1><b>New board</b></h1>
-    <label asp-for="Board.Name">Name</label>
-    <input asp-for="Board.Name" />
-    <label asp-for="Board.PictureSource">Picture link</label>
-    <input asp-for="Board.PictureSource" />
-    <input type="hidden" asp-for="Board.UserId" value="@Model.UserId" />
-    <div class="buttons">
-      <button class="submit" type='submit'>Create</button>
-      <a class='cancel'>Cancel</a>
-    </div>
-  </form>
+    <form asp-action="Create" asp-controller="Boards">
+        <h1>
+            <b>New board</b>
+        </h1>
+        <div class="new-board__input">
+            <label asp-for="Board.Name">Name</label>
+            <input asp-for="Board.Name"/>
+        </div>
+        <div class="new-board__input">
+            <label asp-for="Board.PictureSource">Picture link</label>
+            <input asp-for="Board.PictureSource"/>
+        </div>
+        <input type="hidden" asp-for="Board.UserId" value="@Model.UserId"/>
+        <div class="buttons">
+            <button class="submit" type="submit">Create</button>
+            <a class="cancel">Cancel</a>
+        </div>
+    </form>
 </div>
 
 <div class="wrapper">
-  <div class="folders">
-    <p><b>Folders:</b></p>
-    <div class="folder">
-      <p class="folder_name">Folder1</p>
+    <div class="folders">
+        <p>
+            <b>Folders:</b>
+        </p>
+        <div class="folder">
+            <p class="folder_name">Folder1</p>
+        </div>
+        <div class="folder">
+            <p class="folder_name">Folder2</p>
+        </div>
+        <div class="folder">
+            <p class="folder_name">Folder3</p>
+        </div>
+        <div class="folder">
+            <p class="folder_name">Folder4</p>
+        </div>
+        <div class="folder new-folder">
+            <p class="folder_name">Create new folder</p>
+        </div>
     </div>
-    <div class="folder">
-      <p class="folder_name">Folder2</p>
+    <div class="boards_wrapper">
+        <p class="boards_folder-name">Name of folder</p>
+        <div class="boards">
+            @foreach (var board in Model.Boards.ToArray().Where(x => x.UserId == Model.UserId))
+            {
+                <a href="/board/@board.Id">
+                    <div class="board">
+                        <img class="board_image" src="@board.PictureSource" alt="">
+                        <p class="board_name">@board.Name</p>
+                    </div>
+                </a>
+            }
+            <div class="new-board">
+                <p>+ Create new board</p>
+            </div>
+        </div>
     </div>
-    <div class="folder">
-      <p class="folder_name">Folder3</p>
-    </div>
-    <div class="folder">
-      <p class="folder_name">Folder4</p>
-    </div>
-    <div class="folder new-folder">
-      <p class="folder_name">Create new folder</p>
-    </div>
-  </div>
-  <div class="boards_wrapper">
-    <p class="boards_folder-name">Name of folder</p>
-    <div class="boards">
-      @foreach (var board in Model.Boards.ToArray().Where(x => x.UserId == Model.UserId))
-      {
-        <a href="/board/@board.Id">
-          <div class="board">
-            <img class="board_image" src="@board.PictureSource" alt="">
-            <p class="board_name">@board.Name</p>
-          </div>
-        </a>
-      }
-      <div class="new-board">
-        <p>+ Create new board</p>
-      </div>
-    </div>
-  </div>
 </div>
 
 @section AddScripts{
-  <script src="~/js/boards.js"></script>
+    <script src="~/js/boards.js"></script>
 }

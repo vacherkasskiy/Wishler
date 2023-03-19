@@ -22,20 +22,12 @@
         <div class = "main-window">
             @RenderBody()
             <div class = line></div>
-            <div class = "already-user">
-                <a href="" class = "sign-up-with">
-                    <div>
-                        <img src="~/pictures/yandex.png" alt="">
-                        <p>@ViewData["Login/Register text"] with Yandex</p>
-                    </div>
-                </a>
-                <a href="" class = "sign-up-with">
-                    <div>
-                        <img src="~/pictures/google.png" alt="">
-                        <p>@ViewData["Login/Register text"] with Google</p>
-                    </div>
-                </a>
-                <p class = "redirect-user">
+            <div class="already-user">
+                @if (IsSectionDefined("YandexGoogle"))
+                {
+                    @await RenderSectionAsync("YandexGoogle", required: true)
+                }
+                <p class="redirect-user">
                     @if (IsSectionDefined("RedirectLink"))
                     {
                         @await RenderSectionAsync("RedirectLink", required: true)

@@ -6,7 +6,6 @@
 
 @{
     ViewData["Title"] = "Sign Up";
-    ViewData["Login/Register text"] = "Sign up";
 }
 
 <form method="post" class="main_register-page">
@@ -33,6 +32,23 @@
     <button class="register_submit" type="submit">Submit</button>
 </form>
 
-@section RedirectLink {
+@section YandexGoogle
+{
+    <a href="" class="sign-up-with">
+        <div>
+            <img src="~/pictures/yandex.png" alt="">
+            <p>Sign up with Yandex</p>
+        </div>
+    </a>
+    <a href="" class="sign-up-with">
+        <div>
+            <img src="~/pictures/google.png" alt="">
+            <p>Sign up with Google</p>
+        </div>
+    </a>
+}
+
+@section RedirectLink
+{
     <a asp-controller="Account" asp-action="Login">Already have an account?</a>
 }
