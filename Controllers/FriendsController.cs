@@ -3,22 +3,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Wishler.Data;
 using Wishler.Models;
+using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
 
 [Authorize]
-public class FriendController : Controller
+public class FriendsController : Controller
 {
     private readonly ApplicationDbContext _db;
     
-    public FriendController(ApplicationDbContext db)
+    public FriendsController(ApplicationDbContext db)
     {
         _db = db;
     }
     
+    [Route("/user/{userId}/friends")]
     public IActionResult IndexFriendsList(int userId)
     {
-        return View(userId);
+        var model = new FriendsViewModel
+        {
+            UserId = userId,
+            Friends = _db.Friends,
+            FriendRequests = _db.FriendRequests
+        };
+        
+        return View(model);
     }
 
     [HttpPost]

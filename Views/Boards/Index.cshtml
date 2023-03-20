@@ -1,4 +1,5 @@
-﻿@model Wishler.ViewModels.BoardsViewModel
+﻿@using System.Security.Claims
+@model Wishler.ViewModels.BoardsViewModel
 
 @{
     ViewData["Title"] = "Boards";
@@ -20,6 +21,13 @@
         <p>
             <strong>
                 <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a href="/user/@User.FindFirstValue(ClaimTypes.NameIdentifier)/friends">Friends</a>
             </strong>
         </p>
     </div>
