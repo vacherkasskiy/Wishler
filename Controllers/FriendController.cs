@@ -18,14 +18,9 @@ public class FriendController : Controller
     
     public IActionResult IndexFriendsList(int userId)
     {
-        return View();
+        return View(userId);
     }
 
-    public IActionResult IndexFriendRequestsList(int userId)
-    {
-        return View();
-    }
-    
     [HttpPost]
     public void SendFriendRequest(int senderId, int receiverId)
     {
@@ -68,5 +63,17 @@ public class FriendController : Controller
             _db.FriendRequests.Remove(request);
             _db.SaveChanges();
         }
+    }
+
+    [HttpDelete]
+    public void DeleteFriend(int ownerId, int friendId)
+    {
+        var owner = _db.Friends.Where(x => x.OwnerId == ownerId && x.FriendId == friendId).ToArray()[0];
+        var friend = _db.Friends.Where(x => x.OwnerId == friendId && x.FriendId == x.OwnerId).ToArray()[0];
+
+        _db.Friends.Remove(owner);
+        _db.Friends.Remove(friend);
+
+        _db.SaveChanges();
     }
 }
