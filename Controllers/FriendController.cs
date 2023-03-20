@@ -16,11 +16,17 @@ public class FriendController : Controller
         _db = db;
     }
     
-    public IActionResult Index(int userId)
+    public IActionResult IndexFriendsList(int userId)
     {
         return View();
     }
 
+    public IActionResult IndexFriendRequestsList(int userId)
+    {
+        return View();
+    }
+    
+    [HttpPost]
     public void SendFriendRequest(int senderId, int receiverId)
     {
         var friendRequest = new FriendRequest
@@ -33,6 +39,7 @@ public class FriendController : Controller
         _db.SaveChanges();
     }
 
+    [HttpPost]
     public void ApproveFriendRequest(int ownerId, int friendId)
     {
         var owner = new Friend
@@ -50,5 +57,16 @@ public class FriendController : Controller
         _db.Friends.Add(owner);
         _db.Friends.Add(friend);
         _db.SaveChanges();
+    }
+    
+    [HttpDelete]
+    public void CancelFriendRequest(int requestId)
+    {
+        var request = _db.FriendRequests.Find(requestId);
+        if (request != null)
+        {
+            _db.FriendRequests.Remove(request);
+            _db.SaveChanges();
+        }
     }
 }
