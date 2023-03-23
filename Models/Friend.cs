@@ -6,6 +6,6 @@ public class Friend
 {
     [Key]
     public int Id { get; set; }
-    public int OwnerId { get; set; }
-    public int FriendId { get; set; }
+    public string OwnerEmail { get; set; }
+    public string FriendEmail { get; set; }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Net.Mail;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Wishler.Data;
@@ -11,56 +12,107 @@ namespace Wishler.Controllers;
 public class FriendsController : Controller
 {
     private readonly ApplicationDbContext _db;
-    
+
     public FriendsController(ApplicationDbContext db)
     {
         _db = db;
     }
     
+    private bool IsValidEmail(string email)
+    {
+        try
+        {
+            MailAddress m = new MailAddress(email);
+            return true;
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    }
+    
     [Route("/user/{userId}/friends")]
-    public IActionResult IndexFriendsList(int userId)
+    public IActionResult Index(int userId)
     {
         var model = new FriendsViewModel
         {
-            UserId = userId,
+            UserEmail = _db.Users.Find(userId).Email,
             Friends = _db.Friends,
-            FriendRequests = _db.FriendRequests
+            FriendRequests = _db.FriendRequests,
+            FriendRequest = new FriendRequest()
         };
         
         return View(model);
     }
 
     [HttpPost]
-    public void SendFriendRequest(int senderId, int receiverId)
+    public IActionResult SendFriendRequest(FriendRequest friendRequest)
     {
-        var friendRequest = new FriendRequest
+        if (friendRequest.ReceiverEmail == null || !IsValidEmail(friendRequest.ReceiverEmail))
         {
-            SenderId = senderId,
-            ReceiverId = receiverId
-        };
+            ModelState.AddModelError("FriendRequest.ReceiverEmail", "Invalid email");
+        }
+        if (_db.Users.FirstOrDefault(x => x.Email == friendRequest.ReceiverEmail) == null)
+        {
+            ModelState.AddModelError("FriendRequest.ReceiverEmail", "There is no such user");
+        }
+        if (friendRequest.ReceiverEmail == friendRequest.SenderEmail)
+        {
+            ModelState.AddModelError("FriendRequest.ReceiverEmail", "This is you");
+        }
+        if (_db.FriendRequests.FirstOrDefault(x => x.SenderEmail == friendRequest.SenderEmail
+                                                   && x.ReceiverEmail == friendRequest.ReceiverEmail) != null)
+        {
+            ModelState.AddModelError("FriendRequest.ReceiverEmail", "You already sent this request");
+        }
+        if (_db.FriendRequests.FirstOrDefault(x => x.SenderEmail == friendRequest.ReceiverEmail
+                                                   && x.ReceiverEmail == friendRequest.SenderEmail) != null)
+        {
+            ModelState.AddModelError("FriendRequest.ReceiverEmail", "This user already sent you request");
+        }
+        if (_db.Friends.FirstOrDefault(x => x.OwnerEmail == friendRequest.SenderEmail
+                                            && x.FriendEmail == friendRequest.ReceiverEmail) != null)
+        {
+            ModelState.AddModelError("FriendRequest.ReceiverEmail", "This user is already your friend");
+        }
+        
+        if (ModelState.IsValid)
+        {
+            _db.FriendRequests.Add(friendRequest);
+            _db.SaveChanges();
+        }
 
-        _db.FriendRequests.Add(friendRequest);
-        _db.SaveChanges();
+        int userId = _db.Users.FirstOrDefault(x => x.Email == friendRequest.SenderEmail).Id;
+        return RedirectToAction("Index", new {userId});
     }
 
     [HttpPost]
-    public void ApproveFriendRequest(int ownerId, int friendId)
+    [Route("/AcceptRequest")]
+    public IActionResult ApproveFriendRequest(int requestId)
     {
+        var friendRequest = _db.FriendRequests.Find(requestId);
+        var ownerEmail = friendRequest.SenderEmail;
+        var friendEmail = friendRequest.ReceiverEmail;
+        
         var owner = new Friend
         {
-            OwnerId = ownerId,
-            FriendId = friendId
+            OwnerEmail = ownerEmail,
+            FriendEmail = friendEmail
         };
-
+    
         var friend = new Friend
         {
-            OwnerId = friendId,
-            FriendId = ownerId
+            OwnerEmail = friendEmail,
+            FriendEmail = ownerEmail
         };
 
+        CancelFriendRequest(requestId);
         _db.Friends.Add(owner);
         _db.Friends.Add(friend);
         _db.SaveChanges();
+        
+        int userId = _db.Users.FirstOrDefault(x => x.Email == friendRequest.ReceiverEmail).Id;
+        return RedirectToAction("Index", new {userId});
     }
     
     [HttpDelete]
@@ -72,17 +124,5 @@ public class FriendsController : Controller
             _db.FriendRequests.Remove(request);
             _db.SaveChanges();
         }
-    }
-
-    [HttpDelete]
-    public void DeleteFriend(int ownerId, int friendId)
-    {
-        var owner = _db.Friends.Where(x => x.OwnerId == ownerId && x.FriendId == friendId).ToArray()[0];
-        var friend = _db.Friends.Where(x => x.OwnerId == friendId && x.FriendId == x.OwnerId).ToArray()[0];
-
-        _db.Friends.Remove(owner);
-        _db.Friends.Remove(friend);
-
-        _db.SaveChanges();
     }
 }

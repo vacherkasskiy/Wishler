@@ -1,0 +1,87 @@
+@using System.Security.Claims
+@using Microsoft.EntityFrameworkCore
+@model Wishler.ViewModels.FriendsViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section AddStyles
+{
+    <link rel="stylesheet" href="~/css/friends.css">
+}
+
+@section AddToHeader {
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a href="/user/@User.FindFirstValue(ClaimTypes.NameIdentifier)/friends">Friends</a>
+            </strong>
+        </p>
+    </div>
+}
+
+<div style="margin-top: 70px; width: 100%; height: 100vh;display: flex; flex-direction: column">
+    <div>
+        <h1>Send friend request</h1>
+        <form asp-controller="Friends" asp-action="SendFriendRequest">
+            <div>
+                <label asp-for="FriendRequest.ReceiverEmail">Enter email:</label>
+                <input asp-for="FriendRequest.ReceiverEmail">
+                <span asp-validation-for="FriendRequest.ReceiverEmail"></span>
+            </div>
+            <input type="hidden" asp-for="FriendRequest.SenderEmail" value="@Model.UserEmail">
+            <button type="submit">Send friend request</button>
+        </form>
+    </div>
+    <h1>Friend Requests:</h1>
+    @{
+        var requests = Model.FriendRequests.Where(x => x.ReceiverEmail == Model.UserEmail).ToArray();
+    }
+    @if (requests.Length > 0)
+    {
+        @foreach (var request in requests)
+        {
+            <p>@request.Id/@request.SenderEmail/@request.ReceiverEmail</p>
+            <button class="accept-request" id = "@request.Id">accept</button>
+        }
+    }
+    else
+    {
+        <p>No friend requests</p>
+    }
+    <h1>Friends List</h1>
+    @{
+        var friends = Model.Friends.Where(x => x.OwnerEmail == Model.UserEmail).ToArray();
+    }
+    @if (friends.Length > 0)
+    {
+        @foreach (var friend in friends)
+        {
+            <p>@friend.Id/@friend.OwnerEmail/@friend.FriendEmail</p>
+        }
+    }
+    else
+    {
+        <p>No friends :(</p>
+    }
+</div>
+
+@section AddScripts
+{
+    <script src="~/js/friends.js"></script>
+}

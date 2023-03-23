@@ -21,7 +21,7 @@ public class AccountController : Controller
         _db = db;
     }
     
-    public bool IsValidEmail(string email)
+    private bool IsValidEmail(string email)
     {
         try
         {
