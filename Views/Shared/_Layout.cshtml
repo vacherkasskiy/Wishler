@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <p class = 'dropdown_btn'>Profile</p>
-                    <p class = "dropdown_btn"><a class="logout_btn" href="/user/@User.FindFirstValue(ClaimTypes.NameIdentifier)/friends">Friends</a></p>
+                    <p class = "dropdown_btn"><a class="logout_btn" asp-controller="Friends" asp-action="Index">Friends</a></p>
                     <p class = 'dropdown_btn'>Settings</p>
                     <p class = "dropdown_btn"><a class="boards_btn" asp-controller="Boards" asp-action="Index">Boards</a></p>
                     <p class = "dropdown_btn"><a class="logout_btn" asp-controller="Account" asp-action="Logout">Log out</a></p>

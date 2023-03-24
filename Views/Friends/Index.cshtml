@@ -38,7 +38,7 @@
 <div style="margin-top: 70px; width: 100%; height: 100vh;display: flex; flex-direction: column">
     <div>
         <h1>Send friend request</h1>
-        <form asp-controller="Friends" asp-action="SendFriendRequest">
+        <form asp-controller="Friends" asp-action="Index" method="post">
             <div>
                 <label asp-for="FriendRequest.ReceiverEmail">Enter email:</label>
                 <input asp-for="FriendRequest.ReceiverEmail">
@@ -59,7 +59,7 @@
             <div>
                 <p>@request.Id/@request.SenderEmail/@request.ReceiverEmail</p>
                 <button class="accept-request request" id = "@request.Id">accept</button>
-                <button class="decline-request request" id = "@request.Id">accept</button>
+                <button class="decline-request request" id = "@request.Id">decline</button>
             </div>
         }
     }

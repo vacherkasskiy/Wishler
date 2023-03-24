@@ -1,4 +1,4 @@
-﻿using System.Net.Mail;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
@@ -20,12 +20,15 @@ public class FriendsController : Controller
         _validator = validator;
     }
 
-    [Route("/user/{userId}/friends")]
-    public IActionResult Index(int userId)
+    [HttpGet]
+    [Route("/user/friends")]
+    public IActionResult Index()
     {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        
         var model = new FriendsViewModel
         {
-            UserEmail = _db.Users.Find(userId).Email,
+            UserEmail = User.FindFirstValue(ClaimTypes.Email),
             Friends = _db.Friends,
             FriendRequests = _db.FriendRequests,
             FriendRequest = new FriendRequest()
@@ -35,8 +38,9 @@ public class FriendsController : Controller
     }
 
     [HttpPost]
+    [Route("/user/friends")]
     [ValidateAntiForgeryToken]
-    public IActionResult SendFriendRequest(FriendRequest friendRequest)
+    public IActionResult Index(FriendRequest friendRequest)
     {
         _validator.ValidateFriendRequest(friendRequest, ModelState);
         
@@ -46,8 +50,17 @@ public class FriendsController : Controller
             _db.SaveChanges();
         }
 
-        int userId = _db.Users.FirstOrDefault(x => x.Email == friendRequest.SenderEmail).Id;
-        return RedirectToAction("Index", new {userId});
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        
+        var model = new FriendsViewModel
+        {
+            UserEmail = User.FindFirstValue(ClaimTypes.Email),
+            Friends = _db.Friends,
+            FriendRequests = _db.FriendRequests,
+            FriendRequest = new FriendRequest()
+        };
+        
+        return View(model);
     }
 
     [HttpPost]
@@ -74,8 +87,7 @@ public class FriendsController : Controller
         _db.Friends.Add(friend);
         _db.SaveChanges();
         
-        int userId = _db.Users.FirstOrDefault(x => x.Email == friendRequest.ReceiverEmail).Id;
-        return RedirectToAction("Index", new {userId});
+        return RedirectToAction("Index");
     }
     
     [HttpDelete]
