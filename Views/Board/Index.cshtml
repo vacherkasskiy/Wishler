@@ -1,5 +1,4 @@
-﻿@using System.Security.Claims
-@model Wishler.ViewModels.BoardViewModel
+﻿@model Wishler.ViewModels.BoardViewModel
 
 @{
     ViewData["Title"] = "Board";
@@ -33,26 +32,30 @@
     </div>
 }
 
-<img class = "background" src="~/pictures/starfall.jpg" alt="">
-    <div class="shadow"></div>
-    <div class="board" id="@Model.BoardId">
-        @foreach (var column in Model.Columns.Where(x=> x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
-        {
-            <section class="column">
-                <textarea class="column__name" id="@column.Id">@column.Name</textarea>
-                <ul class="tasks__list">
-                    @foreach (var row in Model.Rows.Where(x => x.ColumnId == column.Id).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
-                    {
-                        <li class="tasks__item"><textarea wrap="soft" name="text" id="@row.Id">@row.Text</textarea></li>
-                    }
-                    <div class="new create-row"><p>Create new row</p></div>
-                </ul>
-            </section>
-        }
-        <div class="new create-column">
-            <p>Create new column</p>
-        </div>
-      </div>
+<img class="background" src="~/pictures/starfall.jpg" alt="">
+<div class="shadow"></div>
+<div class="board" id="@Model.BoardId">
+    @foreach (var column in Model.Columns.Where(x => x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
+    {
+        <section class="column">
+            <textarea class="column__name" id="@column.Id">@column.Name</textarea>
+            <ul class="tasks__list">
+                @foreach (var row in Model.Rows.Where(x => x.ColumnId == column.Id).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
+                {
+                    <li class="tasks__item">
+                        <textarea wrap="soft" name="text" id="@row.Id">@row.Text</textarea>
+                    </li>
+                }
+                <div class="new create-row">
+                    <p>Create new row</p>
+                </div>
+            </ul>
+        </section>
+    }
+    <div class="new create-column">
+        <p>Create new column</p>
+    </div>
+</div>
 
 @section AddScripts{
     <script src="~/js/null_textareas.js"></script>

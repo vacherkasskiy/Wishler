@@ -26,7 +26,7 @@ public class AccountController : Controller
     {
         return View();
     }
-    
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Route("/register")]
@@ -43,11 +43,12 @@ public class AccountController : Controller
             };
             var passwordHasher = new PasswordHasher<User>();
             user.Password = passwordHasher.HashPassword(user, user.Password);
-        
+
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
-        
-            var claims = new[] {
+
+            var claims = new[]
+            {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email)
@@ -63,13 +64,13 @@ public class AccountController : Controller
 
         return View();
     }
-    
+
     [Route("/login")]
     public IActionResult Login()
     {
         return View();
     }
-    
+
     [HttpPost]
     [Route("/login")]
     [ValidateAntiForgeryToken]
@@ -81,18 +82,21 @@ public class AccountController : Controller
             var loginUser = _db.Users.SingleOrDefault(u => u.Email == model.Email);
 
             var userId = _db.Users.Where(x => x.Email == model.Email).ToArray()[0].Id;
-            var claims = new[] {
+            var claims = new[]
+            {
                 new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
                 new Claim(ClaimTypes.Name, loginUser.Name),
                 new Claim(ClaimTypes.Email, loginUser.Email)
             };
-            
+
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(principal));
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(principal));
 
             return RedirectToAction("Index", "Boards");
         }
+
         return View();
     }
 

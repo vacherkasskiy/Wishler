@@ -177,6 +177,7 @@ body {
         height: 700px !important;
         overflow: scroll;
     }
+
     .main-window {
         max-height: unset !important;
     }
@@ -186,12 +187,14 @@ body {
     .logo {
         display: none;
     }
+
     .register {
         width: 100%;
         height: 100%;
         max-width: unset !important;
         max-height: unset !important;
     }
+
     .main-window {
         border: 0px;
         border-radius: 0px;
@@ -200,10 +203,12 @@ body {
         max-width: unset !important;
         max-height: unset !important;
     }
+
     .main_register-page {
         height: 50%;
         justify-content: space-around;
     }
+
     .already-user {
         height: 35%;
         justify-content: space-around;

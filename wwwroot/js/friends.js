@@ -27,5 +27,5 @@ for (let i = 0; i < requests.length; ++i) {
         }
         declineRequest(event.target.id);
         event.target.parentNode.remove();
-    } ,true);
+    }, true);
 }

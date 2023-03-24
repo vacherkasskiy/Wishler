@@ -1,5 +1,4 @@
 @using System.Security.Claims
-@using Microsoft.EntityFrameworkCore
 @model Wishler.ViewModels.FriendsViewModel
 
 @{
@@ -58,8 +57,8 @@
         {
             <div>
                 <p>@request.Id/@request.SenderEmail/@request.ReceiverEmail</p>
-                <button class="accept-request request" id = "@request.Id">accept</button>
-                <button class="decline-request request" id = "@request.Id">decline</button>
+                <button class="accept-request request" id="@request.Id">accept</button>
+                <button class="decline-request request" id="@request.Id">decline</button>
             </div>
         }
     }

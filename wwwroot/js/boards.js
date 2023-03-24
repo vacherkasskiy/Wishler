@@ -4,8 +4,8 @@ let cancelBtn = formWrapper.querySelector(".cancel");
 
 createNewBoardBtn.addEventListener("click", function (event) {
     formWrapper.style.display = 'flex';
-},true);
+}, true);
 
 cancelBtn.addEventListener("click", function (event) {
     formWrapper.style.display = 'none';
-},true);
+}, true);

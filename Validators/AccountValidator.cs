@@ -15,12 +15,12 @@ public class AccountValidator
     {
         _db = db;
     }
-    
+
     private bool IsValidEmail(string email)
     {
         try
         {
-            MailAddress m = new MailAddress(email);
+            var m = new MailAddress(email);
             return true;
         }
         catch (FormatException)
@@ -28,31 +28,22 @@ public class AccountValidator
             return false;
         }
     }
-    
+
     public void ValidateRegister(RegisterViewModel model, ModelStateDictionary modelState)
     {
         if (_db.Users.FirstOrDefault(x => x.Email == model.Email) != null)
-        {
             modelState.AddModelError("Email", "There is already a user with such email");
-        }
         if (model.Email == null)
-        {
             modelState.AddModelError("Email", "Enter email address");
-        } 
-        else if (!IsValidEmail(model.Email))
-        {
-            modelState.AddModelError("Email", "Invalid email address");
-        }
+        else if (!IsValidEmail(model.Email)) modelState.AddModelError("Email", "Invalid email address");
         if (model.Password != model.PasswordConfirm)
-        {
             modelState.AddModelError("Password", "Different passwords provided");
-        }
     }
 
     public void ValidateLogin(LoginViewModel model, ModelStateDictionary modelState)
     {
         var loginUser = _db.Users.SingleOrDefault(u => u.Email == model.Email);
-        
+
         if (loginUser == null)
         {
             modelState.AddModelError("Email", "There is no user with such email");
@@ -62,10 +53,7 @@ public class AccountValidator
             var passwordHasher = new PasswordHasher<User>();
             var result = passwordHasher.VerifyHashedPassword(loginUser, loginUser.Password, model.Password);
 
-            if (result != PasswordVerificationResult.Success)
-            {
-                modelState.AddModelError("Password", "Wrong password");
-            }
+            if (result != PasswordVerificationResult.Success) modelState.AddModelError("Password", "Wrong password");
         }
     }
 }

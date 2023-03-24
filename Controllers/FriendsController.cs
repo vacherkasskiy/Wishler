@@ -25,7 +25,7 @@ public class FriendsController : Controller
     public IActionResult Index()
     {
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        
+
         var model = new FriendsViewModel
         {
             UserEmail = User.FindFirstValue(ClaimTypes.Email),
@@ -33,7 +33,7 @@ public class FriendsController : Controller
             FriendRequests = _db.FriendRequests,
             FriendRequest = new FriendRequest()
         };
-        
+
         return View(model);
     }
 
@@ -43,7 +43,7 @@ public class FriendsController : Controller
     public IActionResult Index(FriendRequest friendRequest)
     {
         _validator.ValidateFriendRequest(friendRequest, ModelState);
-        
+
         if (ModelState.IsValid)
         {
             _db.FriendRequests.Add(friendRequest);
@@ -51,7 +51,7 @@ public class FriendsController : Controller
         }
 
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        
+
         var model = new FriendsViewModel
         {
             UserEmail = User.FindFirstValue(ClaimTypes.Email),
@@ -59,7 +59,7 @@ public class FriendsController : Controller
             FriendRequests = _db.FriendRequests,
             FriendRequest = new FriendRequest()
         };
-        
+
         return View(model);
     }
 
@@ -70,26 +70,26 @@ public class FriendsController : Controller
         var friendRequest = _db.FriendRequests.Find(requestId);
         var ownerEmail = friendRequest.SenderEmail;
         var friendEmail = friendRequest.ReceiverEmail;
-        
+
         var owner = new Friend
         {
             OwnerEmail = ownerEmail,
             FriendEmail = friendEmail
         };
-    
+
         var friend = new Friend
         {
             OwnerEmail = friendEmail,
             FriendEmail = ownerEmail
         };
-        
+
         _db.Friends.Add(owner);
         _db.Friends.Add(friend);
         _db.SaveChanges();
-        
+
         return RedirectToAction("Index");
     }
-    
+
     [HttpDelete]
     [Route("/DeclineRequest")]
     public void DeclineFriendRequest(int requestId)
