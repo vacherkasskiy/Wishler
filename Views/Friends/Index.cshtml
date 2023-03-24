@@ -56,8 +56,11 @@
     {
         @foreach (var request in requests)
         {
-            <p>@request.Id/@request.SenderEmail/@request.ReceiverEmail</p>
-            <button class="accept-request" id = "@request.Id">accept</button>
+            <div>
+                <p>@request.Id/@request.SenderEmail/@request.ReceiverEmail</p>
+                <button class="accept-request request" id = "@request.Id">accept</button>
+                <button class="decline-request request" id = "@request.Id">accept</button>
+            </div>
         }
     }
     else

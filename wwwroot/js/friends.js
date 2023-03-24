@@ -1,4 +1,4 @@
-let requests = document.querySelectorAll(".accept-request");
+let requests = document.querySelectorAll(".request");
 
 function acceptRequest(requestId) {
     $.ajax({
@@ -10,8 +10,22 @@ function acceptRequest(requestId) {
     });
 }
 
+function declineRequest(requestId) {
+    $.ajax({
+        type: "DELETE",
+        url: "/DeclineRequest",
+        data: {
+            requestId: requestId
+        }
+    });
+}
+
 for (let i = 0; i < requests.length; ++i) {
     requests[i].addEventListener("click", (event) => {
-        acceptRequest(event.target.id);
+        if (event.target.classList.contains("accept-request")) {
+            acceptRequest(event.target.id);
+        }
+        declineRequest(event.target.id);
+        event.target.parentNode.remove();
     } ,true);
 }

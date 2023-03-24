@@ -1,7 +1,6 @@
 ﻿using System.Net.Mail;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Wishler.Data;
 using Wishler.Models;
 using Wishler.ViewModels;
@@ -46,6 +45,7 @@ public class FriendsController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult SendFriendRequest(FriendRequest friendRequest)
     {
         if (friendRequest.ReceiverEmail == null || !IsValidEmail(friendRequest.ReceiverEmail))
@@ -105,8 +105,7 @@ public class FriendsController : Controller
             OwnerEmail = friendEmail,
             FriendEmail = ownerEmail
         };
-
-        CancelFriendRequest(requestId);
+        
         _db.Friends.Add(owner);
         _db.Friends.Add(friend);
         _db.SaveChanges();
@@ -116,7 +115,8 @@ public class FriendsController : Controller
     }
     
     [HttpDelete]
-    public void CancelFriendRequest(int requestId)
+    [Route("/DeclineRequest")]
+    public void DeclineFriendRequest(int requestId)
     {
         var request = _db.FriendRequests.Find(requestId);
         if (request != null)
