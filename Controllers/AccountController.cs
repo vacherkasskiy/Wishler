@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Wishler.Data;
 using Wishler.Models;
+using Wishler.Validators;
 using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
@@ -15,25 +16,14 @@ namespace Wishler.Controllers;
 public class AccountController : Controller
 {
     private readonly ApplicationDbContext _db;
+    private readonly AccountValidator _validator;
 
-    public AccountController(ApplicationDbContext db)
+    public AccountController(ApplicationDbContext db, AccountValidator validator)
     {
         _db = db;
+        _validator = validator;
     }
-    
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            MailAddress m = new MailAddress(email);
-            return true;
-        }
-        catch (FormatException)
-        {
-            return false;
-        }
-    }
-    
+
     [Route("/register")]
     public IActionResult Register()
     {
@@ -45,22 +35,7 @@ public class AccountController : Controller
     [Route("/register")]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
-        if (_db.Users.FirstOrDefault(x => x.Email == model.Email) != null)
-        {
-            ModelState.AddModelError("Email", "There is already a user with such email");
-        }
-        if (model.Email == null)
-        {
-            ModelState.AddModelError("Email", "Enter email address");
-        } 
-        else if (!IsValidEmail(model.Email))
-        {
-            ModelState.AddModelError("Email", "Invalid email address");
-        }
-        if (model.Password != model.PasswordConfirm)
-        {
-            ModelState.AddModelError("Password", "Different passwords provided");
-        }
+        _validator.ValidateRegister(model, ModelState);
         if (ModelState.IsValid)
         {
             var user = new User
@@ -103,33 +78,23 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
-        if (_db.Users.SingleOrDefault(x => x.Email == model.Email) == null)
-        {
-            ModelState.AddModelError("Email", "There is no user with such email");
-        }
+        _validator.ValidateLogin(model, ModelState);
         if (ModelState.IsValid)
         {
-            var loginUser = await _db.Users.SingleOrDefaultAsync(u => u.Email == model.Email);
-            var passwordHasher = new PasswordHasher<User>();
-            var result = passwordHasher.VerifyHashedPassword(loginUser, loginUser.Password, model.Password);
+            var loginUser = _db.Users.SingleOrDefault(u => u.Email == model.Email);
 
-            if (result == PasswordVerificationResult.Success)
-            {
-                var userId = _db.Users.Where(x => x.Email == model.Email).ToArray()[0].Id;
-                var claims = new[] {
-                    new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-                    new Claim(ClaimTypes.Name, loginUser.Name),
-                    new Claim(ClaimTypes.Email, loginUser.Email)
-                };
+            var userId = _db.Users.Where(x => x.Email == model.Email).ToArray()[0].Id;
+            var claims = new[] {
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                new Claim(ClaimTypes.Name, loginUser.Name),
+                new Claim(ClaimTypes.Email, loginUser.Email)
+            };
             
-                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var principal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(principal));
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(principal));
 
-                return RedirectToAction("Index", "Boards");
-            }
-            
-            ModelState.AddModelError("Password", "Wrong password");
+            return RedirectToAction("Index", "Boards");
         }
         return View();
     }

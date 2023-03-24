@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
 using Wishler.Models;
+using Wishler.Validators;
 using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
@@ -11,25 +12,14 @@ namespace Wishler.Controllers;
 public class FriendsController : Controller
 {
     private readonly ApplicationDbContext _db;
+    private readonly FriendsValidator _validator;
 
-    public FriendsController(ApplicationDbContext db)
+    public FriendsController(ApplicationDbContext db, FriendsValidator validator)
     {
         _db = db;
+        _validator = validator;
     }
-    
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            MailAddress m = new MailAddress(email);
-            return true;
-        }
-        catch (FormatException)
-        {
-            return false;
-        }
-    }
-    
+
     [Route("/user/{userId}/friends")]
     public IActionResult Index(int userId)
     {
@@ -48,33 +38,7 @@ public class FriendsController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult SendFriendRequest(FriendRequest friendRequest)
     {
-        if (friendRequest.ReceiverEmail == null || !IsValidEmail(friendRequest.ReceiverEmail))
-        {
-            ModelState.AddModelError("FriendRequest.ReceiverEmail", "Invalid email");
-        }
-        if (_db.Users.FirstOrDefault(x => x.Email == friendRequest.ReceiverEmail) == null)
-        {
-            ModelState.AddModelError("FriendRequest.ReceiverEmail", "There is no such user");
-        }
-        if (friendRequest.ReceiverEmail == friendRequest.SenderEmail)
-        {
-            ModelState.AddModelError("FriendRequest.ReceiverEmail", "This is you");
-        }
-        if (_db.FriendRequests.FirstOrDefault(x => x.SenderEmail == friendRequest.SenderEmail
-                                                   && x.ReceiverEmail == friendRequest.ReceiverEmail) != null)
-        {
-            ModelState.AddModelError("FriendRequest.ReceiverEmail", "You already sent this request");
-        }
-        if (_db.FriendRequests.FirstOrDefault(x => x.SenderEmail == friendRequest.ReceiverEmail
-                                                   && x.ReceiverEmail == friendRequest.SenderEmail) != null)
-        {
-            ModelState.AddModelError("FriendRequest.ReceiverEmail", "This user already sent you request");
-        }
-        if (_db.Friends.FirstOrDefault(x => x.OwnerEmail == friendRequest.SenderEmail
-                                            && x.FriendEmail == friendRequest.ReceiverEmail) != null)
-        {
-            ModelState.AddModelError("FriendRequest.ReceiverEmail", "This user is already your friend");
-        }
+        _validator.ValidateFriendRequest(friendRequest, ModelState);
         
         if (ModelState.IsValid)
         {
