@@ -24,10 +24,9 @@ public class FriendsController : Controller
     [Route("/user/friends")]
     public IActionResult Index()
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
         var model = new FriendsViewModel
         {
+            Users = _db.Users,
             UserEmail = User.FindFirstValue(ClaimTypes.Email),
             Friends = _db.Friends,
             FriendRequests = _db.FriendRequests,
@@ -50,10 +49,9 @@ public class FriendsController : Controller
             _db.SaveChanges();
         }
 
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
         var model = new FriendsViewModel
         {
+            Users = _db.Users,
             UserEmail = User.FindFirstValue(ClaimTypes.Email),
             Friends = _db.Friends,
             FriendRequests = _db.FriendRequests,

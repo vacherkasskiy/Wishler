@@ -1,4 +1,4 @@
-let requests = document.querySelectorAll(".request");
+let requests = document.querySelectorAll(".request__btn");
 
 function acceptRequest(requestId) {
     $.ajax({

@@ -2,3 +2,129 @@
     opacity: 1 !important;
     transition: unset !important;
 }
+
+body {
+    max-height: 100vh;
+    overflow-y: hidden;
+}
+
+.main {
+    margin-top: 70px;
+    padding: 50px;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.main form {
+    margin-bottom: 40px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.main form > * {
+    margin: 3px 0;
+}
+
+.header {
+    margin: 20px 0 10px 0;
+    font-size: 18px;
+}
+
+.main form > input {
+    padding: 15px;
+    width: 100%;
+    font-size: 17px;
+    font-family: sans-serif;
+    color: rgb(73, 73, 73);
+    border: 3px #3059fa solid;
+    border-radius: 5px;
+}
+
+.main form > span {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-family: sans-serif;
+    color: red;
+}
+
+.main form button {
+    padding: 15px;
+    width: fit-content;
+    font-family: sans-serif;
+    font-size: 17px;
+    color: white;
+    border-radius: 5px;
+    background-color: #3059fa;
+}
+
+.friends-wrapper {
+    /*padding: 20px;*/
+}
+
+.friend {
+    padding: 15px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    /*border: 2.5px #3059fa solid;*/
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0.5px #dadada;
+}
+
+.friend__part {
+    display: flex;
+    flex-direction: row;
+}
+
+.friend__part > * {
+    margin: 0 15px;
+}
+
+.friend__info > * {
+    font-size: 16px;
+}
+
+.friend__photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 5px 0.5px #3059fa;
+}
+
+.request__btn, .friend__btn {
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    border: 3px solid;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+.accept-request {
+    border-color: #3059fa;
+    color: #3059fa;
+}
+
+.accept-request:hover {
+    color: white;
+    background-color: #3059fa;
+}
+
+.decline-request, .delete-friend {
+    border-color: red;
+    color: red;
+}
+
+.decline-request:hover, .delete-friend:hover {
+    color: white;
+    background-color: red;
+}
