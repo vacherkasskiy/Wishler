@@ -72,9 +72,10 @@ body {
 }
 
 .main_register-page label {
-    color: rgb(104, 104, 104);
+    /*color: rgb(104, 104, 104);*/
+    color: rgb(28, 28, 28);
     font-family: sans-serif;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .main_register-page input {
@@ -83,7 +84,8 @@ body {
     height: 35px;
     border: 2px solid rgb(202, 202, 202);
     border-radius: 5px;
-    color: rgb(104, 104, 104);
+    color: rgb(73, 73, 73);
+    /*color: rgb(104, 104, 104);*/
     font-family: sans-serif;
     font-size: 15px;
 }
@@ -111,7 +113,7 @@ body {
     border-radius: 5px;
     font-family: sans-serif;
     font-size: 17px;
-    box-shadow: 0 7px 15px rgb(104, 104, 104);
+    box-shadow: 0 2px 5px rgb(140, 140, 140);
 
     border: unset !important;
     background-color: #3059fa !important;
