@@ -115,7 +115,7 @@ header .header_log-in {
     overflow: hidden;
 }
 
-.profile_picture img{
+.profile_picture img {
     width: 100%;
     height: 100%;
 }
@@ -156,7 +156,7 @@ header .header_log-in {
     border-bottom: 2.5px #3059fa solid;
 }
 
-.overview p,a {
+.overview p, a {
     font-size: 16px;
 }
 

@@ -109,7 +109,7 @@ header {
 
 .boards_folder-name {
     margin: 30px 0 30px 0;
-    color:#3059fa;
+    color: #3059fa;
     font-size: 25px;
     font-weight: 600;
     text-decoration: underline;
@@ -171,14 +171,14 @@ header {
 /* FOLDERS STYLES */
 
 b {
-    color:#3059fa;
+    color: #3059fa;
     font-weight: 600;
 }
 
 .folders {
     margin-right: 50px;
     width: 15%;
-    height:calc(100vh - 70px);
+    height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 5px #a3a3a3;
@@ -202,7 +202,7 @@ b {
 }
 
 .new-folder p {
-    color:#3059fa;
+    color: #3059fa;
     text-decoration: underline;
     font-weight: 600;
 }

@@ -6,20 +6,20 @@ using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
 
+[Authorize]
 public class BoardController : Controller
 {
     private readonly ApplicationDbContext _db;
-    
+
     public BoardController(ApplicationDbContext db)
     {
         _db = db;
     }
-    
+
     [Route("/board/{id}")]
-    [Authorize]
     public IActionResult Index(int id)
     {
-        var param = new BoardViewModel()
+        var param = new BoardViewModel
         {
             BoardId = id,
             Columns = _db.Columns,
@@ -29,9 +29,8 @@ public class BoardController : Controller
         };
         return View(param);
     }
-    
+
     [Route("/EditOrCreateColumn")]
-    [Authorize]
     public IActionResult EditOrCreateColumn()
     {
         return RedirectToAction("Index");
@@ -39,10 +38,9 @@ public class BoardController : Controller
 
     [HttpPost]
     [Route("/EditOrCreateColumn")]
-    [Authorize]
     public IActionResult EditOrCreateColumn(int id, string name, int boardId, int position)
     {
-        var column = new Column()
+        var column = new Column
         {
             Id = id,
             Name = name,
@@ -55,18 +53,16 @@ public class BoardController : Controller
     }
 
     [Route("/EditOrCreateRow")]
-    [Authorize]
     public IActionResult EditOrCreateRow()
     {
         return RedirectToAction("Index");
     }
-    
+
     [HttpPost]
     [Route("/EditOrCreateRow")]
-    [Authorize]
     public IActionResult EditOrCreateRow(int id, int columnId, int position, string text)
     {
-        var row = new Row()
+        var row = new Row
         {
             Id = id,
             ColumnId = columnId,
@@ -89,7 +85,7 @@ public class BoardController : Controller
             _db.SaveChanges();
         }
     }
-    
+
     [HttpDelete]
     [Route("/board/deleteColumn")]
     public void DeleteColumn(int id)

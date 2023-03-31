@@ -1,7 +1,7 @@
-$(function() {
+$(function () {
     $('.marquee').marquee({
-      duration: 25000,
-      startVisible: true,
-      duplicated: true
+        duration: 25000,
+        startVisible: true,
+        duplicated: true
     });
-  });
+});

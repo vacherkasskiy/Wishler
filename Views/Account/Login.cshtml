@@ -8,31 +8,31 @@
     ViewData["Title"] = "Log in";
 }
 
-<form asp-controller="Account" asp-action="Login" class = "main_register-page">
-        <div>
-            <label asp-for="Email">E-mail</label>
-            <input asp-for="Email" type="text" placeholder="Example@gmail.com">
-            <span class="error" asp-validation-for="Email"></span>
-        </div>
-        <div>
-            <label asp-for="Password">Password</label>
-            <input asp-for="Password" type="password" placeholder="Password">
-            <span class="error" asp-validation-for="Password"></span>
-        </div>
-        <button class="register_submit" type="submit">Submit</button>
-    </form>
+<form asp-controller="Account" asp-action="Login" class="main_register-page">
+    <div>
+        <label asp-for="Email">E-mail</label>
+        <input asp-for="Email" type="text" placeholder="Example@gmail.com">
+        <span class="error" asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password">Password</label>
+        <input asp-for="Password" type="password" placeholder="Password">
+        <span class="error" asp-validation-for="Password"></span>
+    </div>
+    <button class="register_submit" type="submit">Submit</button>
+</form>
 
 @section YandexGoogle
 {
     <a href="" class="sign-up-with">
         <div>
-            <img src="~/pictures/yandex.png" alt="">
+            <img src="~/pictures/Login&Register/yandex.png" alt="">
             <p>Log in with Yandex</p>
         </div>
     </a>
     <a href="" class="sign-up-with">
         <div>
-            <img src="~/pictures/google.png" alt="">
+            <img src="~/pictures/Login&Register/google.png" alt="">
             <p>Log in with Google</p>
         </div>
     </a>

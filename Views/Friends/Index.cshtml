@@ -1,0 +1,109 @@
+@using System.Security.Claims
+@model Wishler.ViewModels.FriendsViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+}
+
+@section AddStyles
+{
+    <link rel="stylesheet" href="~/css/friends.css">
+}
+
+@section AddToHeader {
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a href="/user/@User.FindFirstValue(ClaimTypes.NameIdentifier)/friends">Friends</a>
+            </strong>
+        </p>
+    </div>
+}
+
+<div class = "main">
+    <form asp-controller="Friends" asp-action="Index" method="post">
+        <label asp-for="FriendRequest.ReceiverEmail"><p class = "header"><strong>Search dreammate</strong></p></label>
+        <input asp-for="FriendRequest.ReceiverEmail" placeholder="example@mail.ru">
+        <span asp-validation-for="FriendRequest.ReceiverEmail"></span>
+        <input type="hidden" asp-for="FriendRequest.SenderEmail" value="@Model.UserEmail">
+        <button type="submit">Send friend request</button>
+    </form>
+    @{
+        var requests = Model.FriendRequests.Where(x => x.ReceiverEmail == Model.UserEmail).ToArray();
+    }
+    @if (requests.Length > 0)
+    {
+        <p class = "header requests-header"><strong>Friend requests list</strong></p>
+        <div class="requests-block block">
+            @foreach (var request in requests)
+            {
+                <div class = "friend">
+                    <div class="friend__part">
+                        <img class = "friend__photo" src="~/pictures/user.png" alt="">
+                        <div class="friend__info">
+                            <p class="name"><strong>Name:</strong> @Model.Users.First(x => x.Email == request.SenderEmail).Name</p>
+                            <p class="email"><strong>Email:</strong> @request.SenderEmail</p>
+                        </div>
+                    </div>
+                    <div class="friend__part">
+                        <button class="accept-request request__btn" id="@request.Id">Accept</button>
+                        <button class="decline-request request__btn" id="@request.Id">Decline</button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    @{
+        var friends = Model.Friends.Where(x => x.OwnerEmail == Model.UserEmail).ToArray();
+    }
+    @if (friends.Length > 0)
+    {
+        <p class = "header friends-header"><strong>Friends list</strong></p>
+        <div class="friends-block block">
+            @foreach (var friend in friends)
+            {
+                <div class="friend">
+                    <div class="friend__part">
+                        <img class="friend__photo" src="~/pictures/user.png" alt="">
+                        <div class="friend__info">
+                            <p class="name"><strong>Name:</strong> @Model.Users.First(x => x.Email == friend.FriendEmail).Name</p>
+                            <p class="email"><strong>Email:</strong> @friend.FriendEmail</p>
+                        </div>
+                    </div>
+                    <div class="friend__part">
+                        <button class="friend__btn delete-friend" id = "@friend.Id">Delete</button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    @if (friends.Length + requests.Length < 1)
+    {
+        <div class="empty">
+            <img src="~/pictures/Friends/empty-box.png" alt="">
+            <p>
+                <strong>No friends or requests :(</strong>
+            </p>
+        </div>
+    }
+</div>
+
+@section AddScripts
+{
+    <script src="~/js/friends.js"></script>
+}

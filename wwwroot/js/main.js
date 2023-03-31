@@ -1,12 +1,16 @@
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     if (this.window.pageYOffset == 0) {
         header.classList.remove("visible");
-        this.setTimeout(() => {header.classList.add("invisible");}, 600);
+        this.setTimeout(() => {
+            header.classList.add("invisible");
+        }, 600);
     } else {
         header.classList.remove("invisible");
-        this.setTimeout(() => {header.classList.add("visible");}, 0);
+        this.setTimeout(() => {
+            header.classList.add("visible");
+        }, 0);
     }
-  });
+});
 
 var hiddenText = document.querySelectorAll(".hidden-text");
 

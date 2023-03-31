@@ -63,13 +63,13 @@ function giveTextareaAllStyles(textarea) {
         textarea.readOnly = true;
         var img = document.createElement("img");
         img.src = "https://cdn-icons-png.flaticon.com/512/1159/1159633.png";
-        
+
         img.addEventListener("click", (event) => {
             event.target.previousElementSibling.readOnly = false;
             event.target.previousElementSibling.focus();
             event.target.parentNode.style.zIndex = 1000;
             document.querySelector(".shadow").classList.add("active");
-        } ,true);
+        }, true);
 
         textarea.addEventListener("contextmenu", (event) => {
             event.preventDefault();
@@ -100,7 +100,7 @@ function giveTextareaAllStyles(textarea) {
                 let columnId = event.target.parentNode.parentNode.parentNode.querySelector("textarea").id;
                 addRowToDb(event.target.id, columnId, position, event.target.value, event.target);
             }
-        } ,true);
+        }, true);
 
         textarea.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
@@ -136,10 +136,10 @@ function giveTextareaAllStyles(textarea) {
                 document.querySelector(".shadow").style.zIndex = -1;
                 let position = getElementIndex(event.target.parentNode);
                 let boardId = event.target.parentNode.parentNode.id;
-                
+
                 addColumnToDb(event.target.id, event.target.value, boardId, position, event.target);
             }
-        } ,true);
+        }, true);
 
         textarea.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
@@ -156,7 +156,7 @@ function giveTextareaAllStyles(textarea) {
     textarea.style.height = textarea.scrollHeight + 1 + "px";
     textarea.addEventListener("input", (event) => {
         event.target.style.height = "";
-        event.target.style.height = event.target.scrollHeight + 1 +"px";
+        event.target.style.height = event.target.scrollHeight + 1 + "px";
     }, true);
 
 }

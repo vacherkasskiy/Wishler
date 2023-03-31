@@ -1,10 +1,6 @@
 ﻿using System.Diagnostics;
-using System.Runtime.Intrinsics.Arm;
-using System.Security.Cryptography;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
-using Wishler.Models;
 using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
@@ -17,7 +13,7 @@ public class HomeController : Controller
     {
         _db = db;
     }
-    
+
     public IActionResult Index()
     {
         return View();

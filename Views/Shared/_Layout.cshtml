@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/css/main.css">
     @if (IsSectionDefined("AddStyles"))
     {
-        @await RenderSectionAsync("AddStyles", required: false)
+        @await RenderSectionAsync("AddStyles", false)
     }
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,26 +21,26 @@
     <title>@ViewData["Title"]</title>
 </head>
 <body>
-<header id = "header">
+<header id="header">
     <div class="anchors">
         <div class="logo">
-            <img class = "logo-img" src = "~/pictures/shooting-star.png">
-            <p class = "logo-text">Wishler</p>
+            <img class="logo-img" src="~/pictures/Header&Footer/shooting-star.png">
+            <p class="logo-text">Wishler</p>
         </div>
         @if (IsSectionDefined("AddToHeader"))
         {
-            @await RenderSectionAsync("AddToHeader", required: false)
+            @await RenderSectionAsync("AddToHeader", false)
         }
     </div>
     @if (!User.Identity.IsAuthenticated)
     {
         <a asp-controller="Account" asp-action="Login">
-            <button class = 'header_log-in'>Log in</button>
+            <button class='header_log-in'>Log in</button>
         </a>
     }
     else
     {
-        <div class = 'header_profile'>
+        <div class='header_profile'>
             <div class="profile_picture">
                 <img src="~/pictures/user.png" alt="">
             </div>
@@ -53,11 +53,17 @@
                             <p>@User.FindFirstValue(ClaimTypes.Email)</p>
                         </div>
                     </div>
-                    <p class = 'dropdown_btn'>Profile</p>
-                    <p class = 'dropdown_btn'>Friends</p>
-                    <p class = 'dropdown_btn'>Settings</p>
-                    <p class = "dropdown_btn"><a class="boards_btn" asp-controller="Boards" asp-action="Index">Boards</a></p>
-                    <p class = "dropdown_btn"><a class="logout_btn" asp-controller="Account" asp-action="Logout">Log out</a></p>
+                    <p class='dropdown_btn'>Profile</p>
+                    <p class="dropdown_btn">
+                        <a class="logout_btn" asp-controller="Friends" asp-action="Index">Friends</a>
+                    </p>
+                    <p class='dropdown_btn'>Settings</p>
+                    <p class="dropdown_btn">
+                        <a class="boards_btn" asp-controller="Boards" asp-action="Index">Boards</a>
+                    </p>
+                    <p class="dropdown_btn">
+                        <a class="logout_btn" asp-controller="Account" asp-action="Logout">Log out</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -66,8 +72,8 @@
 @RenderBody()
 <footer>
     <div class="logo">
-        <img class = "logo-img" src = "~/pictures/white-star.png">
-        <p class = "logo-text" style = "color: white; margin-bottom: -4px;">Wishler</p>
+        <img class="logo-img" src="~/pictures/Header&Footer/white-star.png">
+        <p class="logo-text" style="color: white; margin-bottom: -4px;">Wishler</p>
     </div>
 </footer>
 <!-- Scripts -->
@@ -75,8 +81,8 @@
 <script src="https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js"></script>
 <script src="~/js/marquee.js"></script>
 @if (IsSectionDefined("AddScripts"))
-    {
-        @await RenderSectionAsync("AddScripts", required: false)
-    }
+{
+    @await RenderSectionAsync("AddScripts", false)
+}
 </body>
 </html>

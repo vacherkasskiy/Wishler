@@ -1,6 +1,7 @@
 ﻿@model Wishler.ViewModels.BoardsViewModel
 
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Boards";
 }
 
@@ -20,6 +21,13 @@
         <p>
             <strong>
                 <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Friends" asp-action="Index">Friends</a>
             </strong>
         </p>
     </div>
