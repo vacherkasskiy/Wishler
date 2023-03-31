@@ -671,16 +671,9 @@ footer img {
     .main-page button {
         font-size: 40px;
     }
-
-    /* .app-description_card:nth-child(2) .dropdown-active {
-        height: 360px;
-    } */
 }
 
 @media (max-width: 475px) {
-    /* .app-description_card:nth-child(3) .dropdown-active {
-        height: 290px;
-    } */
     .quote {
         background-size: unset !important;
     }
@@ -691,9 +684,6 @@ footer img {
 }
 
 @media (max-width: 435px) {
-    /* .app-description_card:nth-child(3) .dropdown-active {
-        height: 320px;
-    } */
     .quote_author {
         font-size: 18px;
     }
@@ -708,10 +698,7 @@ footer img {
     .main-page .next-img {
         display: none;
     }
-
-    /* .app-description_card:nth-child(3) .dropdown-active {
-        height: 380px;
-    } */
+    
     .about-us_cards > div {
         width: 95%;
     }
@@ -741,39 +728,14 @@ footer img {
         width: 250px;
         height: 200px;
     }
-
-    /* .app-description_card:nth-child(2) .dropdown-active {
-        height: 410px;
-    } */
+    
     .create-account {
         height: 250px;
     }
 }
 
-@media (max-width: 335px) {
-    /* .app-description_card:nth-child(2) .dropdown-active {
-        height: 450px;
-    }
-
-    .app-description_card:nth-child(3) .dropdown-active {
-        height: 410px;
-    } */
-}
-
 @media (max-width: 315px) {
-    /* .app-description_card:nth-child(2) .dropdown-active {
-        height: 530px;
-    } */
     .about-us_cards > div {
         padding: 0;
     }
-}
-
-@media (max-width: 290px) {
-    /* .app-description_card:nth-child(3) .dropdown-active {
-        height: 470px;
-    }
-    .app-description_card:nth-child(2) .dropdown-active {
-        height: 560px;
-    } */
 }

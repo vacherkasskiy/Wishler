@@ -63,7 +63,7 @@ public class FriendsController : Controller
 
     [HttpPost]
     [Route("/AcceptRequest")]
-    public IActionResult ApproveFriendRequest(int requestId)
+    public void ApproveFriendRequest(int requestId)
     {
         var friendRequest = _db.FriendRequests.Find(requestId);
         var ownerEmail = friendRequest.SenderEmail;
@@ -84,13 +84,11 @@ public class FriendsController : Controller
         _db.Friends.Add(owner);
         _db.Friends.Add(friend);
         _db.SaveChanges();
-
-        return RedirectToAction("Index");
     }
 
     [HttpDelete]
     [Route("/DeclineRequest")]
-    public void DeclineFriendRequest(int requestId)
+    public IActionResult DeclineFriendRequest(int requestId)
     {
         var request = _db.FriendRequests.Find(requestId);
         if (request != null)
@@ -98,5 +96,24 @@ public class FriendsController : Controller
             _db.FriendRequests.Remove(request);
             _db.SaveChanges();
         }
+
+        return RedirectToAction("Index");
+    }
+
+    [HttpDelete]
+    [Route("/DeleteFriend")]
+    public IActionResult DeleteFriend(int friendId)
+    {
+        var ownerEmail = User.FindFirstValue(ClaimTypes.Email);
+        var friendEmail = _db.Friends.Find(friendId).FriendEmail;
+
+        var owner = _db.Friends.First(x => x.OwnerEmail == ownerEmail && x.FriendEmail == friendEmail);
+        var friend = _db.Friends.First(x => x.OwnerEmail == friendEmail && x.FriendEmail == ownerEmail);
+
+        _db.Friends.Remove(owner);
+        _db.Friends.Remove(friend);
+        _db.SaveChanges();
+        
+        return RedirectToAction("Index");
     }
 }

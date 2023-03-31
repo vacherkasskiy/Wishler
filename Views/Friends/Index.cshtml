@@ -2,6 +2,7 @@
 @model Wishler.ViewModels.FriendsViewModel
 
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Home Page";
 }
 
@@ -47,8 +48,8 @@
     }
     @if (requests.Length > 0)
     {
-        <p class = "header"><strong>Friend requests list</strong></p>
-        <div class="friend-block">
+        <p class = "header requests-header"><strong>Friend requests list</strong></p>
+        <div class="requests-block block">
             @foreach (var request in requests)
             {
                 <div class = "friend">
@@ -72,8 +73,8 @@
     }
     @if (friends.Length > 0)
     {
-        <p class = "header"><strong>Friends list</strong></p>
-        <div class="friends-wrapper">
+        <p class = "header friends-header"><strong>Friends list</strong></p>
+        <div class="friends-block block">
             @foreach (var friend in friends)
             {
                 <div class="friend">
@@ -85,7 +86,7 @@
                         </div>
                     </div>
                     <div class="friend__part">
-                        <button class="friend__btn delete-friend">Delete</button>
+                        <button class="friend__btn delete-friend" id = "@friend.Id">Delete</button>
                     </div>
                 </div>
             }
@@ -93,10 +94,10 @@
     }
     @if (friends.Length + requests.Length < 1)
     {
-        <div>
-            <img src="" alt="">
+        <div class="empty">
+            <img src="~/pictures/Friends/empty-box.png" alt="">
             <p>
-                No friends or requests :(
+                <strong>No friends or requests :(</strong>
             </p>
         </div>
     }

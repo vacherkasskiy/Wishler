@@ -3,17 +3,11 @@
     transition: unset !important;
 }
 
-body {
-    max-height: 100vh;
-    overflow-y: hidden;
-}
-
 .main {
-    margin-top: 70px;
+    margin-top: 30px;
     padding: 50px;
     width: 100%;
-    height: 100vh;
-    overflow-y: auto;
+    min-height: 100vh;
 }
 
 .main form {
@@ -60,8 +54,8 @@ body {
     background-color: #3059fa;
 }
 
-.friends-wrapper {
-    /*padding: 20px;*/
+.block > * {
+    margin: 15px 0;
 }
 
 .friend {
@@ -127,4 +121,23 @@ body {
 .decline-request:hover, .delete-friend:hover {
     color: white;
     background-color: red;
+}
+
+.empty {
+    margin: 0 auto;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty > * {
+    margin: 20px 0;
+}
+
+.empty > img {
+    width: 300px;
+    height: 300px;
 }
