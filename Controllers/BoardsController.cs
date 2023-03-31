@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
@@ -15,21 +14,6 @@ public class BoardsController : Controller
     public BoardsController(ApplicationDbContext db)
     {
         _db = db;
-    }
-
-    private bool LinkExists(string imageUrlAddress)
-    {
-        try
-        {
-            var webRequest = WebRequest.Create(imageUrlAddress);
-            var webResponse = webRequest.GetResponse();
-        }
-        catch //If exception thrown then couldn't get response from address 
-        {
-            return false;
-        }
-
-        return true;
     }
 
     [Route("/boards")]
@@ -49,10 +33,8 @@ public class BoardsController : Controller
     [Authorize]
     public IActionResult Create(Board board)
     {
-        if (!LinkExists(board.PictureSource))
-            board.PictureSource =
-                "https://img.freepik.com/free-vector/geometrical-patterned-blue-scifi-background_53876-99847.jpg?w=1060&t=st=1678562076~exp=1678562676~hmac=af378117f9b8f711ebcc9039413951323044741d874e85a3e135b9a212dbd46c";
-        if (board.Name != null)
+        //add proper validation
+        if (board.Name != null && board.PictureSource != "0")
         {
             _db.Boards.Add(board);
             _db.SaveChanges();

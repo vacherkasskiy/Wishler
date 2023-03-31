@@ -39,7 +39,7 @@ for (let i = 0; i < requestsBtn.length; ++i) {
         } else {
             declineRequest(event.target.id);
         }
-        
+
         setTimeout(() => {
             window.location.reload();
         }, 100);

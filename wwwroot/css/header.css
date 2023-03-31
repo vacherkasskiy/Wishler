@@ -118,6 +118,7 @@ header .header_log-in {
 .profile_picture img {
     width: 100%;
     height: 100%;
+    background-color: white;
 }
 
 .dropdown_wrapper {

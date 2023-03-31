@@ -22,6 +22,7 @@ public class BoardController : Controller
         var param = new BoardViewModel
         {
             BoardId = id,
+            BackgroundId = _db.Boards.Find(id).PictureSource,
             Columns = _db.Columns,
             Rows = _db.Rows,
             Column = new Column(),

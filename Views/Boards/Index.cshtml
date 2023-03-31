@@ -5,6 +5,18 @@
     ViewData["Title"] = "Boards";
 }
 
+@{
+    var backgroundsList = new List<string>
+    {
+        "bg1.jpg",
+        "bg2.jpg",
+        "bg3.jpg",
+        "bg4.jpg",
+        "bg5.jpg",
+        "bg6.jpg"
+    };
+}
+
 @section AddStyles{
     <link rel="stylesheet" href="~/css/boards.css">
 }
@@ -33,26 +45,7 @@
     </div>
 }
 
-<div class="new-board-box">
-    <form asp-action="Create" asp-controller="Boards">
-        <h1>
-            <b>New board</b>
-        </h1>
-        <div class="new-board__input">
-            <label asp-for="Board.Name">Name</label>
-            <input asp-for="Board.Name"/>
-        </div>
-        <div class="new-board__input">
-            <label asp-for="Board.PictureSource">Picture link</label>
-            <input asp-for="Board.PictureSource"/>
-        </div>
-        <input type="hidden" asp-for="Board.UserId" value="@Model.UserId"/>
-        <div class="buttons">
-            <button class="submit" type="submit">Create</button>
-            <a class="cancel">Cancel</a>
-        </div>
-    </form>
-</div>
+<div class="shadow"></div>
 
 <div class="wrapper">
     <div class="folders">
@@ -82,7 +75,7 @@
             {
                 <a href="/board/@board.Id">
                     <div class="board">
-                        <img class="board_image" src="@board.PictureSource" alt="">
+                        <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.PictureSource) - 1]" alt="">
                         <p class="board_name">@board.Name</p>
                     </div>
                 </a>
@@ -90,6 +83,24 @@
             <div class="new-board">
                 <p>+ Create new board</p>
             </div>
+            <form class="new-board-form" asp-controller="Boards" asp-action="Create">
+                <label asp-for="Board.Name"></label>
+                <input asp-for="Board.Name" type="text">
+                <input asp-for="Board.UserId" type="hidden" value="@Model.UserId">
+                <input id="ps_input" asp-for="Board.PictureSource" type="hidden" value="0">
+                <div class="new-board__backgrounds">
+                    <img id="1" src="~/pictures/Boards/bg1.jpg" alt="">
+                    <img id="2" src="~/pictures/Boards/bg2.jpg" alt="">
+                    <img id="3" src="~/pictures/Boards/bg3.jpg" alt="">
+                    <img id="4" src="~/pictures/Boards/bg4.jpg" alt="">
+                    <img id="5" src="~/pictures/Boards/bg5.jpg" alt="">
+                    <img id="6" src="~/pictures/Boards/bg6.jpg" alt="">
+                </div>
+                <div class="buttons">
+                    <button class="create-btn" type="submit">Submit</button>
+                    <button class="cancel-btn">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

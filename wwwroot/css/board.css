@@ -10,6 +10,8 @@ body {
 header {
     opacity: 1 !important;
     transition: unset !important;
+    /*backdrop-filter: blur(5px) !important;*/
+    /*background-color: rgba(255, 255, 255, 0.7);*/
 }
 
 .background {
