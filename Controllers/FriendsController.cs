@@ -113,7 +113,7 @@ public class FriendsController : Controller
         _db.Friends.Remove(owner);
         _db.Friends.Remove(friend);
         _db.SaveChanges();
-        
+
         return RedirectToAction("Index");
     }
 }

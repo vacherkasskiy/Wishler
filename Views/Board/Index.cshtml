@@ -5,6 +5,18 @@
     ViewData["Title"] = "Board";
 }
 
+@{
+    var backgroundsList = new List<string>
+    {
+        "bg1.jpg",
+        "bg2.jpg",
+        "bg3.jpg",
+        "bg4.jpg",
+        "bg5.jpg",
+        "bg6.jpg"
+    };
+}
+
 @section AddStyles{
     <link rel="stylesheet" href="~/css/board.css">
 }
@@ -33,7 +45,7 @@
     </div>
 }
 
-<img class="background" src="~/pictures/starfall.jpg" alt="">
+<img class="background" src="~/pictures/Boards/@backgroundsList[int.Parse(Model.BackgroundId) - 1]" alt="">
 <div class="shadow"></div>
 <div class="board" id="@Model.BoardId">
     @foreach (var column in Model.Columns.Where(x => x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())

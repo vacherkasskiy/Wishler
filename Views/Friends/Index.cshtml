@@ -35,9 +35,13 @@
     </div>
 }
 
-<div class = "main">
+<div class="main">
     <form asp-controller="Friends" asp-action="Index" method="post">
-        <label asp-for="FriendRequest.ReceiverEmail"><p class = "header"><strong>Search dreammate</strong></p></label>
+        <label asp-for="FriendRequest.ReceiverEmail">
+            <p class="header">
+                <strong>Search dreammate</strong>
+            </p>
+        </label>
         <input asp-for="FriendRequest.ReceiverEmail" placeholder="example@mail.ru">
         <span asp-validation-for="FriendRequest.ReceiverEmail"></span>
         <input type="hidden" asp-for="FriendRequest.SenderEmail" value="@Model.UserEmail">
@@ -48,16 +52,22 @@
     }
     @if (requests.Length > 0)
     {
-        <p class = "header requests-header"><strong>Friend requests list</strong></p>
+        <p class="header requests-header">
+            <strong>Friend requests list</strong>
+        </p>
         <div class="requests-block block">
             @foreach (var request in requests)
             {
-                <div class = "friend">
+                <div class="friend">
                     <div class="friend__part">
-                        <img class = "friend__photo" src="~/pictures/user.png" alt="">
+                        <img class="friend__photo" src="~/pictures/user.png" alt="">
                         <div class="friend__info">
-                            <p class="name"><strong>Name:</strong> @Model.Users.First(x => x.Email == request.SenderEmail).Name</p>
-                            <p class="email"><strong>Email:</strong> @request.SenderEmail</p>
+                            <p class="name">
+                                <strong>Name:</strong> @Model.Users.First(x => x.Email == request.SenderEmail).Name
+                            </p>
+                            <p class="email">
+                                <strong>Email:</strong> @request.SenderEmail
+                            </p>
                         </div>
                     </div>
                     <div class="friend__part">
@@ -73,7 +83,9 @@
     }
     @if (friends.Length > 0)
     {
-        <p class = "header friends-header"><strong>Friends list</strong></p>
+        <p class="header friends-header">
+            <strong>Friends list</strong>
+        </p>
         <div class="friends-block block">
             @foreach (var friend in friends)
             {
@@ -81,12 +93,16 @@
                     <div class="friend__part">
                         <img class="friend__photo" src="~/pictures/user.png" alt="">
                         <div class="friend__info">
-                            <p class="name"><strong>Name:</strong> @Model.Users.First(x => x.Email == friend.FriendEmail).Name</p>
-                            <p class="email"><strong>Email:</strong> @friend.FriendEmail</p>
+                            <p class="name">
+                                <strong>Name:</strong> @Model.Users.First(x => x.Email == friend.FriendEmail).Name
+                            </p>
+                            <p class="email">
+                                <strong>Email:</strong> @friend.FriendEmail
+                            </p>
                         </div>
                     </div>
                     <div class="friend__part">
-                        <button class="friend__btn delete-friend" id = "@friend.Id">Delete</button>
+                        <button class="friend__btn delete-friend" id="@friend.Id">Delete</button>
                     </div>
                 </div>
             }
