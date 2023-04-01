@@ -49,36 +49,21 @@
 
 <div class="wrapper">
     <div class="folders">
-        <p>
-            <b>Folders:</b>
-        </p>
-        <div class="folder">
-            <p class="folder_name">Folder1</p>
-        </div>
-        <div class="folder">
-            <p class="folder_name">Folder2</p>
-        </div>
-        <div class="folder">
-            <p class="folder_name">Folder3</p>
-        </div>
-        <div class="folder">
-            <p class="folder_name">Folder4</p>
-        </div>
-        <div class="folder new-folder">
-            <p class="folder_name">Create new folder</p>
-        </div>
+        <p style = "margin-top: 100px;font-size:30px;transform: rotate(270deg)">May be some groups here idk ._.</p>
     </div>
     <div class="boards_wrapper">
-        <p class="boards_folder-name">Name of folder</p>
+        <p class="boards_folder-name">Your boards</p>
         <div class="boards">
             @foreach (var board in Model.Boards.ToArray().Where(x => x.UserId == Model.UserId))
             {
-                <a href="/board/@board.Id">
-                    <div class="board">
-                        <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.PictureSource) - 1]" alt="">
-                        <p class="board_name">@board.Name</p>
+                <div class="board">
+                    <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.PictureSource) - 1]" alt="">
+                    <p class="board_name">@board.Name</p>
+                    <div class="buttons">
+                        <a href="/board/@board.Id" class="open">Open</a>
+                        <a href="/boards/delete/@board.Id" class="delete">Delete</a>
                     </div>
-                </a>
+                </div>
             }
             <div class="new-board">
                 <p>+ Create new board</p>

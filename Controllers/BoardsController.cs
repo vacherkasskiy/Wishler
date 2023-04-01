@@ -42,4 +42,14 @@ public class BoardsController : Controller
 
         return RedirectToAction("Index");
     }
+
+    [Route("/boards/delete/{boardId}")]
+    [Authorize]
+    public IActionResult Delete(int boardId)
+    {
+        var board = _db.Boards.Find(boardId);
+        _db.Boards.Remove(board);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
 }
