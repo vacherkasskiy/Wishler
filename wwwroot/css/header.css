@@ -157,14 +157,33 @@ header .header_log-in {
     border-bottom: 2.5px #3059fa solid;
 }
 
-.overview p, a {
-    font-size: 16px;
+.overview_data > * {
+    font-size: 17px;
+}
+
+.section {
+    width: 100%;
+}
+
+.section > div {
+    margin-left: -30%;
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.section img {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
 }
 
 .dropdown_btn {
     padding: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
+    /*font-weight: 600;*/
 }
 
 .boards_btn {
@@ -186,6 +205,6 @@ header .header_log-in {
     color: red;
 }
 
-.dropdown_btn:hover {
+.section:hover {
     background-color: #e3e2e2;
 }

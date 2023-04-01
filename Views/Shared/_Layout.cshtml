@@ -53,17 +53,42 @@
                             <p>@User.FindFirstValue(ClaimTypes.Email)</p>
                         </div>
                     </div>
-                    <p class='dropdown_btn'>Profile</p>
-                    <p class="dropdown_btn">
-                        <a class="logout_btn" asp-controller="Friends" asp-action="Index">Friends</a>
-                    </p>
-                    <p class='dropdown_btn'>Settings</p>
-                    <p class="dropdown_btn">
-                        <a class="boards_btn" asp-controller="Boards" asp-action="Index">Boards</a>
-                    </p>
-                    <p class="dropdown_btn">
-                        <a class="logout_btn" asp-controller="Account" asp-action="Logout">Log out</a>
-                    </p>
+                    <div class = "section">
+                        <div>
+                            <p class='dropdown_btn'>Profile</p>
+                            <img src="~/pictures/Header&Footer/user.png" alt="">
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div>
+                            <p class="dropdown_btn">
+                                <a asp-controller="Friends" asp-action="Index">Friends</a>
+                            </p>
+                            <img src="~/pictures/Header&Footer/friends.png" alt="">
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div>
+                            <p class='dropdown_btn'>Settings</p>
+                            <img src="~/pictures/Header&Footer/gear.png" alt="">
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div>
+                            <p class="dropdown_btn">
+                                <a class="boards_btn" asp-controller="Boards" asp-action="Index">Boards</a>
+                            </p>
+                            <img src="~/pictures/Header&Footer/blackboard.png" alt="">
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div>
+                            <p class="dropdown_btn">
+                                <a class="logout_btn" asp-controller="Account" asp-action="Logout">Log out</a>
+                            </p>
+                            <img src="~/pictures/Header&Footer/logout.png" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

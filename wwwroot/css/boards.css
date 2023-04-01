@@ -42,7 +42,7 @@ header {
     color: #3059fa;
     font-size: 25px;
     font-weight: 600;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 .boards {
