@@ -73,12 +73,14 @@
         <div class="boards">
             @foreach (var board in Model.Boards.ToArray().Where(x => x.UserId == Model.UserId))
             {
-                <a href="/board/@board.Id">
-                    <div class="board">
-                        <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.PictureSource) - 1]" alt="">
-                        <p class="board_name">@board.Name</p>
+                <div class="board">
+                    <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.PictureSource) - 1]" alt="">
+                    <p class="board_name">@board.Name</p>
+                    <div class="buttons">
+                        <a href="/board/@board.Id" class="open">Open</a>
+                        <a href="/boards/delete/@board.Id" class="delete">Delete</a>
                     </div>
-                </a>
+                </div>
             }
             <div class="new-board">
                 <p>+ Create new board</p>

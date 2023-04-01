@@ -5,7 +5,7 @@ let newBoardButton = document.querySelector(".new-board");
 let shadow = document.querySelector(".shadow");
 
 newBoardButton.addEventListener("click", (event) => {
-    event.target.classList.add("hidden");
+    newBoardButton.classList.add("hidden");
     shadow.classList.add("active");
     newBoardForm.classList.add("active");
 }, true);

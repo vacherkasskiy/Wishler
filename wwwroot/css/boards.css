@@ -60,6 +60,9 @@ header {
     position: relative;
     width: 100%;
     height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-radius: 5px;
     overflow: hidden;
 }
@@ -79,6 +82,23 @@ header {
     color: white;
     text-transform: capitalize;
     text-shadow: 0 0 10px #333
+}
+
+.board .buttons > *{
+    margin-right: 8px;
+    padding:10px;
+    font-family: sans-serif;
+    font-size: 15px;
+    color:white;
+    border-radius: 5px;
+}
+
+.board .buttons .open {
+    background-color: #3059fa;
+}
+
+.board .buttons .delete {
+    background-color: red;
 }
 
 .new-board {
