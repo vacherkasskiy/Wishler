@@ -1,4 +1,6 @@
 ﻿@using System.Security.Claims
+@model Wishler.ViewModels.ProfileViewModel
+
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Profile";
@@ -55,7 +57,7 @@
         </button>
     </div>
     <a asp-action="Index" asp-controller="Boards">
-        <div class="create-board single-block">
+        <div class="create-board">
             <img src="~/pictures/starfall.jpg" alt="">
             <p>+ Create new board</p>
         </div>
@@ -67,12 +69,26 @@
         </div>
     </a>
     <a href="" class="new-group">
-        <div>
-                
+        <div class="single-block">
+            <img src="~/pictures/Profile/people.png" alt="">
+            <p>+ Create new group</p>
+        </div>
+    </a>
+    <div class="logo-block">
+        <p>
+            Make a wish with <span>Wishler</span>
+        </p>
+    </div>
+    <a class="logout" asp-action="Logout" asp-controller="Account">
+        <div class="single-block">
+            <img src="~/pictures/Profile/logout.png" alt="">
+            <p>Log out</p>
         </div>
     </a>
     <div class="user-statistics">
-        
+        <p><strong>Boards created</strong> @Model.BoardsCreatedAmount</p>
+        <p><strong>Groups participated</strong> @Model.GroupsParticipatedAmount</p>
+        <p><strong>Friends added</strong> @Model.FriendsAddedAmount</p>
     </div>
 </div>
 

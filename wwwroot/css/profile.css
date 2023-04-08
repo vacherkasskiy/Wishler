@@ -122,9 +122,9 @@
     font-weight: 600;
 }
 
-/*ADD NEW FRIEND STYLES*/
+/*SHARED STYLES*/
 
-.add-friend {
+.single-block {
     padding: 20px;
     width: 100%;
     height: 100%;
@@ -136,12 +136,12 @@
     background-color: #0033ff;
 }
 
-.add-friend img {
+.single-block img {
     width: 70px;
     height: 70px;
 }
 
-.add-friend p {
+.single-block p {
     color: white;
     font-weight: 600;
 }
@@ -153,7 +153,6 @@
     grid-column-end: 2;
     grid-row-start: 3;
     grid-row-end: 4;
-    border: 2px solid blue;
 }
 
 .new-group div {
@@ -161,12 +160,56 @@
     height: 100%;
 }
 
+.logo-block {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-block > p {
+    font-size: 70px;
+    font-family: 'Mrs Sheppards', cursive;
+    line-height: unset !important;
+    /*font-weight: 600;*/
+    color: #0033ff;
+    text-align: center;
+}
+
+.logo-block > p > span {
+
+}
+
+/*LOGOUT STYLES*/
+
+.logout {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.logout > div {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
 /*USER STATICSTICS STYLES*/
 
 .user-statistics {
-    grid-column-start: 2;
+    padding: 30px;
+    grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
-    grid-row-end: 4;
-    border: 2px solid red;
+    grid-row-end: 3;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0 0 5px #b9b9b9;
 }

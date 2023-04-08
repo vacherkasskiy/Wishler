@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4K5qD7qPRfM/3lVwD3uk7osnsc/97hTtizuuBF97Nn0=",
+  "Hash": "QG6aIez0aYV/sMGBQNQ0u1csGmwiTB9QZKpHeZbyrFw=",
   "Source": "Wishler",
   "BasePath": "_content/Wishler",
   "Mode": "Default",
@@ -1732,6 +1732,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\pictures\\Profile\\camera.png"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\pictures\\Profile\\logout.png",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "pictures/Profile/logout.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pictures\\Profile\\logout.png"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\pictures\\Profile\\people.png",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "pictures/Profile/people.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pictures\\Profile\\people.png"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\pictures\\starfall.jpg",
