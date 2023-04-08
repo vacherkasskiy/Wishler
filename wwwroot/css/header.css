@@ -162,6 +162,7 @@ header .header_log-in {
 }
 
 .section {
+    cursor: pointer;
     width: 100%;
 }
 
@@ -181,9 +182,10 @@ header .header_log-in {
 
 .dropdown_btn {
     padding: 10px;
-    cursor: pointer;
+}
+
+.dropdown_btn > p {
     font-size: 15px;
-    /*font-weight: 600;*/
 }
 
 .boards_btn {

@@ -53,42 +53,38 @@
                             <p>@User.FindFirstValue(ClaimTypes.Email)</p>
                         </div>
                     </div>
-                    <div class = "section">
+                    <a href="/user/@User.FindFirstValue(ClaimTypes.NameIdentifier)/profile" class = "section">
                         <div>
-                            <p class='dropdown_btn'>Profile</p>
+                            <div class='dropdown_btn'>
+                                <p>Profile</p>
+                            </div>
                             <img src="~/pictures/Header&Footer/user.png" alt="">
                         </div>
-                    </div>
-                    <div class="section">
+                    </a>
+                    <a  asp-controller="Friends" asp-action="Index" class="section">
                         <div>
-                            <p class="dropdown_btn">
-                                <a asp-controller="Friends" asp-action="Index">Friends</a>
-                            </p>
+                            <div class="dropdown_btn">
+                                <p>Friends</p>
+                            </div>
                             <img src="~/pictures/Header&Footer/friends.png" alt="">
                         </div>
-                    </div>
-                    <div class="section">
+                    </a>
+                    <a asp-controller="Boards" asp-action="Index" class="section">
                         <div>
-                            <p class='dropdown_btn'>Settings</p>
-                            <img src="~/pictures/Header&Footer/gear.png" alt="">
-                        </div>
-                    </div>
-                    <div class="section">
-                        <div>
-                            <p class="dropdown_btn">
-                                <a class="boards_btn" asp-controller="Boards" asp-action="Index">Boards</a>
-                            </p>
+                            <div class="dropdown_btn">
+                                <p class="boards_btn">Boards</p>
+                            </div>
                             <img src="~/pictures/Header&Footer/blackboard.png" alt="">
                         </div>
-                    </div>
-                    <div class="section">
+                    </a>
+                    <a asp-controller="Account" asp-action="Logout" class="section">
                         <div>
-                            <p class="dropdown_btn">
-                                <a class="logout_btn" asp-controller="Account" asp-action="Logout">Log out</a>
-                            </p>
+                            <div class="dropdown_btn">
+                                <p class="logout_btn">Log out</p>
+                            </div>
                             <img src="~/pictures/Header&Footer/logout.png" alt="">
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
