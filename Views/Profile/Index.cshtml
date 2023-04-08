@@ -1,0 +1,82 @@
+﻿@using System.Security.Claims
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Profile";
+}
+
+@section AddStyles
+{
+    <link rel="stylesheet" href="~/css/profile.css">
+}
+
+@section AddToHeader {
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Friends" asp-action="Index">Friends</a>
+            </strong>
+        </p>
+    </div>
+}
+
+<div class="main">
+    <div class="wrapper__user-info">
+        <img src="~/pictures/user.png" alt="">
+        <div class="user-info">
+            <form action="">
+                <div>
+                    <label for=""><strong>Name:</strong></label>
+                    <input type="text" value="@User.FindFirstValue(ClaimTypes.Name)">
+                </div>
+                <div>
+                    <label for=""><strong>Email:</strong></label>
+                    <input type="email" value="@User.FindFirstValue(ClaimTypes.Email)">
+                </div>
+                <button type="submit">Apply changes</button>
+            </form>
+        </div>
+        <button class="change-photo">
+            <img src="~/pictures/Profile/camera.png" alt="">
+            <p>Change photo</p>
+        </button>
+    </div>
+    <a asp-action="Index" asp-controller="Boards">
+        <div class="create-board single-block">
+            <img src="~/pictures/starfall.jpg" alt="">
+            <p>+ Create new board</p>
+        </div>
+    </a>
+    <a asp-action="Index" asp-controller="Friends">
+        <div class="add-friend single-block">
+            <img src="~/pictures/Profile/add-user.png" alt="">
+            <p>+ Add new friend</p>
+        </div>
+    </a>
+    <a href="" class="new-group">
+        <div>
+                
+        </div>
+    </a>
+    <div class="user-statistics">
+        
+    </div>
+</div>
+
+@section AddScripts
+{
+    <script src="~/js/profile.js"></script>
+}
