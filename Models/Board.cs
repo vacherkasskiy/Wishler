@@ -11,5 +11,5 @@ public class Board
     public string Name { get; set; }
 
     [Required] public int UserId { get; set; }
-    public string PictureSource { get; set; }
+    public string BackgroundId { get; set; }
 }

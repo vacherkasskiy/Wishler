@@ -11,5 +11,7 @@ public class User
     [EmailAddress] [Required] public string Email { get; set; }
 
     public string Password { get; set; }
+
+    public int AvatarId { get; set; }
     public DateTime CreatedDateTime { get; set; } = DateTime.Now;
 }

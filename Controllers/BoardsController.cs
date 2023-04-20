@@ -20,11 +20,16 @@ public class BoardsController : Controller
     [Authorize]
     public IActionResult Index()
     {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var groupIds = _db.GroupParticipants.Where(x => x.UserId == userId).Select(x => x.GroupId);
+        var groups = _db.Groups.Where(x => groupIds.Contains(x.Id)).ToArray();
+
         var param = new BoardsViewModel
         {
-            Boards = _db.Boards,
+            Boards = _db.Boards.Where(x => x.UserId == userId).ToArray(),
             Board = new Board(),
-            UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))
+            UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)),
+            Groups = groups
         };
         return View(param);
     }
@@ -34,7 +39,7 @@ public class BoardsController : Controller
     public IActionResult Create(Board board)
     {
         //add proper validation
-        if (board.Name != null && board.PictureSource != "0")
+        if (board.Name != null && board.BackgroundId != "0")
         {
             _db.Boards.Add(board);
             _db.SaveChanges();
@@ -48,7 +53,7 @@ public class BoardsController : Controller
     public IActionResult Delete(int boardId)
     {
         var board = _db.Boards.Find(boardId);
-        _db.Boards.Remove(board);
+        _db.Boards.Remove(board!);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }

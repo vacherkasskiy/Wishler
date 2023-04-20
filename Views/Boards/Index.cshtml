@@ -48,16 +48,28 @@
 <div class="shadow"></div>
 
 <div class="wrapper">
-    <div class="folders">
-        <p style = "margin-top: 100px;font-size:30px;transform: rotate(270deg)">May be some groups here idk ._.</p>
+    <div class="groups">
+        @if (Model.Groups.Length > 0)
+        {
+            @foreach (var group in Model.Groups)
+            {
+                <a href="/group/@group.Id" id="@group.Id">group @group.Name</a>
+            }
+        }
+        else
+        {
+            <h1>
+                <strong>No boards((</strong>
+            </h1>
+        }
     </div>
     <div class="boards_wrapper">
-        <p class="boards_folder-name">Your boards</p>
+        <h1>Your boards</h1>
         <div class="boards">
-            @foreach (var board in Model.Boards.ToArray().Where(x => x.UserId == Model.UserId))
+            @foreach (var board in Model.Boards)
             {
                 <div class="board">
-                    <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.PictureSource) - 1]" alt="">
+                    <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.BackgroundId) - 1]" alt="">
                     <p class="board_name">@board.Name</p>
                     <div class="buttons">
                         <a href="/board/@board.Id" class="open">Open</a>
@@ -72,7 +84,7 @@
                 <label asp-for="Board.Name"></label>
                 <input asp-for="Board.Name" type="text">
                 <input asp-for="Board.UserId" type="hidden" value="@Model.UserId">
-                <input id="ps_input" asp-for="Board.PictureSource" type="hidden" value="0">
+                <input id="ps_input" asp-for="Board.BackgroundId" type="hidden" value="0">
                 <div class="new-board__backgrounds">
                     <img id="1" src="~/pictures/Boards/bg1.jpg" alt="">
                     <img id="2" src="~/pictures/Boards/bg2.jpg" alt="">

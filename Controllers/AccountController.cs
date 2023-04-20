@@ -51,7 +51,8 @@ public class AccountController : Controller
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.UserData, "0") // avatar id
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -85,8 +86,9 @@ public class AccountController : Controller
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-                new Claim(ClaimTypes.Name, loginUser.Name),
-                new Claim(ClaimTypes.Email, loginUser.Email)
+                new Claim(ClaimTypes.Name, loginUser!.Name),
+                new Claim(ClaimTypes.Email, loginUser.Email),
+                new Claim(ClaimTypes.UserData, loginUser.AvatarId.ToString()) // avatar id
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

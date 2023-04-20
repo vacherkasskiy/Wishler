@@ -37,7 +37,7 @@ header {
     flex-direction: column;
 }
 
-.boards_folder-name {
+.boards_wrapper > h1 {
     margin: 30px 0 30px 0;
     color: #3059fa;
     font-size: 25px;
@@ -84,12 +84,12 @@ header {
     text-shadow: 0 0 10px #333
 }
 
-.board .buttons > *{
+.board .buttons > * {
     margin-right: 8px;
-    padding:10px;
+    padding: 10px;
     font-family: sans-serif;
     font-size: 15px;
-    color:white;
+    color: white;
     border-radius: 5px;
 }
 
@@ -199,14 +199,15 @@ header {
     border: #3059fa solid 3px;
 }
 
-/* FOLDERS STYLES */
+/* GROUPS STYLES */
 
 b {
     color: #3059fa;
     font-weight: 600;
 }
 
-.folders {
+.groups {
+    padding: 20px;
     margin-right: 50px;
     width: 15%;
     height: calc(100vh - 70px);
@@ -215,29 +216,13 @@ b {
     box-shadow: 0 0 5px #a3a3a3;
 }
 
-.folders > p {
+.groups > p {
     width: fit-content;
     margin: 10px 0 0 10px;
     padding: 10px;
     border-bottom: 2.5px #3059fa solid;
 }
 
-.folder {
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.folder:hover {
-    background-color: #e3e2e2;
-}
-
-.new-folder p {
-    color: #3059fa;
-    text-decoration: underline;
-    font-weight: 600;
-}
-
-.folder_name {
-    font-size: 18px;
+footer {
+    display: none;
 }

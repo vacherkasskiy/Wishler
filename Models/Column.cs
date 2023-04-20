@@ -17,7 +17,7 @@ public class Column : IComparable
         {
             var other = obj as Column;
             if (other != null && other.Position > Position) return 1;
-            if (other.Position < Position) return -1;
+            if (other!.Position < Position) return -1;
             return 0;
         }
 

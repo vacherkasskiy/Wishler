@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Groups";
+}
+
+@model Wishler.ViewModels.GroupViewModel
+
+@foreach (var participant in Model.GroupParticipants)
+{
+    @if (participant.IsOwner)
+    {
+        <p id="@participant.UserId" style="color:red;">@participant.Id</p>
+    }
+    else
+    {
+        <p id="@participant.UserId" style="color:green;">@participant.Id</p>
+    }
+}

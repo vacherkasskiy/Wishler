@@ -24,7 +24,7 @@
 <header id="header">
     <div class="anchors">
         <div class="logo">
-            <img class="logo-img" src="~/pictures/Header&Footer/shooting-star.png">
+            <img class="logo-img" src="~/pictures/Header&Footer/shooting-star.png" alt="">
             <p class="logo-text">Wishler</p>
         </div>
         @if (IsSectionDefined("AddToHeader"))
@@ -32,7 +32,27 @@
             @await RenderSectionAsync("AddToHeader", false)
         }
     </div>
-    @if (!User.Identity.IsAuthenticated)
+
+    @{
+        var avatarId =
+            User.Identity!.IsAuthenticated ?
+                int.Parse(User.FindFirstValue(ClaimTypes.UserData)) : 0;
+
+        var avatars = new List<string>
+        {
+            "icon0.png",
+            "icon1.png",
+            "icon2.png",
+            "icon3.png",
+            "icon4.png",
+            "icon5.png",
+            "icon6.png",
+            "icon7.png",
+            "icon8.png"
+        };
+    }
+
+    @if (!User.Identity!.IsAuthenticated)
     {
         <a asp-controller="Account" asp-action="Login">
             <button class='header_log-in'>Log in</button>
@@ -42,18 +62,39 @@
     {
         <div class='header_profile'>
             <div class="profile_picture">
-                <img src="~/pictures/user.png" alt="">
+                @if (IsSectionDefined("ChangeAvatar1"))
+                {
+                    @await RenderSectionAsync("ChangeAvatar1", false)
+                }
+                else
+                {
+                    <img src="~/pictures/Users_icons/@avatars[avatarId]" alt="">
+                }
             </div>
             <div class="dropdown_wrapper">
                 <div class="profile_dropdown">
                     <div class="overview">
-                        <img class="profile_picture" src="~/pictures/user.png" alt="">
+                        @if (IsSectionDefined("ChangeAvatar2"))
+                        {
+                            @await RenderSectionAsync("ChangeAvatar2", false)
+                        }
+                        else
+                        {
+                            <img class="profile_picture" src="~/pictures/Users_icons/@avatars[avatarId]" alt="">
+                        }
                         <div class="overview_data">
-                            <p>@User.FindFirstValue(ClaimTypes.Name)</p>
+                            @if (IsSectionDefined("ChangeName"))
+                            {
+                                @await RenderSectionAsync("ChangeName", false)
+                            }
+                            else
+                            {
+                                <p>@User.FindFirstValue(ClaimTypes.Name)</p>
+                            }
                             <p>@User.FindFirstValue(ClaimTypes.Email)</p>
                         </div>
                     </div>
-                    <a href="/user/@User.FindFirstValue(ClaimTypes.NameIdentifier)/profile" class = "section">
+                    <a asp-controller="Profile" asp-action="Index" class="section">
                         <div>
                             <div class='dropdown_btn'>
                                 <p>Profile</p>
@@ -61,7 +102,7 @@
                             <img src="~/pictures/Header&Footer/user.png" alt="">
                         </div>
                     </a>
-                    <a  asp-controller="Friends" asp-action="Index" class="section">
+                    <a asp-controller="Friends" asp-action="Index" class="section">
                         <div>
                             <div class="dropdown_btn">
                                 <p>Friends</p>
@@ -93,7 +134,7 @@
 @RenderBody()
 <footer>
     <div class="logo">
-        <img class="logo-img" src="~/pictures/Header&Footer/white-star.png">
+        <img class="logo-img" src="~/pictures/Header&Footer/white-star.png" alt="">
         <p class="logo-text" style="color: white; margin-bottom: -4px;">Wishler</p>
     </div>
 </footer>
