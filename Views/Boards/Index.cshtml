@@ -49,18 +49,38 @@
 
 <div class="wrapper">
     <div class="groups">
-        @if (Model.Groups.Length > 0)
+        @foreach (var group in Model.Groups)
         {
-            @foreach (var group in Model.Groups)
-            {
-                <a href="/group/@group.Id" id="@group.Id">group @group.Name</a>
-            }
+            <a class="groups__item" href="/group/@group.Id" id="@group.Id">@group.Name</a>
+        }
+
+        @if (Model.Friends.Length >= 3)
+        {
+            <button class="groups__create-new active">+ Create new group</button>
+            <form class="new-group-form" asp-action="Create" asp-controller="Group">
+                <div class="input-section">
+                    <label asp-for="NewGroup.Name">Name</label>
+                    <input asp-for="NewGroup.Name" type="text">
+                </div>
+                <input class="invited-members" asp-for="NewGroup.Members" type="hidden" value="">
+                <div class="possible-members">
+                    @foreach (var friend in Model.Friends)
+                    {
+                        <div class="member">
+                            <p>@friend.FriendEmail</p>
+                            <button id="@friend.FriendEmail" type="button" class="member__action invite">Invite</button>
+                        </div>
+                    }
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="create">Create</button>
+                    <button type="button" class="cancel">Cancel</button>
+                </div>
+            </form>
         }
         else
         {
-            <h1>
-                <strong>No boards((</strong>
-            </h1>
+            <p>You must have 3 or more friends to interact with groups</p>
         }
     </div>
     <div class="boards_wrapper">
@@ -77,9 +97,9 @@
                     </div>
                 </div>
             }
-            <div class="new-board">
+            <button class="new-board">
                 <p>+ Create new board</p>
-            </div>
+            </button>
             <form class="new-board-form" asp-controller="Boards" asp-action="Create">
                 <label asp-for="Board.Name"></label>
                 <input asp-for="Board.Name" type="text">
@@ -104,4 +124,5 @@
 
 @section AddScripts{
     <script src="~/js/boards.js"></script>
+    <script src="~/js/create_new_group.js"></script>
 }

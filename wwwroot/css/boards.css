@@ -32,6 +32,140 @@ header {
     flex-direction: row;
 }
 
+.wrapper .groups > a {
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: 15px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.wrapper .groups .groups__item {
+    color:#3059fa;
+    box-shadow: 0 0 5px #a3a3a3;
+}
+
+.wrapper .groups > .groups__create-new{
+    display: none;
+}
+
+.wrapper .groups > .groups__create-new.active {
+    display:block;
+    font-weight: 600;
+    color: white;
+    background-color: #3059fa;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: 15px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.new-group-form {
+    display: none;
+    /*margin: 30px 0 0 30px;*/
+    overflow: hidden;
+    z-index: 1000;
+    width: 300px;
+    height: 340px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.new-group-form.active {
+    display: block;
+}
+
+.new-group-form .input-section {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.new-group-form label {
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.new-group-form input {
+    margin-bottom: 20px;
+    padding: 5px;
+    font-family: sans-serif;
+    font-size: 15px;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+}
+
+.member {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.possible-members {
+    padding: 0 15px;
+    max-height: 180px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #a3a3a3;
+    overflow-y: auto;
+}
+
+.member {
+    margin: 10px 0;
+}
+
+.member p {
+    overflow: hidden;
+    width: 50%;
+    font-size: 15px;
+    color: #424242;
+}
+
+.member__action {
+    padding: 8px 10px;
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: 600;
+    box-shadow: 0 0 5px #a3a3a3;
+    border-radius: 5px;
+    color:white;
+}
+
+.member__action.invite {
+    background-color: rgb(99, 253, 99);
+}
+
+.member__action.delete {
+    background-color: red;
+}
+
+.new-group-form .buttons > * {
+    margin: 20px 5px;
+    padding: 12px;
+    border-radius: 5px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.new-group-form .buttons .create {
+    background-color: #3059fa;
+}
+
+.new-group-form .buttons .cancel {
+    background-color: red;
+}
+
 .boards_wrapper {
     display: flex;
     flex-direction: column;

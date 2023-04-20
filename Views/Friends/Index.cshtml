@@ -36,10 +36,6 @@
 }
 
 @{
-    var avatarId =
-        User.Identity!.IsAuthenticated ?
-            int.Parse(User.FindFirstValue(ClaimTypes.UserData)) : 0;
-
     var avatars = new List<string>
     {
         "icon0.png",
@@ -79,7 +75,7 @@
             {
                 <div class="friend">
                     <div class="friend__part">
-                        <img class="friend__photo" src="~/pictures/Users_icons/@avatars[avatarId]" alt="">
+                        <img class="friend__photo" src="~/pictures/Users_icons/@avatars[Model.Users.First(x => x.Email == request.SenderEmail).AvatarId]" alt="">
                         <div class="friend__info">
                             <p class="name">
                                 <strong>Name:</strong> @Model.Users.First(x => x.Email == request.SenderEmail).Name
@@ -110,7 +106,7 @@
             {
                 <div class="friend">
                     <div class="friend__part">
-                        <img class="friend__photo" src="~/pictures/Users_icons/@avatars[avatarId]" alt="">
+                        <img class="friend__photo" src="~/pictures/Users_icons/@avatars[Model.Users.First(x => x.Email == friend.FriendEmail).AvatarId]" alt="">
                         <div class="friend__info">
                             <p class="name">
                                 <strong>Name:</strong> @Model.Users.First(x => x.Email == friend.FriendEmail).Name
