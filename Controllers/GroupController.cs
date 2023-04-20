@@ -49,9 +49,11 @@ public class GroupController : Controller
     public IActionResult Create(NewGroupViewModel newGroupViewModel)
     {
         var memberEmails = newGroupViewModel.Members.Split().ToArray();
-        var ownerEmail = User.FindFirstValue(ClaimTypes.Email);
+        
         if (ModelState.IsValid && memberEmails.Length >= 3)
         {
+            var ownerEmail = User.FindFirstValue(ClaimTypes.Email);
+            
             var newGroup = _db.Groups.Add(new Group
             {
                 Name = newGroupViewModel.Name,
