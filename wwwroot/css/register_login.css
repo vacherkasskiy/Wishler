@@ -97,8 +97,8 @@ body {
 }
 
 .error {
-    width: 85%;
-    margin: 0 auto;
+    width: fit-content;
+    margin-top: 5px;
     font-family: sans-serif;
     font-size: 12px;
     font-weight: 600;

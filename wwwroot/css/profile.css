@@ -1,4 +1,13 @@
-﻿header {
+﻿body {
+    position: relative;
+}
+
+body.noscroll {
+    overflow-y: hidden !important;
+    max-height: 100vh !important;
+}
+
+header {
     z-index: 2000;
     opacity: 1 !important;
     transition: unset !important;
@@ -15,10 +24,28 @@
     grid-row-gap: 20px;
 }
 
+.shadow {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150vh;
+    background-color: black;
+    z-index: 999 !important;
+    opacity: 0.5;
+}
+
+.shadow.active {
+    display: block;
+}
+
 /*USER INFO STYLES*/
 
 .wrapper__user-info {
     padding: 20px;
+    position: relative;
     display: flex;
     grid-column-start: 1;
     grid-column-end: 3;
@@ -37,59 +64,131 @@
     overflow: hidden;
 }
 
-.user-info form {
-    
+.user-info {
+    width: 200px;
 }
 
-.user-info form > div {
-    margin: 10px 0;
+.user-info__row {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: row;
 }
 
-.user-info form > div label {
-    margin-right: 10px;
+.user-info .key {
     font-family: sans-serif;
     font-size: 18px;
+    color: #0a58ca;
+    font-weight: 600;
 }
 
-.user-info form > div input {
-    padding: 5px;
+.user-info .value {
+    margin-left: 20px;
     font-family: sans-serif;
     font-size: 16px;
-    border: 2px solid #d7d7d7;
-    border-radius: 6px;
 }
 
-.user-info form button {
-    margin-top: 15px;
-    padding: 10px;
-    font-size: 15px;
-    font-family: sans-serif;
-    color: white;
-    background-color: #3059fa;
-    border-radius: 5px;
-}
-
-.change-photo {
-    padding: 20px;
+.change-info-button {
     width: 30%;
     height: 100%;
-    margin-left: 260px;
-    display: flex;
+    margin-left: 350px;
+    border-radius: 10px;
+    padding: 20px;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: #0033ff;
-    border-radius: 10px;
 }
 
-.change-photo img {
+.change-info-button.active {
+    display: flex;
+}
+
+.change-info-button img {
     width: 70px;
     height: 70px;
 }
 
-.change-photo p {
+.change-info-button p {
     color: white;
     font-weight: 600;
+}
+
+.change-info-form {
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.change-info-form.active {
+    z-index: 1000;
+    display: flex;
+}
+
+.change-info-form label {
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+.change-info-form input {
+    padding: 5px;
+    width: 89%;
+    font-family: sans-serif;
+    font-size: 15px;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+}
+
+.change-info-form .buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.change-info-form .buttons > * {
+    margin-right: 5px;
+    padding: 10px;
+    width: 70px;
+    font-family: sans-serif;
+    font-size: 14.5px;
+    color: white;
+    border-radius: 3px;
+}
+
+.change-info-form .create-btn {
+    background-color: #3059fa;
+}
+
+.change-info-form .cancel-btn {
+    background-color: red;
+}
+
+.change-info-form .avatars-images {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 40px);
+    grid-template-rows: repeat(2, 40px);
+    grid-column-gap: 28px;
+    grid-row-gap: 15px;
+}
+
+.change-info-form .avatars-images > img {
+    /*image-resolution: 100dpi;*/
+    cursor: pointer;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.change-info-form .avatars-images > img.selected {
+    border: #3059fa solid 3px;
 }
 
 /*CREATE NEW BOARD STYLES*/
@@ -206,7 +305,7 @@
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;

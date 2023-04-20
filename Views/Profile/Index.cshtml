@@ -35,26 +35,75 @@
     </div>
 }
 
+@{
+    var avatars = new List<string>
+    {
+        "icon0.png",
+        "icon1.png",
+        "icon2.png",
+        "icon3.png",
+        "icon4.png",
+        "icon5.png",
+        "icon6.png",
+        "icon7.png",
+        "icon8.png"
+    };
+}
+
+@section ChangeAvatar1
+{
+    <img src="~/pictures/Users_icons/@avatars[Model.NewProfile.AvatarId]" alt="">
+}
+
+@section ChangeAvatar2
+{
+    <img class="profile_picture" src="~/pictures/Users_icons/@avatars[Model.NewProfile.AvatarId]" alt="">
+}
+
+@section ChangeName
+{
+    <p>@Model.NewProfile.Name</p>
+}
+
 <div class="main">
+    <div class="shadow"></div>
     <div class="wrapper__user-info">
-        <img src="~/pictures/user.png" alt="">
+        <img src="~/pictures/Users_icons/@avatars[Model.NewProfile.AvatarId]" alt="">
         <div class="user-info">
-            <form action="">
-                <div>
-                    <label for=""><strong>Name:</strong></label>
-                    <input type="text" value="@User.FindFirstValue(ClaimTypes.Name)">
-                </div>
-                <div>
-                    <label for=""><strong>Email:</strong></label>
-                    <input type="email" value="@User.FindFirstValue(ClaimTypes.Email)">
-                </div>
-                <button type="submit">Apply changes</button>
-            </form>
+            <div class="user-info__row">
+                <p class="key">Name:</p>
+                <p class="value">@Model.NewProfile.Name</p>
+            </div>
+            <div class="user-info__row">
+                <p class="key">Email:</p>
+                <p class="value">@User.FindFirstValue(ClaimTypes.Email)</p>
+            </div>
         </div>
-        <button class="change-photo">
-            <img src="~/pictures/Profile/camera.png" alt="">
-            <p>Change photo</p>
+        <button class="change-info-button active">
+            <img src="~/pictures/Profile/edit.png" alt="">
+            <p>Change info</p>
         </button>
+        <form class="change-info-form" asp-action="Index" method="post">
+            <div>
+                <label asp-for="NewProfile.Name">Name</label>
+                <input asp-for="NewProfile.Name" type="text" value="@Model.NewProfile.Name">
+                <input asp-for="NewProfile.AvatarId" id="avatar_id" type="hidden" value="0">
+            </div>
+            <div class="avatars-images">
+                <img id="1" src="~/pictures/Users_icons/icon1.png" alt="">
+                <img id="2" src="~/pictures/Users_icons/icon2.png" alt="">
+                <img id="3" src="~/pictures/Users_icons/icon3.png" alt="">
+                <img id="4" src="~/pictures/Users_icons/icon4.png" alt="">
+                <img id="5" src="~/pictures/Users_icons/icon5.png" alt="">
+                <img id="6" src="~/pictures/Users_icons/icon6.png" alt="">
+                <img id="7" src="~/pictures/Users_icons/icon7.png" alt="">
+                <img id="8" src="~/pictures/Users_icons/icon8.png" alt="">
+            </div>
+            <div class="buttons">
+                <button class="create-btn" type="submit">Apply</button>
+                <button class="cancel-btn">Cancel</button>
+            </div>
+        </form>
     </div>
     <a asp-action="Index" asp-controller="Boards">
         <div class="create-board">
@@ -86,9 +135,15 @@
         </div>
     </a>
     <div class="user-statistics">
-        <p><strong>Boards created</strong> @Model.BoardsCreatedAmount</p>
-        <p><strong>Groups participated</strong> @Model.GroupsParticipatedAmount</p>
-        <p><strong>Friends added</strong> @Model.FriendsAddedAmount</p>
+        <p>
+            <strong>Boards created</strong> @Model.BoardsCreatedAmount
+        </p>
+        <p>
+            <strong>Groups participated</strong> @Model.GroupsParticipatedAmount
+        </p>
+        <p>
+            <strong>Friends added</strong> @Model.FriendsAddedAmount
+        </p>
     </div>
 </div>
 

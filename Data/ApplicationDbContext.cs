@@ -16,4 +16,6 @@ public class ApplicationDbContext : DbContext
     public DbSet<Row> Rows { get; set; }
     public DbSet<FriendRequest> FriendRequests { get; set; }
     public DbSet<Friend> Friends { get; set; }
+    public DbSet<Group> Groups { get; set; }
+    public DbSet<GroupParticipant> GroupParticipants { get; set; }
 }
