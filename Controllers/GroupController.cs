@@ -48,11 +48,12 @@ public class GroupController : Controller
     [HttpPost]
     public IActionResult Create(NewGroupViewModel newGroupViewModel)
     {
-        var memberEmails = newGroupViewModel.Members.Split().ToArray();
+        string membersLine = newGroupViewModel.Members.TrimEnd();
         
-        if (ModelState.IsValid && memberEmails.Length >= 3)
+        if (ModelState.IsValid && membersLine != null && membersLine.Split().Length >= 3)
         {
-            var ownerEmail = User.FindFirstValue(ClaimTypes.Email);
+            var memberEmails = membersLine.Split().ToArray();
+            var ownerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             
             var newGroup = _db.Groups.Add(new Group
             {
@@ -61,13 +62,21 @@ public class GroupController : Controller
             });
             _db.SaveChanges();
 
+            
+            _db.GroupParticipants.Add(new GroupParticipant
+            {
+                UserId = ownerId,
+                GroupId = newGroup.Entity.Id,
+                IsOwner = true
+            });
+            
             foreach (var member in memberEmails)
             {
                 _db.GroupParticipants.Add(new GroupParticipant
                 {
                     UserId = _db.Users.First(x => x.Email == member).Id,
                     GroupId = newGroup.Entity.Id,
-                    IsOwner = (member == ownerEmail)
+                    IsOwner = false
                 });
             }
             _db.SaveChanges();

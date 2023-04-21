@@ -60,9 +60,9 @@
             <form class="new-group-form" asp-action="Create" asp-controller="Group">
                 <div class="input-section">
                     <label asp-for="NewGroup.Name">Name</label>
-                    <input asp-for="NewGroup.Name" type="text">
+                    <input name="Name" type="text">
+                    <input class="invited-members" name="Members" type="hidden" value="">
                 </div>
-                <input class="invited-members" asp-for="NewGroup.Members" type="hidden" value="">
                 <div class="possible-members">
                     @foreach (var friend in Model.Friends)
                     {
