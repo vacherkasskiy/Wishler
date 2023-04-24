@@ -90,7 +90,7 @@ public class BoardController : Controller
     {
         var column = _db.Columns.Find(id)!;
 
-        foreach (var row in _db.Rows.Where(x => x.ColumnId == id))
+        foreach (var row in _db.Rows.Where(x => x.ColumnId == id).ToArray())
         {
             _db.Rows.Remove(row);
         }

@@ -364,7 +364,9 @@ b {
 }
 
 .groups {
-    overflow-y: auto;
+    /* idk why isnt it working */
+    /*overflow-y: auto;*/
+    /*overflow-x: visible !important;*/
     padding: 20px;
     margin-right: 50px;
     width: 15%;

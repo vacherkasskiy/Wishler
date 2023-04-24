@@ -58,9 +58,9 @@ public class BoardsController : Controller
     {
         var board = _db.Boards.Find(boardId)!;
 
-        foreach (var column in _db.Columns.Where(x => x.BoardId == boardId))
+        foreach (var column in _db.Columns.Where(x => x.BoardId == boardId).ToArray())
         {
-            foreach (var row in _db.Rows.Where(x => x.ColumnId == column.Id))
+            foreach (var row in _db.Rows.Where(x => x.ColumnId == column.Id).ToArray())
             {
                 _db.Rows.Remove(row);
             }

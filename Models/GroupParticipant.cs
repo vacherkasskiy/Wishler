@@ -9,5 +9,5 @@ public class GroupParticipant
     public int UserId { get; set; }
     public int GroupId { get; set; }
     public bool IsOwner { get; set; }
-    public string Wish { get; set; }
+    public string? Wish { get; set; }
 }
