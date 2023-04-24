@@ -79,23 +79,23 @@ public class BoardController : Controller
     [Route("/board/deleteRow")]
     public void DeleteRow(int id)
     {
-        var row = _db.Rows.Find(id);
-        if (row != null)
-        {
-            _db.Rows.Remove(row);
-            _db.SaveChanges();
-        }
+        var row = _db.Rows.Find(id)!;
+        _db.Rows.Remove(row);
+        _db.SaveChanges();
     }
 
     [HttpDelete]
     [Route("/board/deleteColumn")]
     public void DeleteColumn(int id)
     {
-        var column = _db.Columns.Find(id);
-        if (column != null)
+        var column = _db.Columns.Find(id)!;
+
+        foreach (var row in _db.Rows.Where(x => x.ColumnId == id).ToArray())
         {
-            _db.Columns.Remove(column);
-            _db.SaveChanges();
+            _db.Rows.Remove(row);
         }
+        
+        _db.Columns.Remove(column);
+        _db.SaveChanges();
     }
 }

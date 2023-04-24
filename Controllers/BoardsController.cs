@@ -23,9 +23,13 @@ public class BoardsController : Controller
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var groupIds = _db.GroupParticipants.Where(x => x.UserId == userId).Select(x => x.GroupId);
         var groups = _db.Groups.Where(x => groupIds.Contains(x.Id)).ToArray();
+        var user = _db.Users.Find(userId);
+        var userFriends = _db.Friends.Where(x => x.OwnerEmail == user!.Email).ToArray();
 
         var param = new BoardsViewModel
         {
+            NewGroup = new NewGroupViewModel(),
+            Friends = userFriends,
             Boards = _db.Boards.Where(x => x.UserId == userId).ToArray(),
             Board = new Board(),
             UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)),
@@ -52,8 +56,19 @@ public class BoardsController : Controller
     [Authorize]
     public IActionResult Delete(int boardId)
     {
-        var board = _db.Boards.Find(boardId);
-        _db.Boards.Remove(board!);
+        var board = _db.Boards.Find(boardId)!;
+
+        foreach (var column in _db.Columns.Where(x => x.BoardId == boardId).ToArray())
+        {
+            foreach (var row in _db.Rows.Where(x => x.ColumnId == column.Id).ToArray())
+            {
+                _db.Rows.Remove(row);
+            }
+
+            _db.Columns.Remove(column);
+        }
+
+        _db.Boards.Remove(board);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
