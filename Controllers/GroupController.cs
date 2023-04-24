@@ -17,7 +17,7 @@ public class GroupController : Controller
         _db = db;
     }
 
-    [Route("/group/{groupId}")]
+    [Route("group/{groupId}")]
     public IActionResult Index(int groupId)
     {
         var groupParticipants = _db
@@ -85,11 +85,16 @@ public class GroupController : Controller
         return RedirectToAction("Index", "Boards");
     }
 
-    [Route("group/delete-group/{groupId}")]
-    [HttpDelete]
+    [Route("group/delete/{groupId}")]
     public IActionResult Delete(int groupId)
     {
         var group = _db.Groups.Find(groupId)!;
+
+        foreach (var participant in _db.GroupParticipants.Where(x => x.GroupId == groupId))
+        {
+            _db.GroupParticipants.Remove(participant);
+        }
+        
         _db.Groups.Remove(group);
         _db.SaveChanges();
         

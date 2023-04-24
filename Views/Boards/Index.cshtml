@@ -51,7 +51,13 @@
     <div class="groups">
         @foreach (var group in Model.Groups)
         {
-            <a class="groups__item" href="/group/@group.Id" id="@group.Id">@group.Name</a>
+            <div class="groups__item" id="@group.Id">
+                <p>@group.Name</p>
+                <div class="item__buttons">
+                    <a href="group/@group.Id" class="open">Open</a>
+                    <a href="group/delete/@group.Id" class="delete">Delete</a>
+                </div>
+            </div>
         }
 
         @if (Model.Friends.Length >= 3)

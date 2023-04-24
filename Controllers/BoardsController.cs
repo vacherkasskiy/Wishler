@@ -56,8 +56,19 @@ public class BoardsController : Controller
     [Authorize]
     public IActionResult Delete(int boardId)
     {
-        var board = _db.Boards.Find(boardId);
-        _db.Boards.Remove(board!);
+        var board = _db.Boards.Find(boardId)!;
+
+        foreach (var column in _db.Columns.Where(x => x.BoardId == boardId))
+        {
+            foreach (var row in _db.Rows.Where(x => x.ColumnId == column.Id))
+            {
+                _db.Rows.Remove(row);
+            }
+
+            _db.Columns.Remove(column);
+        }
+
+        _db.Boards.Remove(board);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
