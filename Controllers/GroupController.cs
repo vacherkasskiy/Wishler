@@ -84,4 +84,15 @@ public class GroupController : Controller
         
         return RedirectToAction("Index", "Boards");
     }
+
+    [Route("group/delete-group/{groupId}")]
+    [HttpDelete]
+    public IActionResult Delete(int groupId)
+    {
+        var group = _db.Groups.Find(groupId)!;
+        _db.Groups.Remove(group);
+        _db.SaveChanges();
+        
+        return RedirectToAction("Index", "Boards");
+    }
 }

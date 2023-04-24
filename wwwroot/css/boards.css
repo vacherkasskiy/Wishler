@@ -350,6 +350,14 @@ b {
     box-shadow: 0 0 5px #a3a3a3;
 }
 
+.groups__item {
+    margin: 5px 0;
+}
+
+.groups__create-new {
+    margin: 5px 0;
+}
+
 .groups > p {
     width: fit-content;
     margin: 10px 0 0 10px;
