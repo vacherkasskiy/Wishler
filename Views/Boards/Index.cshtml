@@ -55,7 +55,14 @@
                 <p>@group.Name</p>
                 <div class="item__buttons">
                     <a href="group/@group.Id" class="open">Open</a>
-                    <a href="group/delete/@group.Id" class="delete">Delete</a>
+                    @if (Model.UserId == group.OwnerId)
+                    {
+                        <a href="group/delete/@group.Id" class="delete">Delete</a>
+                    }
+                    else
+                    {
+                        <a href="" class="delete">Leave</a>
+                    }
                 </div>
             </div>
         }

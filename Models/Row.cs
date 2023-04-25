@@ -8,7 +8,7 @@ public class Row : IComparable
 
     public int ColumnId { get; set; }
     public int Position { get; set; }
-    public string Text { get; set; }
+    public string Text { get; set; } = "";
 
     public int CompareTo(object? obj)
     {
@@ -16,7 +16,7 @@ public class Row : IComparable
         {
             var other = obj as Row;
             if (other != null && other.Position > Position) return 1;
-            if (other.Position < Position) return -1;
+            if (other!.Position < Position) return -1;
             return 0;
         }
 
