@@ -75,7 +75,7 @@
 
 .member__delete-btn {
     padding: 10px;
-    color:white;
+    color:white !important;
     font-size: 13px;
     font-family: sans-serif;
     font-weight: 600;
@@ -83,7 +83,20 @@
     border-radius: 5px;
 }
 
+.add-new-member {
+    width: 100%;
+    padding: 20px;
+    color:white;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 600;
+    text-align: center;
+    background-color: #3059fa;
+    border-radius: 5px;
+}
+
 .start-event {
+    margin-top: 30px;
     padding: 15px;
     color: white;
     background-color: #3059fa;
@@ -133,10 +146,13 @@
     margin-top: 40px;
     width: 15%;
     height: 400px;
-    color:white;
+    color:white !important;
     font-size: 20px;
     font-family: sans-serif;
     font-weight: 600;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
     background-color: red;
     border-radius: 5px;
 }

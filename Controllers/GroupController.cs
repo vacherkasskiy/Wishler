@@ -131,12 +131,20 @@ public class GroupController : Controller
         _db.SaveChanges();
     }
     
-    [Route("/group/leave")]
-    [HttpDelete]
-    public void LeaveGroup(int participantId)
+    [Route("group/kick/{participantId}")]
+    public void DeleteParticipant(int participantId)
     {
         var participant = _db.GroupParticipants.Find(participantId)!;
+        var groupId = participant.GroupId;
+        var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         _db.GroupParticipants.Remove(participant);
         _db.SaveChanges();
+
+        if (currentUserId == participant.UserId)
+        {
+            Response.Redirect("/boards");
+        }
+
+        Response.Redirect($"/group/{groupId}");
     }
 }
