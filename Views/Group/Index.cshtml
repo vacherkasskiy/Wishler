@@ -101,7 +101,7 @@
         <form action="">
             <label for="">Enter your wish</label>
             <textarea name="" id="@Model.GroupParticipants.First(x => x.UserId == userId).Id">@Model.GroupParticipants.First(x => x.UserId == userId).Wish</textarea>
-            <button type="submit">Save</button>
+            <button type="button">Save</button>
         </form>
     </div>
     @if (isUserOwner)

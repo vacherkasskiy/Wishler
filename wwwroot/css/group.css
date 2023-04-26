@@ -113,8 +113,9 @@
     height: 400px;
     font-size: 15px;
     font-family: sans-serif;
-    border: 2.5px solid #a3a3a3 !important;
+    border: 2.5px solid #3059fa;
     border-radius: 5px;
+    transition: border 0.2s ease-in-out;
 }
 
 .wish > form > button {

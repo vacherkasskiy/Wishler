@@ -110,4 +110,33 @@ public class GroupController : Controller
         _db.GroupParticipants.Update(participant);
         _db.SaveChanges();
     }
+
+    [Route("/group/startEvent")]
+    [HttpPatch]
+    public void StartEvent(int groupId)
+    {
+        var group = _db.Groups.Find(groupId)!;
+        group.IsStarted = true;
+        _db.Groups.Update(group);
+        _db.SaveChanges();
+    }
+    
+    [Route("/group/cancelEvent")]
+    [HttpPatch]
+    public void CancelEvent(int groupId)
+    {
+        var group = _db.Groups.Find(groupId)!;
+        group.IsStarted = false;
+        _db.Groups.Update(group);
+        _db.SaveChanges();
+    }
+    
+    [Route("/group/leave")]
+    [HttpDelete]
+    public void LeaveGroup(int participantId)
+    {
+        var participant = _db.GroupParticipants.Find(participantId)!;
+        _db.GroupParticipants.Remove(participant);
+        _db.SaveChanges();
+    }
 }
