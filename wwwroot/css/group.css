@@ -4,7 +4,7 @@
 }
 
 .wrapper {
-    margin-top: 70px;
+    margin-top: 40px;
     padding: 30px;
     min-height: 100vh;
     display: flex;
@@ -12,6 +12,7 @@
 }
 
 .group-members {
+    margin-top: 35px;
     overflow-y: auto;
     padding: 10px;
     width: 35%;
@@ -104,6 +105,7 @@
 }
 
 .wish > form > textarea {
+    outline: none !important;
     resize: none !important;
     padding:10px;
     margin-top: 5px;
@@ -111,7 +113,7 @@
     height: 400px;
     font-size: 15px;
     font-family: sans-serif;
-    border: 2.5px solid #a3a3a3;
+    border: 2.5px solid #a3a3a3 !important;
     border-radius: 5px;
 }
 

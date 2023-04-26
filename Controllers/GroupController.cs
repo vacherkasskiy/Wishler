@@ -100,4 +100,14 @@ public class GroupController : Controller
         
         return RedirectToAction("Index", "Boards");
     }
+    
+    [Route("/group/saveWish")]
+    [HttpPost]
+    public void SaveWish(int participantId, string wish)
+    {
+        var participant = _db.GroupParticipants.Find(participantId)!;
+        participant.Wish = wish;
+        _db.GroupParticipants.Update(participant);
+        _db.SaveChanges();
+    }
 }
