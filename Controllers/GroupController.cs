@@ -135,16 +135,19 @@ public class GroupController : Controller
     public void DeleteParticipant(int participantId)
     {
         var participant = _db.GroupParticipants.Find(participantId)!;
+        var participantUserId = participant.UserId;
         var groupId = participant.GroupId;
         var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         _db.GroupParticipants.Remove(participant);
         _db.SaveChanges();
 
-        if (currentUserId == participant.UserId)
+        if (currentUserId == participantUserId)
         {
             Response.Redirect("/boards");
         }
-
-        Response.Redirect($"/group/{groupId}");
+        else
+        {
+            Response.Redirect($"/group/{groupId}");
+        }
     }
 }
