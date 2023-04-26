@@ -56,6 +56,7 @@ header {
 
 .wrapper__user-info > img {
     margin: 10px 40px 10px 10px;
+    padding: 2px;
     width: 55px;
     height: 55px;
     border-radius: 50%;

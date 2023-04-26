@@ -82,7 +82,7 @@ public class AccountController : Controller
         {
             var loginUser = _db.Users.SingleOrDefault(u => u.Email == model.Email);
 
-            var userId = _db.Users.Where(x => x.Email == model.Email).ToArray()[0].Id;
+            var userId = _db.Users.First(x => x.Email == model.Email).Id;
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
