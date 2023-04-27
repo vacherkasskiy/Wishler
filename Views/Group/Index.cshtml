@@ -1,4 +1,5 @@
 ﻿@using System.Security.Claims
+@using System.Reflection.Emit
 @model Wishler.ViewModels.GroupViewModel
 
 @{
@@ -91,19 +92,42 @@
                 }
             </div>
         }
-        <div class="add-new-member">+ Add new member</div>
         @if (isUserOwner)
         {
-            <button class="start-event">
-                Start Event
-            </button>
+            @if (!Model.IsStarted)
+            {
+                <div class="add-new-member">+ Add new member</div>
+                <button id="@Model.GroupId" class="start event">
+                    Start Event
+                </button>
+            }
+            else
+            {
+                <button id="@Model.GroupId" class="cancel event">
+                    Cancel Event
+                </button>
+            }
         }
     </div>
     <div class="wish">
         <form>
-            <label for="">Enter your wish</label>
-            <textarea name="" id="@participantId">@Model.GroupParticipants.First(x => x.UserId == userId).Wish</textarea>
-            <button type="button">Save</button>
+            @if (!Model.IsStarted)
+            {
+                <label>Enter your wish</label>
+            }
+            else
+            {
+                <label>Your dreammate's wish</label>
+            }
+            @if (!Model.IsStarted)
+                {
+                    <textarea name="" id="@participantId">@Model.GroupParticipants.First(x => x.UserId == userId).Wish</textarea>
+                    <button type="button">Save</button>
+                }
+                else
+                {
+                    <textarea readonly="readonly" name="" id="@participantId">@Model.GroupParticipants.First(x => x.Id == participantId).OtherWish</textarea>
+                }
         </form>
     </div>
     @if (isUserOwner)

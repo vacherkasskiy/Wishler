@@ -33,7 +33,7 @@ public class ProfileController : Controller
                 AvatarId = int.Parse(User.FindFirstValue(ClaimTypes.UserData))
             },
             BoardsCreatedAmount = _db.Boards.Count(x => x.UserId == userId),
-            GroupsParticipatedAmount = 0,
+            GroupsParticipatedAmount = _db.GroupParticipants.Count(x => x.UserId == userId),
             FriendsAddedAmount = _db.Friends.Count(x => x.OwnerEmail == userEmail)
         };
 

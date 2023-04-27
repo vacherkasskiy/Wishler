@@ -95,14 +95,21 @@
     border-radius: 5px;
 }
 
-.start-event {
+.event {
     margin-top: 30px;
     padding: 15px;
     color: white;
-    background-color: #3059fa;
     font-family: sans-serif;
     font-weight: 600;
     border-radius: 5px;
+}
+
+.start {
+    background-color: #3059fa;
+}
+
+.cancel {
+    background-color: red;
 }
 
 .wish {

@@ -36,6 +36,7 @@ public class GroupController : Controller
 
         var model = new GroupViewModel
         {
+            IsStarted = _db.Groups.Find(groupId)!.IsStarted,
             GroupId = groupId,
             GroupParticipants = groupParticipants,
             UsersInGroup = usersInGroup
@@ -50,7 +51,7 @@ public class GroupController : Controller
     {
         string membersLine = newGroupViewModel.Members.TrimEnd();
         
-        if (ModelState.IsValid && membersLine != null && membersLine.Split().Length >= 3)
+        if (ModelState.IsValid && membersLine != null && membersLine.Split().Length >= 2)
         {
             var memberEmails = membersLine.Split().ToArray();
             var ownerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -118,7 +119,27 @@ public class GroupController : Controller
         var group = _db.Groups.Find(groupId)!;
         group.IsStarted = true;
         _db.Groups.Update(group);
+
+        Random rand = new Random();
+        var participants = _db
+            .GroupParticipants
+            .Where(x => x.GroupId == groupId)
+            .ToArray();
+        
+        var wishes = participants
+            .Select(x => x.Wish)
+            .OrderBy(x => rand.Next())
+            .ToArray();
+
+        for (int i = 0; i < participants.Length; ++i)
+        {
+            participants[i].OtherWish = wishes[i];
+            _db.GroupParticipants.Update(participants[i]);
+        }
+        
         _db.SaveChanges();
+        
+        Response.Redirect($"/group/{groupId}");
     }
     
     [Route("/group/cancelEvent")]
@@ -129,6 +150,8 @@ public class GroupController : Controller
         group.IsStarted = false;
         _db.Groups.Update(group);
         _db.SaveChanges();
+        
+        Response.Redirect($"/group/{groupId}");
     }
     
     [Route("group/kick/{participantId}")]
