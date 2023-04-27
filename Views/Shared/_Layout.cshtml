@@ -61,16 +61,14 @@
     else
     {
         <div class='header_profile'>
-            <div class="profile_picture">
-                @if (IsSectionDefined("ChangeAvatar1"))
-                {
-                    @await RenderSectionAsync("ChangeAvatar1", false)
-                }
-                else
-                {
-                    <img src="~/pictures/Users_icons/@avatars[avatarId]" alt="">
-                }
-            </div>
+            @if (IsSectionDefined("ChangeAvatar"))
+            {
+                @await RenderSectionAsync("ChangeAvatar", false)
+            }
+            else
+            {
+                <img class="profile_picture" src="~/pictures/Users_icons/@avatars[avatarId]" alt="">
+            }
             <div class="dropdown_wrapper">
                 <div class="profile_dropdown">
                     <div class="overview">

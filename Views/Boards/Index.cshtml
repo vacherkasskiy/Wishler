@@ -67,34 +67,28 @@
             </div>
         }
 
-        @if (Model.Friends.Length >= 3)
-        {
-            <button class="groups__create-new active">+ Create new group</button>
-            <form class="new-group-form" asp-action="Create" asp-controller="Group">
-                <div class="input-section">
-                    <label asp-for="NewGroup.Name">Name</label>
-                    <input name="Name" type="text">
-                    <input class="invited-members" name="Members" type="hidden" value="">
-                </div>
-                <div class="possible-members">
-                    @foreach (var friend in Model.Friends)
-                    {
-                        <div class="member">
-                            <p>@friend.FriendEmail</p>
-                            <button id="@friend.FriendEmail" type="button" class="member__action invite">Invite</button>
-                        </div>
-                    }
-                </div>
-                <div class="buttons">
-                    <button type="submit" class="create">Create</button>
-                    <button type="button" class="cancel">Cancel</button>
-                </div>
-            </form>
-        }
-        else
-        {
-            <p>You must have 3 or more friends to interact with groups</p>
-        }
+        <button class="groups__create-new active">+ Create new group</button>
+        <form class="new-group-form" asp-action="Create" asp-controller="Group">
+            <div class="input-section">
+                <label asp-for="NewGroup.Name">Name</label>
+                <input name="Name" type="text">
+                <input class="invited-members" name="Members" type="hidden" value="">
+            </div>
+            <div class="possible-members">
+                @foreach (var friend in Model.Friends)
+                {
+                    <div class="member">
+                        <p>@friend.FriendEmail</p>
+                        <button id="@friend.FriendEmail" type="button" class="member__action invite">Invite</button>
+                    </div>
+                }
+            </div>
+            <div class="buttons">
+                <button type="submit" class="create">Create</button>
+                <button type="button" class="cancel">Cancel</button>
+            </div>
+        </form>
+        
     </div>
     <div class="boards_wrapper">
         <h1>Your boards</h1>

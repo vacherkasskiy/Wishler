@@ -4,7 +4,7 @@
 }
 
 .wrapper {
-    margin-top: 70px;
+    margin-top: 40px;
     padding: 30px;
     min-height: 100vh;
     display: flex;
@@ -12,6 +12,7 @@
 }
 
 .group-members {
+    margin-top: 35px;
     overflow-y: auto;
     padding: 10px;
     width: 35%;
@@ -74,7 +75,7 @@
 
 .member__delete-btn {
     padding: 10px;
-    color:white;
+    color:white !important;
     font-size: 13px;
     font-family: sans-serif;
     font-weight: 600;
@@ -82,13 +83,33 @@
     border-radius: 5px;
 }
 
-.start-event {
+.add-new-member {
+    width: 100%;
+    padding: 20px;
+    color:white;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 600;
+    text-align: center;
+    background-color: #3059fa;
+    border-radius: 5px;
+}
+
+.event {
+    margin-top: 30px;
     padding: 15px;
     color: white;
-    background-color: #3059fa;
     font-family: sans-serif;
     font-weight: 600;
     border-radius: 5px;
+}
+
+.start {
+    background-color: #3059fa;
+}
+
+.cancel {
+    background-color: red;
 }
 
 .wish {
@@ -104,6 +125,7 @@
 }
 
 .wish > form > textarea {
+    outline: none !important;
     resize: none !important;
     padding:10px;
     margin-top: 5px;
@@ -111,8 +133,9 @@
     height: 400px;
     font-size: 15px;
     font-family: sans-serif;
-    border: 2.5px solid #a3a3a3;
+    border: 2.5px solid #3059fa;
     border-radius: 5px;
+    transition: border 0.2s ease-in-out;
 }
 
 .wish > form > button {
@@ -130,10 +153,13 @@
     margin-top: 40px;
     width: 15%;
     height: 400px;
-    color:white;
+    color:white !important;
     font-size: 20px;
     font-family: sans-serif;
     font-weight: 600;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
     background-color: red;
     border-radius: 5px;
 }

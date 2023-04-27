@@ -1,4 +1,6 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
@@ -31,7 +33,7 @@ public class ProfileController : Controller
                 AvatarId = int.Parse(User.FindFirstValue(ClaimTypes.UserData))
             },
             BoardsCreatedAmount = _db.Boards.Count(x => x.UserId == userId),
-            GroupsParticipatedAmount = 0,
+            GroupsParticipatedAmount = _db.GroupParticipants.Count(x => x.UserId == userId),
             FriendsAddedAmount = _db.Friends.Count(x => x.OwnerEmail == userEmail)
         };
 
@@ -40,7 +42,7 @@ public class ProfileController : Controller
 
     [HttpPost]
     [Route("/user/profile")]
-    public IActionResult Index(EditProfileViewModel newProfile)
+    public async Task<IActionResult> Index(EditProfileViewModel newProfile)
     {
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var userEmail = User.FindFirstValue(ClaimTypes.Email);
@@ -49,13 +51,27 @@ public class ProfileController : Controller
 
         if (ModelState.IsValid && newProfile.AvatarId > 0)
         {
-            var user = _db.Users.Find(userId);
+            var user = await _db.Users.FindAsync(userId);
             user!.Name = newProfile.Name;
             user.AvatarId = newProfile.AvatarId;
             userName = newProfile.Name;
             avatarId = newProfile.AvatarId;
             _db.Users.Update(user);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
+            
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                new Claim(ClaimTypes.Name, userName),
+                new Claim(ClaimTypes.Email, userEmail),
+                new Claim(ClaimTypes.UserData, user.AvatarId.ToString()) // avatar id
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(principal));
         }
 
         var model = new ProfileViewModel
