@@ -4,34 +4,32 @@ let cancelButton = document.querySelector("button.cancel");
 let memberButtons = document.querySelectorAll(".member button");
 let invitedMembersEmails = document.querySelector(".new-group-form .invited-members")
 
-createGroupButton.addEventListener("click", ()=>{
+createGroupButton.addEventListener("click", () => {
     newGroupForm.classList.add("active");
     shadow.classList.add("active");
     createGroupButton.classList.remove("active");
-},true);
+}, true);
 
-shadow.addEventListener("click", ()=>{
+shadow.addEventListener("click", () => {
     newGroupForm.classList.remove("active");
     shadow.classList.remove("active");
     createGroupButton.classList.add("active");
-},true);
+}, true);
 
-cancelButton.addEventListener("click", ()=>{
+cancelButton.addEventListener("click", () => {
     newGroupForm.classList.remove("active");
     shadow.classList.remove("active");
     createGroupButton.classList.add("active");
-},true);
+}, true);
 
 for (let i = 0; i < memberButtons.length; ++i) {
-    memberButtons[i].addEventListener("click", (event)=>{
+    memberButtons[i].addEventListener("click", (event) => {
         if (event.target.classList.contains("invite")) {
             event.target.classList.remove("invite");
             event.target.classList.add("delete");
             event.target.innerHTML = "Delete";
             invitedMembersEmails.value += event.target.id + " ";
-        }
-        else
-        {
+        } else {
             event.target.classList.add("invite");
             event.target.classList.remove("delete");
             event.target.innerHTML = "Invite";
@@ -39,7 +37,7 @@ for (let i = 0; i < memberButtons.length; ++i) {
             let emails = document.querySelectorAll(".member button.delete");
             for (let i = 0; i < emails.length; ++i) {
                 invitedMembersEmails.value += emails[i].id + " ";
-            } 
+            }
         }
-    },true);
+    }, true);
 }

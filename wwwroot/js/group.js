@@ -41,16 +41,16 @@ eventButton?.addEventListener("click", () => {
     }
     setTimeout(() => {
         location.reload();
-    },100);
-},true);
+    }, 100);
+}, true);
 
 saveButton.addEventListener("click", () => {
     let wish = wishTextarea.value;
     let participantId = wishTextarea.id;
     wishTextarea.style.border = "2.5px solid #3059fa";
     SaveWish(participantId, wish);
-},true);
+}, true);
 
 wishTextarea.addEventListener("input", () => {
     wishTextarea.style.border = "2.5px solid #a3a3a3";
-},true);
+}, true);

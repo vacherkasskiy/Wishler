@@ -1,5 +1,4 @@
 ﻿@using System.Security.Claims
-@using System.Reflection.Emit
 @model Wishler.ViewModels.GroupViewModel
 
 @{
@@ -62,8 +61,12 @@
         <div class="member">
             <img class="member__avatar" src="~/pictures/Users_icons/@avatars[owner.AvatarId]" alt="">
             <div class="member__info">
-                <p class="member__email"><span>Email:</span> @owner.Email</p>
-                <p class="member__name"><span>Name:</span> @owner.Name</p>
+                <p class="member__email">
+                    <span>Email:</span> @owner.Email
+                </p>
+                <p class="member__name">
+                    <span>Name:</span> @owner.Name
+                </p>
             </div>
             <img class="member__crown-img" src="~/pictures/Group/crown.png" alt="">
         </div>
@@ -72,8 +75,12 @@
             <div class="member">
                 <img class="member__avatar" src="~/pictures/Users_icons/@avatars[member.AvatarId]" alt="">
                 <div class="member__info">
-                    <p class="member__email"><span>Email:</span> @member.Email</p>
-                    <p class="member__name"><span>Name:</span> @member.Name</p>
+                    <p class="member__email">
+                        <span>Email:</span> @member.Email
+                    </p>
+                    <p class="member__name">
+                        <span>Name:</span> @member.Name
+                    </p>
                 </div>
                 @if (isUserOwner)
                 {
@@ -120,14 +127,14 @@
                 <label>Your dreammate's wish</label>
             }
             @if (!Model.IsStarted)
-                {
-                    <textarea name="" id="@participantId">@Model.GroupParticipants.First(x => x.UserId == userId).Wish</textarea>
-                    <button type="button">Save</button>
-                }
-                else
-                {
-                    <textarea readonly="readonly" name="" id="@participantId">@Model.GroupParticipants.First(x => x.Id == participantId).OtherWish</textarea>
-                }
+            {
+                <textarea name="" id="@participantId">@Model.GroupParticipants.First(x => x.UserId == userId).Wish</textarea>
+                <button type="button">Save</button>
+            }
+            else
+            {
+                <textarea readonly="readonly" name="" id="@participantId">@Model.GroupParticipants.First(x => x.Id == participantId).OtherWish</textarea>
+            }
         </form>
     </div>
     @if (isUserOwner)

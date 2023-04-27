@@ -60,10 +60,7 @@ public class BoardsController : Controller
 
         foreach (var column in _db.Columns.Where(x => x.BoardId == boardId).ToArray())
         {
-            foreach (var row in _db.Rows.Where(x => x.ColumnId == column.Id).ToArray())
-            {
-                _db.Rows.Remove(row);
-            }
+            foreach (var row in _db.Rows.Where(x => x.ColumnId == column.Id).ToArray()) _db.Rows.Remove(row);
 
             _db.Columns.Remove(column);
         }
