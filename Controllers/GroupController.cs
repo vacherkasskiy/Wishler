@@ -49,13 +49,13 @@ public class GroupController : Controller
     [HttpPost]
     public IActionResult Create(NewGroupViewModel newGroupViewModel)
     {
-        string membersLine = newGroupViewModel.Members.TrimEnd();
-        
+        var membersLine = newGroupViewModel.Members.TrimEnd();
+
         if (ModelState.IsValid && membersLine != null && membersLine.Split().Length >= 2)
         {
             var memberEmails = membersLine.Split().ToArray();
             var ownerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            
+
             var newGroup = _db.Groups.Add(new Group
             {
                 Name = newGroupViewModel.Name,
@@ -63,26 +63,24 @@ public class GroupController : Controller
             });
             _db.SaveChanges();
 
-            
+
             _db.GroupParticipants.Add(new GroupParticipant
             {
                 UserId = ownerId,
                 GroupId = newGroup.Entity.Id,
                 IsOwner = true
             });
-            
+
             foreach (var member in memberEmails)
-            {
                 _db.GroupParticipants.Add(new GroupParticipant
                 {
                     UserId = _db.Users.First(x => x.Email == member).Id,
                     GroupId = newGroup.Entity.Id,
                     IsOwner = false
                 });
-            }
             _db.SaveChanges();
         }
-        
+
         return RedirectToAction("Index", "Boards");
     }
 
@@ -92,16 +90,14 @@ public class GroupController : Controller
         var group = _db.Groups.Find(groupId)!;
 
         foreach (var participant in _db.GroupParticipants.Where(x => x.GroupId == groupId))
-        {
             _db.GroupParticipants.Remove(participant);
-        }
-        
+
         _db.Groups.Remove(group);
         _db.SaveChanges();
-        
+
         return RedirectToAction("Index", "Boards");
     }
-    
+
     [Route("/group/saveWish")]
     [HttpPost]
     public void SaveWish(int participantId, string wish)
@@ -120,28 +116,28 @@ public class GroupController : Controller
         group.IsStarted = true;
         _db.Groups.Update(group);
 
-        Random rand = new Random();
+        var rand = new Random();
         var participants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
             .ToArray();
-        
+
         var wishes = participants
             .Select(x => x.Wish)
             .OrderBy(x => rand.Next())
             .ToArray();
 
-        for (int i = 0; i < participants.Length; ++i)
+        for (var i = 0; i < participants.Length; ++i)
         {
             participants[i].OtherWish = wishes[i];
             _db.GroupParticipants.Update(participants[i]);
         }
-        
+
         _db.SaveChanges();
-        
+
         Response.Redirect($"/group/{groupId}");
     }
-    
+
     [Route("/group/cancelEvent")]
     [HttpPatch]
     public void CancelEvent(int groupId)
@@ -150,10 +146,10 @@ public class GroupController : Controller
         group.IsStarted = false;
         _db.Groups.Update(group);
         _db.SaveChanges();
-        
+
         Response.Redirect($"/group/{groupId}");
     }
-    
+
     [Route("group/kick/{participantId}")]
     public void DeleteParticipant(int participantId)
     {
@@ -165,12 +161,8 @@ public class GroupController : Controller
         _db.SaveChanges();
 
         if (currentUserId == participantUserId)
-        {
             Response.Redirect("/boards");
-        }
         else
-        {
             Response.Redirect($"/group/{groupId}");
-        }
     }
 }

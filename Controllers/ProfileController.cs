@@ -58,7 +58,7 @@ public class ProfileController : Controller
             avatarId = newProfile.AvatarId;
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
-            
+
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             var claims = new[]
             {

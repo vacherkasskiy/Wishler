@@ -52,7 +52,7 @@ header {
     margin-right: 10px;
     padding: 10px;
     width: 50px;
-    color:white;
+    color: white;
     font-size: 11px;
     font-weight: 600;
     border-radius: 5px;
@@ -67,16 +67,16 @@ header {
 }
 
 .wrapper .groups .groups__item {
-    color:#3059fa;
+    color: #3059fa;
     box-shadow: 0 0 5px #a3a3a3;
 }
 
-.wrapper .groups > .groups__create-new{
+.wrapper .groups > .groups__create-new {
     display: none;
 }
 
 .wrapper .groups > .groups__create-new.active {
-    display:block;
+    display: block;
     font-weight: 600;
     color: white;
     background-color: #3059fa;
@@ -108,7 +108,7 @@ header {
 }
 
 .new-group-form .input-section {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     /*align-items: center;*/
@@ -161,7 +161,7 @@ header {
     font-weight: 600;
     box-shadow: 0 0 5px #a3a3a3;
     border-radius: 5px;
-    color:white;
+    color: white;
 }
 
 .member__action.invite {
