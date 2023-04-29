@@ -82,7 +82,7 @@ public class ProfileController : Controller
                 AvatarId = avatarId
             },
             BoardsCreatedAmount = _db.Boards.Count(x => x.UserId == userId),
-            GroupsParticipatedAmount = 0,
+            GroupsParticipatedAmount = _db.GroupParticipants.Count(x => x.UserId == userId),
             FriendsAddedAmount = _db.Friends.Count(x => x.OwnerEmail == userEmail)
         };
 

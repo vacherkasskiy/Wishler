@@ -53,7 +53,8 @@
     <div class="group-members">
         @{
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var participantId = Model.GroupParticipants.First(x => x.UserId == userId).Id;
+            var participant = Model.GroupParticipants.First(x => x.UserId == userId);
+            var participantId = participant.Id;
             var ownerId = Model.GroupParticipants.First(y => y.IsOwner).UserId;
             var owner = Model.UsersInGroup.First(x => x.Id == ownerId);
             var isUserOwner = userId == ownerId;
@@ -124,16 +125,16 @@
             }
             else
             {
-                <label>Your dreammate's wish</label>
+                <label><span style="color:#5678ff;font-weight:600;">@participant.OtherName</span>'s wish</label>
             }
             @if (!Model.IsStarted)
             {
-                <textarea name="" id="@participantId">@Model.GroupParticipants.First(x => x.UserId == userId).Wish</textarea>
+                <textarea name="" id="@participantId">@participant.Wish</textarea>
                 <button type="button">Save</button>
             }
             else
             {
-                <textarea readonly="readonly" name="" id="@participantId">@Model.GroupParticipants.First(x => x.Id == participantId).OtherWish</textarea>
+                <textarea readonly="readonly" name="" id="@participantId">@participant.OtherWish</textarea>
             }
         </form>
     </div>

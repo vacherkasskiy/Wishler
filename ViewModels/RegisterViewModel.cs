@@ -6,7 +6,7 @@ public class RegisterViewModel
 {
     [DataType(DataType.Text)]
     [Required(ErrorMessage = "Enter your name")]
-    [MinLength(3, ErrorMessage = "Your name must contain more than 3 letters")]
+    [MinLength(5, ErrorMessage = "Your name must contain more than 3 letters")]
     [MaxLength(20, ErrorMessage = "Your name must contain less than 20 letters")]
     public string Name { get; set; }
 

@@ -108,6 +108,30 @@ public class GroupController : Controller
         _db.SaveChanges();
     }
 
+    GroupParticipant[] MixParticipants(GroupParticipant[] participants)
+    {
+        var rand = new Random();
+        
+        var mixedParticipants = participants
+            .OrderBy(x => rand.Next())
+            .ToArray();
+
+        return mixedParticipants;
+    }
+
+    bool AreTheyUsersWithTheirOwnWish (GroupParticipant[] array1, GroupParticipant[] array2)
+    {
+        for (int i = 0; i < array1.Length; ++i)
+        {
+            if (array1[i].UserId == array2[i].UserId)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
     [Route("/group/startEvent")]
     [HttpPatch]
     public void StartEvent(int groupId)
@@ -115,21 +139,25 @@ public class GroupController : Controller
         var group = _db.Groups.Find(groupId)!;
         group.IsStarted = true;
         _db.Groups.Update(group);
-
-        var rand = new Random();
+        
         var participants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
             .ToArray();
 
-        var wishes = participants
-            .Select(x => x.Wish)
-            .OrderBy(x => rand.Next())
-            .ToArray();
+        GroupParticipant[] mixedParticipants;
+        do
+        {
+            mixedParticipants = MixParticipants(participants);
+        } while (AreTheyUsersWithTheirOwnWish(participants, mixedParticipants));
 
         for (var i = 0; i < participants.Length; ++i)
         {
-            participants[i].OtherWish = wishes[i];
+            participants[i].OtherWish = mixedParticipants[i].Wish;
+            participants[i].OtherName = _db
+                .Users
+                .Find(mixedParticipants[i].UserId)!
+                .Name;
             _db.GroupParticipants.Update(participants[i]);
         }
 
