@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
 using Wishler.Models;
@@ -19,6 +20,14 @@ public class BoardController : Controller
     [Route("/board/{id}")]
     public IActionResult Index(int id)
     {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var board = _db.Boards.Find(id);
+
+        if (board == null || board.UserId != userId)
+        {
+            return RedirectToAction("WrongRequest", "ErrorHandler");
+        }
+        
         var param = new BoardViewModel
         {
             BoardId = id,

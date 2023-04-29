@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Wishler.Data;
+using Wishler.Middlewares;
 using Wishler.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.Cookie.HttpOnly = true;
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.LoginPath = "/login";
+        options.AccessDeniedPath = "/login";
     });
 
 builder.Services.AddAuthorization();
@@ -43,5 +46,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     "default",
     "{controller=Home}/{action=Index}/{id?}");
+
+app.UseMiddleware<NotFoundMiddleware>();
 
 app.Run();

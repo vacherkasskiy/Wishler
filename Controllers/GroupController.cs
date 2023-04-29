@@ -11,6 +11,30 @@ namespace Wishler.Controllers;
 public class GroupController : Controller
 {
     private readonly ApplicationDbContext _db;
+    
+    GroupParticipant[] MixParticipants(GroupParticipant[] participants)
+    {
+        var rand = new Random();
+        
+        var mixedParticipants = participants
+            .OrderBy(x => rand.Next())
+            .ToArray();
+
+        return mixedParticipants;
+    }
+
+    bool AreTheyUsersWithTheirOwnWish (GroupParticipant[] array1, GroupParticipant[] array2)
+    {
+        for (int i = 0; i < array1.Length; ++i)
+        {
+            if (array1[i].UserId == array2[i].UserId)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public GroupController(ApplicationDbContext db)
     {
@@ -20,6 +44,14 @@ public class GroupController : Controller
     [Route("group/{groupId}")]
     public IActionResult Index(int groupId)
     {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        if (!_db
+                .GroupParticipants
+                .Any(x => x.GroupId == groupId && x.UserId == userId))
+        {
+            return RedirectToAction("WrongRequest", "ErrorHandler");
+        }
+        
         var groupParticipants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
@@ -87,6 +119,14 @@ public class GroupController : Controller
     [Route("group/delete/{groupId}")]
     public IActionResult Delete(int groupId)
     {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        if (!_db
+                .GroupParticipants
+                .Any(x => x.GroupId == groupId && x.UserId == userId && x.IsOwner))
+        {
+            return RedirectToAction("WrongRequest", "ErrorHandler");
+        }
+        
         var group = _db.Groups.Find(groupId)!;
 
         foreach (var participant in _db.GroupParticipants.Where(x => x.GroupId == groupId))
@@ -115,21 +155,25 @@ public class GroupController : Controller
         var group = _db.Groups.Find(groupId)!;
         group.IsStarted = true;
         _db.Groups.Update(group);
-
-        var rand = new Random();
+        
         var participants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
             .ToArray();
 
-        var wishes = participants
-            .Select(x => x.Wish)
-            .OrderBy(x => rand.Next())
-            .ToArray();
+        GroupParticipant[] mixedParticipants;
+        do
+        {
+            mixedParticipants = MixParticipants(participants);
+        } while (AreTheyUsersWithTheirOwnWish(participants, mixedParticipants));
 
         for (var i = 0; i < participants.Length; ++i)
         {
-            participants[i].OtherWish = wishes[i];
+            participants[i].OtherWish = mixedParticipants[i].Wish;
+            participants[i].OtherName = _db
+                .Users
+                .Find(mixedParticipants[i].UserId)!
+                .Name;
             _db.GroupParticipants.Update(participants[i]);
         }
 
@@ -153,14 +197,33 @@ public class GroupController : Controller
     [Route("group/kick/{participantId}")]
     public void DeleteParticipant(int participantId)
     {
-        var participant = _db.GroupParticipants.Find(participantId)!;
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var participant = _db.GroupParticipants.Find(participantId);
+
+        if (participant == null)
+        {
+            Response.Redirect("/bad-request");
+            return;
+        }
+        
         var participantUserId = participant.UserId;
         var groupId = participant.GroupId;
-        var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var group = _db.Groups.Find(groupId)!;
+
+        if (!_db
+                .GroupParticipants
+                .Any(x => x.GroupId == groupId &&
+                          x.UserId == userId && 
+                          (x.IsOwner || userId == participantUserId) &&
+                          !group.IsStarted))
+        {
+            Response.Redirect("/bad-request");
+        }
+        
         _db.GroupParticipants.Remove(participant);
         _db.SaveChanges();
 
-        if (currentUserId == participantUserId)
+        if (userId == participantUserId)
             Response.Redirect("/boards");
         else
             Response.Redirect($"/group/{groupId}");

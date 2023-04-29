@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/q5mXPY58RHfwcHaoiWx2266bSB5LsYJDr7563R8EMA=",
+  "Hash": "6ShH9ZVaCln0w6Q529HB2urkwF42f/7nIjWkhtQaFXI=",
   "Source": "Wishler",
   "BasePath": "_content/Wishler",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\register_login.css"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\css\\wrongRequest.css",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "css/wrongRequest.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\wrongRequest.css"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\boards.js",
@@ -1460,6 +1477,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\pictures\\Boards\\bg6.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\pictures\\Error\\error-404.png",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "pictures/Error/error-404.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pictures\\Error\\error-404.png"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\pictures\\Friends\\empty-box.png",
