@@ -208,10 +208,14 @@ public class GroupController : Controller
         
         var participantUserId = participant.UserId;
         var groupId = participant.GroupId;
-        
+        var group = _db.Groups.Find(groupId)!;
+
         if (!_db
                 .GroupParticipants
-                .Any(x => x.GroupId == groupId && x.UserId == userId && (x.IsOwner || userId == participantUserId)))
+                .Any(x => x.GroupId == groupId &&
+                          x.UserId == userId && 
+                          (x.IsOwner || userId == participantUserId) &&
+                          !group.IsStarted))
         {
             Response.Redirect("/bad-request");
         }
