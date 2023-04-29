@@ -11,6 +11,30 @@ namespace Wishler.Controllers;
 public class GroupController : Controller
 {
     private readonly ApplicationDbContext _db;
+    
+    GroupParticipant[] MixParticipants(GroupParticipant[] participants)
+    {
+        var rand = new Random();
+        
+        var mixedParticipants = participants
+            .OrderBy(x => rand.Next())
+            .ToArray();
+
+        return mixedParticipants;
+    }
+
+    bool AreTheyUsersWithTheirOwnWish (GroupParticipant[] array1, GroupParticipant[] array2)
+    {
+        for (int i = 0; i < array1.Length; ++i)
+        {
+            if (array1[i].UserId == array2[i].UserId)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public GroupController(ApplicationDbContext db)
     {
@@ -20,6 +44,14 @@ public class GroupController : Controller
     [Route("group/{groupId}")]
     public IActionResult Index(int groupId)
     {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        if (!_db
+                .GroupParticipants
+                .Any(x => x.GroupId == groupId && x.UserId == userId))
+        {
+            // return something
+        }
+        
         var groupParticipants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
@@ -87,6 +119,14 @@ public class GroupController : Controller
     [Route("group/delete/{groupId}")]
     public IActionResult Delete(int groupId)
     {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        if (!_db
+                .GroupParticipants
+                .Any(x => x.GroupId == groupId && x.UserId == userId && x.IsOwner))
+        {
+            // return something
+        }
+        
         var group = _db.Groups.Find(groupId)!;
 
         foreach (var participant in _db.GroupParticipants.Where(x => x.GroupId == groupId))
@@ -108,30 +148,6 @@ public class GroupController : Controller
         _db.SaveChanges();
     }
 
-    GroupParticipant[] MixParticipants(GroupParticipant[] participants)
-    {
-        var rand = new Random();
-        
-        var mixedParticipants = participants
-            .OrderBy(x => rand.Next())
-            .ToArray();
-
-        return mixedParticipants;
-    }
-
-    bool AreTheyUsersWithTheirOwnWish (GroupParticipant[] array1, GroupParticipant[] array2)
-    {
-        for (int i = 0; i < array1.Length; ++i)
-        {
-            if (array1[i].UserId == array2[i].UserId)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-    
     [Route("/group/startEvent")]
     [HttpPatch]
     public void StartEvent(int groupId)
@@ -181,14 +197,28 @@ public class GroupController : Controller
     [Route("group/kick/{participantId}")]
     public void DeleteParticipant(int participantId)
     {
-        var participant = _db.GroupParticipants.Find(participantId)!;
-        var participantUserId = participant.UserId;
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var participant = _db.GroupParticipants.Find(participantId);
+
+        if (participant == null)
+        {
+            // return something
+        }
+        
+        var participantUserId = participant!.UserId;
         var groupId = participant.GroupId;
-        var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        
+        if (!_db
+                .GroupParticipants
+                .Any(x => x.GroupId == groupId && x.UserId == userId && (x.IsOwner || userId == participantUserId)))
+        {
+            // return something
+        }
+        
         _db.GroupParticipants.Remove(participant);
         _db.SaveChanges();
 
-        if (currentUserId == participantUserId)
+        if (userId == participantUserId)
             Response.Redirect("/boards");
         else
             Response.Redirect($"/group/{groupId}");
