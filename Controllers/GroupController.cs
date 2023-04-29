@@ -49,7 +49,7 @@ public class GroupController : Controller
                 .GroupParticipants
                 .Any(x => x.GroupId == groupId && x.UserId == userId))
         {
-            // return something
+            return RedirectToAction("WrongRequest", "ErrorHandler");
         }
         
         var groupParticipants = _db
@@ -124,7 +124,7 @@ public class GroupController : Controller
                 .GroupParticipants
                 .Any(x => x.GroupId == groupId && x.UserId == userId && x.IsOwner))
         {
-            // return something
+            return RedirectToAction("WrongRequest", "ErrorHandler");
         }
         
         var group = _db.Groups.Find(groupId)!;
@@ -202,17 +202,18 @@ public class GroupController : Controller
 
         if (participant == null)
         {
-            // return something
+            Response.Redirect("/bad-request");
+            return;
         }
         
-        var participantUserId = participant!.UserId;
+        var participantUserId = participant.UserId;
         var groupId = participant.GroupId;
         
         if (!_db
                 .GroupParticipants
                 .Any(x => x.GroupId == groupId && x.UserId == userId && (x.IsOwner || userId == participantUserId)))
         {
-            // return something
+            Response.Redirect("/bad-request");
         }
         
         _db.GroupParticipants.Remove(participant);
