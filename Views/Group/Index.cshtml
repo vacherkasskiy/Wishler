@@ -151,7 +151,14 @@
     }
     else
     {
-        <a href="/group/kick/@participantId" class="delete">Leave group</a>
+        @if (!Model.IsStarted)
+        {
+            <a href="/group/kick/@participantId" class="delete">Leave group</a>
+        }
+        else
+        {
+            <div class="delete">You can't leave untill event is ended</div>
+        }
     }
 </div>
 
