@@ -156,12 +156,19 @@ textarea {
 }
 
 .board__change-visibility > p {
+    width: 150px;
+    overflow: auto;
     margin-top: 20px;
     padding: 0 10px;
     font-size: 14px;
     color: black;
     border: 2.5px #a9a9a9 solid;
     border-radius: 5px;
+    -ms-overflow-style: none;
+}
+
+.board__change-visibility > p::-webkit-scrollbar {
+    display: none;
 }
 
 .column {

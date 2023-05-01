@@ -7,7 +7,6 @@ using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
 
-[Authorize]
 public class BoardController : Controller
 {
     private readonly ApplicationDbContext _db;
@@ -112,5 +111,36 @@ public class BoardController : Controller
         _db.Boards.Update(board);
 
         _db.SaveChanges();
+    }
+
+    [HttpGet]
+    [Route("/board/shared/{id}")]
+    public IActionResult SharedIndex(int id)
+    {
+        var board = _db.Boards.Find(id);
+
+        if (board == null || board.VisibilityStatus == "private")
+        {
+            return RedirectToAction("WrongRequest", "ErrorHandler");
+        }
+
+        if (board.VisibilityStatus == "everybody")
+        {
+            return View();
+        }
+
+        if (!User.Identity!.IsAuthenticated)
+        {
+            return RedirectToAction("WrongRequest", "ErrorHandler");
+        }
+        
+        var boardOwner = _db.Users.Find(board.UserId)!;
+        var currentUser = _db.Users.Find(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)))!;
+        if (_db.Friends.Any(x => x.OwnerEmail == boardOwner.Email && x.FriendEmail == currentUser.Email))
+        {
+            return View();
+        }
+        
+        return RedirectToAction("WrongRequest", "ErrorHandler");
     }
 }

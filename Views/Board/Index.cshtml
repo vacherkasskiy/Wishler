@@ -57,7 +57,7 @@
         <button class="change-visibility__status private @(Model.AccessStatus == "private" ? "selected-status" : "")">Private</button>
         <button class="change-visibility__status for-friends @(Model.AccessStatus == "friends" ? "selected-status" : "")">For friends</button>
         <button class="change-visibility__status for-everybody @(Model.AccessStatus == "everybody" ? "selected-status" : "")">For everybody</button>
-        <p>linkhere.ru/board/138</p>
+        <p>localhost:7193/board/shared/@Model.BoardId</p>
     </div>
     @foreach (var column in Model.Columns.Where(x => x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
     {
