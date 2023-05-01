@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6ShH9ZVaCln0w6Q529HB2urkwF42f/7nIjWkhtQaFXI=",
+  "Hash": "u1DaK9gxZ5Vu6Hv7K9NlQmpk0DioARpD4++YJJWZzA8=",
   "Source": "Wishler",
   "BasePath": "_content/Wishler",
   "Mode": "Default",
@@ -185,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\wrongRequest.css"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\board.js",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "js/board.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\board.js"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\boards.js",

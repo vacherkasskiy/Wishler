@@ -13,9 +13,6 @@ public class NotFoundMiddleware
     {
         await _next.Invoke(context);
 
-        if (context.Response.StatusCode == 404)
-        {
-            context.Response.Redirect("/bad-request");
-        }
+        if (context.Response.StatusCode == 404) context.Response.Redirect("/bad-request");
     }
 }

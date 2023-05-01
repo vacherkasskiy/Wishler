@@ -12,4 +12,5 @@ public class Board
 
     [Required] public int UserId { get; set; }
     public string BackgroundId { get; set; } = "";
+    public string VisibilityStatus { get; set; } = "private";
 }

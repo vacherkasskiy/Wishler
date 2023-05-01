@@ -23,15 +23,13 @@ public class BoardController : Controller
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var board = _db.Boards.Find(id);
 
-        if (board == null || board.UserId != userId)
-        {
-            return RedirectToAction("WrongRequest", "ErrorHandler");
-        }
-        
+        if (board == null || board.UserId != userId) return RedirectToAction("WrongRequest", "ErrorHandler");
+
         var param = new BoardViewModel
         {
             BoardId = id,
-            BackgroundId = _db.Boards.Find(id)!.BackgroundId,
+            BackgroundId = board.BackgroundId,
+            AccessStatus = board.VisibilityStatus,
             Columns = _db.Columns,
             Rows = _db.Rows,
             Column = new Column(),

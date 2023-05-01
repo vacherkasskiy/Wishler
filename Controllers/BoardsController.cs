@@ -59,10 +59,7 @@ public class BoardsController : Controller
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var board = _db.Boards.Find(boardId);
 
-        if (board == null || board.UserId != userId)
-        {
-            return RedirectToAction("WrongRequest", "ErrorHandler");
-        }
+        if (board == null || board.UserId != userId) return RedirectToAction("WrongRequest", "ErrorHandler");
 
         foreach (var column in _db.Columns.Where(x => x.BoardId == boardId).ToArray())
         {

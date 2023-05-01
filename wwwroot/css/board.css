@@ -4,14 +4,11 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    /* overflow: scroll; */
 }
 
 header {
     opacity: 1 !important;
     transition: unset !important;
-    /*backdrop-filter: blur(5px) !important;*/
-    /*background-color: rgba(255, 255, 255, 0.7);*/
 }
 
 .background {
@@ -54,20 +51,117 @@ textarea {
     cursor: default;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -o-user-select: none;
 }
 
 .board {
+    position: relative;
     min-width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 20px 70px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: scroll;
+}
+
+.board__access-settings {
+    z-index: 4;
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    cursor: pointer;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    border: #3059fa 3px solid;
+}
+
+.access-settings__line {
+    margin: 3.5px 0;
+    width: 100%;
+    border-bottom: #3059fa 5px solid;
+}
+
+.board__change-visibility {
+    z-index: 1000;
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    padding : 10px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.board__change-visibility.active {
+    display: flex;
+}
+
+.change-visibility__status {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100px;
+    font-size: 13px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color:white;
+    border-radius: 5px;
+    background-color: white;
+    transition-property: color, border;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.change-visibility__status.private {
+    border: 2px solid red;
+    color: red;
+}
+
+.change-visibility__status.private.selected {
+    background-color: red;
+    color: white;
+}
+
+.change-visibility__status.for-friends {
+    border: 2px solid #3059fa;
+    color: #3059fa;
+}
+
+.change-visibility__status.for-friends.selected {
+    background-color: #3059fa;
+    color: white;
+}
+
+.change-visibility__status.for-everybody {
+    border: 2px solid green;
+    color: green;
+}
+
+.change-visibility__status.for-everybody.selected {
+    background-color: green;
+    color: white;
+}
+
+.board__change-visibility > p {
+    margin-top: 20px;
+    padding: 0 10px;
+    font-size: 14px;
+    color: black;
+    border: 2.5px #a9a9a9 solid;
+    border-radius: 5px;
 }
 
 .column {

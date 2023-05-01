@@ -11,11 +11,16 @@ namespace Wishler.Controllers;
 public class GroupController : Controller
 {
     private readonly ApplicationDbContext _db;
-    
-    GroupParticipant[] MixParticipants(GroupParticipant[] participants)
+
+    public GroupController(ApplicationDbContext db)
+    {
+        _db = db;
+    }
+
+    private GroupParticipant[] MixParticipants(GroupParticipant[] participants)
     {
         var rand = new Random();
-        
+
         var mixedParticipants = participants
             .OrderBy(x => rand.Next())
             .ToArray();
@@ -23,22 +28,13 @@ public class GroupController : Controller
         return mixedParticipants;
     }
 
-    bool AreTheyUsersWithTheirOwnWish (GroupParticipant[] array1, GroupParticipant[] array2)
+    private bool AreTheyUsersWithTheirOwnWish(GroupParticipant[] array1, GroupParticipant[] array2)
     {
-        for (int i = 0; i < array1.Length; ++i)
-        {
+        for (var i = 0; i < array1.Length; ++i)
             if (array1[i].UserId == array2[i].UserId)
-            {
                 return true;
-            }
-        }
 
         return false;
-    }
-
-    public GroupController(ApplicationDbContext db)
-    {
-        _db = db;
     }
 
     [Route("group/{groupId}")]
@@ -48,10 +44,8 @@ public class GroupController : Controller
         if (!_db
                 .GroupParticipants
                 .Any(x => x.GroupId == groupId && x.UserId == userId))
-        {
             return RedirectToAction("WrongRequest", "ErrorHandler");
-        }
-        
+
         var groupParticipants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
@@ -123,10 +117,8 @@ public class GroupController : Controller
         if (!_db
                 .GroupParticipants
                 .Any(x => x.GroupId == groupId && x.UserId == userId && x.IsOwner))
-        {
             return RedirectToAction("WrongRequest", "ErrorHandler");
-        }
-        
+
         var group = _db.Groups.Find(groupId)!;
 
         foreach (var participant in _db.GroupParticipants.Where(x => x.GroupId == groupId))
@@ -155,7 +147,7 @@ public class GroupController : Controller
         var group = _db.Groups.Find(groupId)!;
         group.IsStarted = true;
         _db.Groups.Update(group);
-        
+
         var participants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
@@ -205,7 +197,7 @@ public class GroupController : Controller
             Response.Redirect("/bad-request");
             return;
         }
-        
+
         var participantUserId = participant.UserId;
         var groupId = participant.GroupId;
         var group = _db.Groups.Find(groupId)!;
@@ -213,13 +205,11 @@ public class GroupController : Controller
         if (!_db
                 .GroupParticipants
                 .Any(x => x.GroupId == groupId &&
-                          x.UserId == userId && 
+                          x.UserId == userId &&
                           (x.IsOwner || userId == participantUserId) &&
                           !group.IsStarted))
-        {
             Response.Redirect("/bad-request");
-        }
-        
+
         _db.GroupParticipants.Remove(participant);
         _db.SaveChanges();
 
