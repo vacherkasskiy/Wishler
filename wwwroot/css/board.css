@@ -122,7 +122,7 @@ textarea {
     background-color: white;
     transition-property: color, border;
     transition-timing-function: ease-in-out;
-    transition-duration: 0.2s;
+    transition-duration: 0.4s;
 }
 
 .change-visibility__status.private {
@@ -130,7 +130,7 @@ textarea {
     color: red;
 }
 
-.change-visibility__status.private.selected {
+.change-visibility__status.private.selected-status {
     background-color: red;
     color: white;
 }
@@ -140,7 +140,7 @@ textarea {
     color: #3059fa;
 }
 
-.change-visibility__status.for-friends.selected {
+.change-visibility__status.for-friends.selected-status {
     background-color: #3059fa;
     color: white;
 }
@@ -150,7 +150,7 @@ textarea {
     color: green;
 }
 
-.change-visibility__status.for-everybody.selected {
+.change-visibility__status.for-everybody.selected-status {
     background-color: green;
     color: white;
 }

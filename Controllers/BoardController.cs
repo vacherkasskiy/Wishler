@@ -102,4 +102,15 @@ public class BoardController : Controller
         _db.Columns.Remove(column);
         _db.SaveChanges();
     }
+
+    [HttpPatch]
+    [Route("/board/changeVisibility")]
+    public void ChangeVisibilityStatus(int boardId, string status)
+    {
+        var board = _db.Boards.Find(boardId)!;
+        board.VisibilityStatus = status;
+        _db.Boards.Update(board);
+
+        _db.SaveChanges();
+    }
 }
