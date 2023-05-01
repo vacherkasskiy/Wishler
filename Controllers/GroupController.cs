@@ -46,6 +46,14 @@ public class GroupController : Controller
                 .Any(x => x.GroupId == groupId && x.UserId == userId))
             return RedirectToAction("WrongRequest", "ErrorHandler");
 
+        var user = _db.Users.Find(userId)!;
+
+        var userFriends = _db
+            .Friends
+            .Where(x => x.OwnerEmail == user.Email)
+            .Select(x => x.FriendEmail)
+            .ToArray();
+
         var groupParticipants = _db
             .GroupParticipants
             .Where(x => x.GroupId == groupId)
@@ -60,12 +68,21 @@ public class GroupController : Controller
             .Where(x => groupParticipantsIds.Contains(x.Id))
             .ToArray();
 
+        var groupParticipantEmails = usersInGroup
+            .Select(x => x.Email)
+            .ToArray();
+
+        var possibleMembers = _db.Users
+            .Where(x => userFriends.Contains(x.Email) && !groupParticipantEmails.Contains(x.Email))
+            .ToArray();
+
         var model = new GroupViewModel
         {
             IsStarted = _db.Groups.Find(groupId)!.IsStarted,
             GroupId = groupId,
             GroupParticipants = groupParticipants,
-            UsersInGroup = usersInGroup
+            UsersInGroup = usersInGroup,
+            PossibleMembers = possibleMembers
         };
 
         return View(model);

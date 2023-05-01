@@ -63,7 +63,17 @@
             </div>
         }
 
-        <button class="groups__create-new active">+ Create new group</button>
+        @if (Model.Friends.Length >= 2)
+        {
+            <button class="groups__create-new">+ Create new group</button>
+        }
+        else
+        {
+            <a href="/user/friends" class="groups__unable">
+                <p>+ Add new friend</p>
+                <span>(you need 2 or more friends to create group)</span>
+            </a>
+        }
         <form class="new-group-form" asp-action="Create" asp-controller="Group">
             <div class="input-section">
                 <label asp-for="NewGroup.Name">Name</label>

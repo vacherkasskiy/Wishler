@@ -111,7 +111,17 @@
         {
             @if (!Model.IsStarted)
             {
-                <div class="add-new-member">+ Add new member</div>
+                @if (Model.PossibleMembers.Length >= 1)
+                {
+                    <button class="add-new-member">+ Add new member</button>
+                }
+                else
+                {
+                    <button class="add-new-friend">
+                        <p>+ Add new member</p>
+                        <span>(all of your friends already in this group)</span>
+                    </button>
+                }
                 <button id="@Model.GroupId" class="start event">
                     Start Event
                 </button>
