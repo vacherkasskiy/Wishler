@@ -2,13 +2,10 @@
 
 namespace Wishler.ViewModels;
 
-public class BoardViewModel
+public class SharedBoardViewModel
 {
     public int BoardId { get; set; }
     public string BackgroundId { get; set; }
-    public string AccessStatus { get; set; }
     public IEnumerable<Column> Columns { get; set; }
     public IEnumerable<Row> Rows { get; set; }
-    public Column Column { get; set; }
-    public Row Row { get; set; }
 }

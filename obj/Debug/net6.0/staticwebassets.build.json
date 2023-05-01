@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6ShH9ZVaCln0w6Q529HB2urkwF42f/7nIjWkhtQaFXI=",
+  "Hash": "iwjGuxYUix25LSMIWk+VJgsuBMbq1vQwBSB5GokPb0o=",
   "Source": "Wishler",
   "BasePath": "_content/Wishler",
   "Mode": "Default",
@@ -170,6 +170,23 @@
       "OriginalItemSpec": "wwwroot\\css\\register_login.css"
     },
     {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\css\\shared_board.css",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "css/shared_board.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\shared_board.css"
+    },
+    {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\css\\wrongRequest.css",
       "SourceId": "Wishler",
       "SourceType": "Discovered",
@@ -202,6 +219,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\boards.js"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\change-visibility.js",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "js/change-visibility.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\change-visibility.js"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\create_items.js",

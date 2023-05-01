@@ -5,38 +5,38 @@ for (const task of columns) {
     task.draggable = true;
 }
 
-board.addEventListener(`dragstart`, (evt) => {
-    if (evt.target.classList.contains("column")) {
-        evt.target.classList.add(`selected_column`);
+board.addEventListener(`dragstart`, (event) => {
+    if (event.target.classList.contains("column")) {
+        event.target.classList.add(`selected_column`);
     }
 });
 
-board.addEventListener(`dragend`, (evt) => {
-    if (evt.target.classList.contains("column")) {
-        evt.target.classList.remove(`selected_column`);
+board.addEventListener(`dragend`, (event) => {
+    if (event.target.classList.contains("column")) {
+        event.target.classList.remove(`selected_column`);
 
-        var lists = board.querySelectorAll(".column");
-        var boardId = board.id;
+        let lists = board.querySelectorAll(".column");
+        let boardId = board.id;
 
         for (let i = 0; i < lists.length; ++i) {
-            var id = lists[i].querySelector("textarea").id;
-            var name = lists[i].querySelector("textarea").value;
-            var position = getElementIndex(lists[i]);
+            let id = lists[i].querySelector("textarea").id;
+            let name = lists[i].querySelector("textarea").value;
+            let position = getElementIndex(lists[i]);
 
             addColumnToDb(id, name, boardId, position, lists[i].querySelector("textarea"));
         }
     }
 });
 
-board.addEventListener(`dragover`, (evt) => {
-    evt.preventDefault();
+board.addEventListener(`dragover`, (event) => {
+    event.preventDefault();
 
     if (document.querySelector(".selected") != null) {
         return;
     }
 
     const activeElement = board.querySelector(`.selected_column`);
-    const currentElement = evt.target;
+    const currentElement = event.target;
     const isMoveable = activeElement !== currentElement &&
         currentElement.classList.contains(`column`);
 

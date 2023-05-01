@@ -1,4 +1,4 @@
-﻿@model Wishler.ViewModels.BoardViewModel
+﻿@model Wishler.ViewModels.SharedBoardViewModel
 
 @{
     Layout = "_Layout";
@@ -19,6 +19,7 @@
 
 @section AddStyles{
     <link rel="stylesheet" href="~/css/board.css">
+    <link rel="stylesheet" href="~/css/shared_board.css">
 }
 
 @section AddToHeader {
@@ -48,21 +49,10 @@
 <img class="background" src="~/pictures/Boards/@backgroundsList[int.Parse(Model.BackgroundId) - 1]" alt="">
 <div class="shadow"></div>
 <div class="board" id="@Model.BoardId">
-    <div class="board__access-settings">
-        <div class="access-settings__line"></div>
-        <div class="access-settings__line"></div>
-        <div class="access-settings__line"></div>
-    </div>
-    <div class="board__change-visibility">
-        <button class="change-visibility__status private @(Model.AccessStatus == "private" ? "selected-status" : "")">Private</button>
-        <button class="change-visibility__status for-friends @(Model.AccessStatus == "friends" ? "selected-status" : "")">For friends</button>
-        <button class="change-visibility__status for-everybody @(Model.AccessStatus == "everybody" ? "selected-status" : "")">For everybody</button>
-        <p>https://localhost:7193/board/shared/@Model.BoardId</p>
-    </div>
     @foreach (var column in Model.Columns.Where(x => x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
     {
         <section class="column">
-            <textarea maxlength="25" class="column__name" id="@column.Id">@column.Name</textarea>
+            <textarea class="column__name" id="@column.Id">@column.Name</textarea>
             <ul class="tasks__list">
                 @foreach (var row in Model.Rows.Where(x => x.ColumnId == column.Id).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
                 {
@@ -70,22 +60,7 @@
                         <textarea wrap="soft" name="text" id="@row.Id">@row.Text</textarea>
                     </li>
                 }
-                <div class="new create-row">
-                    <p>Create new row</p>
-                </div>
             </ul>
         </section>
     }
-    <div class="new create-column">
-        <p>Create new column</p>
-    </div>
 </div>
-
-@section AddScripts{
-    <script src="~/js/change-visibility.js"></script>
-    <script src="~/js/null_textareas.js"></script>
-    <script src="~/js/drag_items.js"></script>
-    <script src="~/js/drag_lists.js"></script>
-    <script src="~/js/create_items.js"></script>
-    <script src="~/js/create_lists.js"></script>
-}
