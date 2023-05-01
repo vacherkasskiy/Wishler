@@ -12,6 +12,7 @@ function createNewColumn() {
 
     newColumn.classList.add("column");
     header.classList.add("column__name");
+    header.maxLength = 25;
     newList.classList.add("tasks__list");
     createNewRowButton.classList.add("new");
     createNewRowButton.classList.add("create-row");

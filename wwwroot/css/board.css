@@ -95,7 +95,7 @@ textarea {
     position: absolute;
     left: 10px;
     top: 20px;
-    padding : 10px;
+    padding: 10px;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -117,7 +117,7 @@ textarea {
     font-size: 13px;
     font-family: sans-serif;
     font-weight: 600;
-    color:white;
+    color: white;
     border-radius: 5px;
     background-color: white;
     transition-property: color, border;

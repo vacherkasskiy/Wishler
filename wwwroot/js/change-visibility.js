@@ -15,21 +15,21 @@ let shadow = document.querySelector(".shadow");
 let changeVisibilityButtons = document.querySelectorAll(".change-visibility__status");
 let boardId = document.querySelector(".board").id;
 
-accessSettingsButton.addEventListener("click", ()=> {
+accessSettingsButton.addEventListener("click", () => {
     changeVisibilityBlock.style.display = "flex";
     shadow.classList.add("active");
-},true);
+}, true);
 
-shadow.addEventListener("click", ()=> {
+shadow.addEventListener("click", () => {
     changeVisibilityBlock.style.display = "none";
     shadow.classList.remove("active");
-},true);
+}, true);
 
 for (let i = 0; i < changeVisibilityButtons.length; ++i) {
-    changeVisibilityButtons[i].addEventListener("click", (event)=> {
+    changeVisibilityButtons[i].addEventListener("click", (event) => {
         document.querySelector(".selected-status").classList.remove("selected-status");
         event.target.classList.add("selected-status");
-        
+
         if (event.target.classList.contains("private")) {
             changeVisibilityStatus(boardId, "private");
         } else if (event.target.classList.contains("for-friends")) {
@@ -37,5 +37,5 @@ for (let i = 0; i < changeVisibilityButtons.length; ++i) {
         } else {
             changeVisibilityStatus(boardId, "everybody");
         }
-    },true);
+    }, true);
 }

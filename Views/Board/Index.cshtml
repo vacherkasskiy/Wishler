@@ -57,12 +57,12 @@
         <button class="change-visibility__status private @(Model.AccessStatus == "private" ? "selected-status" : "")">Private</button>
         <button class="change-visibility__status for-friends @(Model.AccessStatus == "friends" ? "selected-status" : "")">For friends</button>
         <button class="change-visibility__status for-everybody @(Model.AccessStatus == "everybody" ? "selected-status" : "")">For everybody</button>
-        <p>localhost:7193/board/shared/@Model.BoardId</p>
+        <p>https://localhost:7193/board/shared/@Model.BoardId</p>
     </div>
     @foreach (var column in Model.Columns.Where(x => x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
     {
         <section class="column">
-            <textarea class="column__name" id="@column.Id">@column.Name</textarea>
+            <textarea maxlength="25" class="column__name" id="@column.Id">@column.Name</textarea>
             <ul class="tasks__list">
                 @foreach (var row in Model.Rows.Where(x => x.ColumnId == column.Id).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
                 {

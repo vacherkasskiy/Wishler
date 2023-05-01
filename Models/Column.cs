@@ -6,7 +6,7 @@ public class Column : IComparable
 {
     [Key] public int Id { get; set; }
 
-    [Required] public string Name { get; set; } = "";
+    [Required] [MaxLength(25)] public string Name { get; set; } = "";
 
     public int BoardId { get; set; }
     public int Position { get; set; }
