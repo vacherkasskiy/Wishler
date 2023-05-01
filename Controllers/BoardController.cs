@@ -17,6 +17,7 @@ public class BoardController : Controller
     }
 
     [Route("/board/{id}")]
+    [Authorize]
     public IActionResult Index(int id)
     {
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -38,6 +39,7 @@ public class BoardController : Controller
     }
 
     [Route("/EditOrCreateColumn")]
+    [Authorize]
     public IActionResult EditOrCreateColumn()
     {
         return RedirectToAction("Index");
@@ -45,6 +47,7 @@ public class BoardController : Controller
 
     [HttpPost]
     [Route("/EditOrCreateColumn")]
+    [Authorize]
     public IActionResult EditOrCreateColumn(int id, string name, int boardId, int position)
     {
         var column = new Column
@@ -60,6 +63,7 @@ public class BoardController : Controller
     }
 
     [Route("/EditOrCreateRow")]
+    [Authorize]
     public IActionResult EditOrCreateRow()
     {
         return RedirectToAction("Index");
@@ -67,6 +71,7 @@ public class BoardController : Controller
 
     [HttpPost]
     [Route("/EditOrCreateRow")]
+    [Authorize]
     public IActionResult EditOrCreateRow(int id, int columnId, int position, string text)
     {
         var row = new Row
@@ -83,6 +88,7 @@ public class BoardController : Controller
 
     [HttpDelete]
     [Route("/board/deleteRow")]
+    [Authorize]
     public void DeleteRow(int id)
     {
         var row = _db.Rows.Find(id)!;
@@ -92,6 +98,7 @@ public class BoardController : Controller
 
     [HttpDelete]
     [Route("/board/deleteColumn")]
+    [Authorize]
     public void DeleteColumn(int id)
     {
         var column = _db.Columns.Find(id)!;
@@ -104,6 +111,7 @@ public class BoardController : Controller
 
     [HttpPatch]
     [Route("/board/changeVisibility")]
+    [Authorize]
     public void ChangeVisibilityStatus(int boardId, string status)
     {
         var board = _db.Boards.Find(boardId)!;
@@ -124,9 +132,17 @@ public class BoardController : Controller
             return RedirectToAction("WrongRequest", "ErrorHandler");
         }
 
+        var param = new SharedBoardViewModel
+        {
+            BoardId = board.Id,
+            BackgroundId = board.BackgroundId,
+            Columns = _db.Columns,
+            Rows = _db.Rows
+        };
+        
         if (board.VisibilityStatus == "everybody")
         {
-            return View();
+            return View(param);
         }
 
         if (!User.Identity!.IsAuthenticated)
@@ -138,7 +154,7 @@ public class BoardController : Controller
         var currentUser = _db.Users.Find(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)))!;
         if (_db.Friends.Any(x => x.OwnerEmail == boardOwner.Email && x.FriendEmail == currentUser.Email))
         {
-            return View();
+            return View(param);
         }
         
         return RedirectToAction("WrongRequest", "ErrorHandler");

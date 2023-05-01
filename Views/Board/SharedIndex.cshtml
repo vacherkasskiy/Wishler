@@ -1,1 +1,66 @@
-﻿<p>Success !!!!</p>
+﻿@model Wishler.ViewModels.SharedBoardViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Board";
+}
+
+@{
+    var backgroundsList = new List<string>
+    {
+        "bg1.jpg",
+        "bg2.jpg",
+        "bg3.jpg",
+        "bg4.jpg",
+        "bg5.jpg",
+        "bg6.jpg"
+    };
+}
+
+@section AddStyles{
+    <link rel="stylesheet" href="~/css/board.css">
+    <link rel="stylesheet" href="~/css/shared_board.css">
+}
+
+@section AddToHeader {
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-action="Index" asp-controller="Boards">Boards</a>
+            </strong>
+        </p>
+    </div>
+    <div class="header_btn">
+        <p>
+            <strong>
+                <a asp-controller="Friends" asp-action="Index">Friends</a>
+            </strong>
+        </p>
+    </div>
+}
+
+<img class="background" src="~/pictures/Boards/@backgroundsList[int.Parse(Model.BackgroundId) - 1]" alt="">
+<div class="shadow"></div>
+<div class="board" id="@Model.BoardId">
+    @foreach (var column in Model.Columns.Where(x => x.BoardId == Model.BoardId).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
+    {
+        <section class="column">
+            <textarea class="column__name" id="@column.Id">@column.Name</textarea>
+            <ul class="tasks__list">
+                @foreach (var row in Model.Rows.Where(x => x.ColumnId == column.Id).OrderBy(x => x.Position).ThenBy(x => x).ToArray())
+                {
+                    <li class="tasks__item">
+                        <textarea wrap="soft" name="text" id="@row.Id">@row.Text</textarea>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+</div>
