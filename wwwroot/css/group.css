@@ -1,6 +1,28 @@
-﻿header {
+﻿body {
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+header {
     opacity: 1 !important;
     transition: unset !important;
+    z-index: 998 !important;
+}
+
+.shadow {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    z-index: 999 !important;
+    opacity: 0.5;
+}
+
+.shadow.active {
+    display: block;
 }
 
 .wrapper {
@@ -11,13 +33,19 @@
     justify-content: space-between;
 }
 
+.wrapper__left-part {
+    width: 35%;
+    height: 500px;
+}
+
 .group-members {
     margin-top: 35px;
     overflow-y: auto;
+    width: 100%;
+    height: 80%;
     padding: 10px;
-    width: 35%;
-    /*display: flex;*/
-    /*flex-direction: column;*/
+    border: 2.5px solid #d2d2d2;
+    border-radius: 5px;
 }
 
 .member {
@@ -95,6 +123,28 @@
     border-radius: 5px;
 }
 
+.add-new-friend {
+    background-color: #3059fa;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.add-new-friend > p {
+    font-weight: 600;
+    color: white;
+    font-family: sans-serif;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.add-new-friend > span {
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
 .event {
     margin-top: 30px;
     padding: 15px;
@@ -116,6 +166,10 @@
     padding: 20px;
     width: 40%;
     height: fit-content;
+}
+
+.wish.active {
+    z-index: 1000 !important;
 }
 
 .wish > form > label {
@@ -147,6 +201,24 @@
     font-family: sans-serif;
     font-weight: 600;
     border-radius: 5px;
+}
+
+.new-member__form {
+    display: none;
+    overflow-y: auto;
+    margin-top: 21px;
+    padding: 20px;
+    width: 100%;
+    height: 400px;
+    border: 2.5px solid #3059fa;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.add-member-btn {
+    padding: 15px;
+    font-size: 15px;
+    background-color: #3059fa;
 }
 
 .delete {

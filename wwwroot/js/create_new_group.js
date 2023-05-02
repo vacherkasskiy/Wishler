@@ -7,19 +7,19 @@ let invitedMembersEmails = document.querySelector(".new-group-form .invited-memb
 createGroupButton.addEventListener("click", () => {
     newGroupForm.classList.add("active");
     shadow.classList.add("active");
-    createGroupButton.classList.remove("active");
+    createGroupButton.style.display = "none";
 }, true);
 
 shadow.addEventListener("click", () => {
     newGroupForm.classList.remove("active");
     shadow.classList.remove("active");
-    createGroupButton.classList.add("active");
+    createGroupButton.style.display = "flex";
 }, true);
 
 cancelButton.addEventListener("click", () => {
     newGroupForm.classList.remove("active");
     shadow.classList.remove("active");
-    createGroupButton.classList.add("active");
+    createGroupButton.style.display = "flex";
 }, true);
 
 for (let i = 0; i < memberButtons.length; ++i) {

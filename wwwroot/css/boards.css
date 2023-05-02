@@ -72,11 +72,6 @@ header {
 }
 
 .wrapper .groups > .groups__create-new {
-    display: none;
-}
-
-.wrapper .groups > .groups__create-new.active {
-    display: block;
     font-weight: 600;
     color: white;
     background-color: #3059fa;
@@ -88,6 +83,29 @@ header {
     font-size: 15px;
     text-align: center;
     text-transform: capitalize;
+}
+
+.groups__unable {
+    margin-top: 5px;
+    background-color: #3059fa;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.groups__unable > p {
+    font-weight: 600;
+    color: white;
+    font-family: sans-serif;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.groups__unable > span {
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
 }
 
 .new-group-form {
