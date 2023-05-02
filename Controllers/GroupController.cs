@@ -235,4 +235,20 @@ public class GroupController : Controller
         else
             Response.Redirect($"/group/{groupId}");
     }
+
+    [Route("/group/addMember")]
+    [HttpPost]
+    public void AddMember(int userId, int groupId)
+    {
+        var newParticipant = new GroupParticipant
+        {
+            GroupId = groupId,
+            IsOwner = false,
+            UserId = userId
+        };
+
+        _db.GroupParticipants.Add(newParticipant);
+        _db.SaveChanges();
+        // Response.Redirect($"/group/{groupId}");
+    }
 }
