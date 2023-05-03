@@ -1,4 +1,4 @@
-let changeInfoButton = document.querySelector(".change-info-button");
+let changeInfoButton = document.querySelector(".change-info-button.useful");
 let changeInfoForm = document.querySelector(".change-info-form");
 let shadow = document.querySelector(".shadow");
 let cancelButton = document.querySelector(".change-info-form .buttons .cancel-btn");
@@ -6,21 +6,21 @@ let backgroundImages = document.querySelector(".avatars-images").children;
 let body = document.querySelector("body");
 
 changeInfoButton.addEventListener("click", (event) => {
-    changeInfoButton.classList.remove("active");
+    //changeInfoButton.classList.remove("active");
     changeInfoForm.classList.add("active");
     shadow.classList.add("active");
     body.classList.add("noscroll");
 }, true);
 
 shadow.addEventListener("click", (event) => {
-    changeInfoButton.classList.add("active");
+    //changeInfoButton.classList.add("active");
     changeInfoForm.classList.remove("active");
     shadow.classList.remove("active");
     body.classList.remove("noscroll")
 }, true);
 
 cancelButton.addEventListener("click", (event) => {
-    changeInfoButton.classList.add("active");
+    //changeInfoButton.classList.add("active");
     changeInfoForm.classList.remove("active");
     shadow.classList.remove("active");
     body.classList.remove("noscroll")

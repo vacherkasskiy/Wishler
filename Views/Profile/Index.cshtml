@@ -86,7 +86,11 @@
                 <p class="value">@User.FindFirstValue(ClaimTypes.Email)</p>
             </div>
         </div>
-        <button class="change-info-button active">
+        <a asp-action="ChangePassword" class="change-info-button active">
+            <img src="~/pictures/Profile/password.png" alt="">
+            <p>Change password</p>
+        </a>
+        <button class="change-info-button active useful">
             <img src="~/pictures/Profile/edit.png" alt="">
             <p>Change info</p>
         </button>

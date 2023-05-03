@@ -50,6 +50,7 @@ header {
     grid-column-end: 3;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     border-radius: 5px;
     box-shadow: 0 0 5px #b9b9b9;
 }
@@ -90,7 +91,6 @@ header {
 .change-info-button {
     width: 30%;
     height: 100%;
-    margin-left: 350px;
     border-radius: 10px;
     padding: 20px;
     display: none;
@@ -115,7 +115,7 @@ header {
 }
 
 .change-info-form {
-    padding: 20px;
+    padding: 20px 30px;
     position: absolute;
     top: 0;
     right: 0;
