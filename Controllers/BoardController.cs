@@ -144,7 +144,7 @@ public class BoardController : Controller
         var boardOwner = _db.Users.Find(board.UserId)!;
         var currentUser = _db.Users.Find(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)))!;
 
-        if (boardOwner.Id == currentUser.Id) return View();
+        if (boardOwner.Id == currentUser.Id) return View(param);
 
         if (board.VisibilityStatus == "private") return RedirectToAction("WrongRequest", "ErrorHandler");
 

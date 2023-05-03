@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Wishler.Data;
+using Wishler.Models;
 using Wishler.ViewModels;
 
 namespace Wishler.Controllers;
@@ -87,5 +89,39 @@ public class ProfileController : Controller
         };
 
         return View(model);
+    }
+
+    [Route("user/change_password")]
+    public IActionResult ChangePassword()
+    {
+        return View();
+    }
+
+    [Route("user/change_password")]
+    [HttpPost]
+    public IActionResult ChangePassword(ChangePasswordViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+        
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        var user = _db.Users.Find(userId)!;
+        var passwordHasher = new PasswordHasher<User>();
+        var result = passwordHasher.VerifyHashedPassword(user, user.Password, model.OldPassword);
+        
+        if (result != PasswordVerificationResult.Success) ModelState.AddModelError("OldPassword", "Wrong password");
+
+        if (ModelState.IsValid)
+        {
+            user.Password = passwordHasher.HashPassword(user, model.NewPassword);
+            _db.Users.Update(user);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        
+        return View();
     }
 }

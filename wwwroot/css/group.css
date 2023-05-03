@@ -88,6 +88,7 @@ header {
 }
 
 .member__crown-img {
+    margin-left: 19px;
     width: 40px;
     height: 40px;
 }
@@ -97,6 +98,7 @@ header {
 }
 
 .member__its-you {
+    margin-left: 19px;
     width: 40px;
     height: 40px;
 }
