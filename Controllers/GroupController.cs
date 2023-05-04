@@ -47,6 +47,7 @@ public class GroupController : Controller
             return RedirectToAction("WrongRequest", "ErrorHandler");
 
         var user = _db.Users.Find(userId)!;
+        var groupName = _db.Groups.Find(groupId)!.Name;
 
         var userFriends = _db
             .Friends
@@ -80,6 +81,7 @@ public class GroupController : Controller
         {
             IsStarted = _db.Groups.Find(groupId)!.IsStarted,
             GroupId = groupId,
+            GroupName = groupName,
             GroupParticipants = groupParticipants,
             UsersInGroup = usersInGroup,
             PossibleMembers = possibleMembers
@@ -92,6 +94,11 @@ public class GroupController : Controller
     [HttpPost]
     public IActionResult Create(NewGroupViewModel newGroupViewModel)
     {
+        if (newGroupViewModel?.Members == null)
+        {
+            return RedirectToAction("Index", "Boards");
+        }
+        
         var membersLine = newGroupViewModel.Members.TrimEnd();
 
         if (ModelState.IsValid && membersLine != null && membersLine.Split().Length >= 2)
@@ -122,6 +129,8 @@ public class GroupController : Controller
                     IsOwner = false
                 });
             _db.SaveChanges();
+            
+            return RedirectToAction("Index", new { groupId =  newGroup.Entity.Id});
         }
 
         return RedirectToAction("Index", "Boards");

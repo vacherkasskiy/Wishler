@@ -57,6 +57,13 @@
 }
 
 <div class="shadow"></div>
+<div class="pop-up">
+    <p>Are you sure you want to delete <br><span>@Model.GroupName</span>?</p>
+    <div class="pop-up__buttons">
+        <a class="delete" href="/group/delete/@Model.GroupId">Delete</a>
+        <button class="cancel">Cancel</button>
+    </div>
+</div>
 <div class="wrapper">
     <div class="wrapper__left-part">
         <div class="group-members">
@@ -184,7 +191,7 @@
     </div>
     @if (isUserOwner)
     {
-        <a href="/group/delete/@Model.GroupId" class="delete">Delete group</a>
+        <a class="delete group">Delete group</a>
     }
     else
     {
@@ -201,4 +208,5 @@
 
 @section AddScripts{
     <script src="~/js/group.js"></script>
+    <script src="~/js/delete_group_at_group_page.js"></script>
 }
