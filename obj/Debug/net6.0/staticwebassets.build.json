@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Gr+RVgAhnfto5PtwvsBn3t1kKdDO7cb7BfYsTtxWfdw=",
+  "Hash": "1dJBWieXdzTF8E7DdTtttRexMUeww4OSCwWT5Gg86rc=",
   "Source": "Wishler",
   "BasePath": "_content/Wishler",
   "Mode": "Default",
@@ -287,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\create_new_group.js"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\delete-group.js",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "js/delete-group.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\delete-group.js"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\drag_items.js",
