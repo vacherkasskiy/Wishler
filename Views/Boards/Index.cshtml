@@ -54,7 +54,7 @@
 
 <div class="shadow"></div>
 <div class="pop-up">
-    <p>Are you sure you want to delete board <br><span>Board1</span>?</p>
+    <p>Are you sure you want to delete <br><span>Name here</span>?</p>
     <div class="pop-up__buttons">
         <a class="delete" href="">Delete</a>
         <button class="cancel">Cancel</button>
@@ -70,7 +70,7 @@
                     <a href="group/@group.Id" class="open">Open</a>
                     @if (Model.UserId == group.OwnerId)
                     {
-                        <a href="group/delete/@group.Id" class="delete">Delete</a>
+                        <button id="@group.Name" class="delete">Delete</button>
                     }
                 </div>
             </div>
@@ -151,4 +151,5 @@
 @section AddScripts{
     <script src="~/js/boards.js"></script>
     <script src="~/js/create_new_group.js"></script>
+    <script src="~/js/delete-group.js"></script>
 }

@@ -57,6 +57,7 @@ header {
 .pop-up > p > span {
     color: #3059fa;
     font-weight: 600;
+    text-transform: capitalize !important;
 }
 
 .pop-up__buttons {
