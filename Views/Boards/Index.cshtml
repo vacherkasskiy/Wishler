@@ -114,12 +114,12 @@
         <div class="boards">
             @foreach (var board in Model.Boards)
             {
-                <div class="board">
+                <div class="board" id="@board.Id">
                     <img class="board_image" src="~/pictures/Boards/@backgroundsList[int.Parse(board.BackgroundId) - 1]" alt="">
                     <p class="board_name">@board.Name</p>
                     <div class="buttons">
                         <a href="/board/@board.Id" class="open">Open</a>
-                        <a href="/boards/delete/@board.Id" class="delete">Delete</a>
+                        <a id="@board.Name" class="delete">Delete</a>
                     </div>
                 </div>
             }
@@ -152,4 +152,5 @@
     <script src="~/js/boards.js"></script>
     <script src="~/js/create_new_group.js"></script>
     <script src="~/js/delete_group_at_boards_page.js"></script>
+    <script src="~/js/delete_board.js"></script>
 }
