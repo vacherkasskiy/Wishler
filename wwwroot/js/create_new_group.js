@@ -13,13 +13,13 @@ createGroupButton.addEventListener("click", () => {
 shadow.addEventListener("click", () => {
     newGroupForm.classList.remove("active");
     shadow.classList.remove("active");
-    createGroupButton.style.display = "flex";
+    createGroupButton.style.display = "inline-block";
 }, true);
 
 cancelButton.addEventListener("click", () => {
     newGroupForm.classList.remove("active");
     shadow.classList.remove("active");
-    createGroupButton.style.display = "flex";
+    createGroupButton.style.display = "inline-block";
 }, true);
 
 for (let i = 0; i < memberButtons.length; ++i) {

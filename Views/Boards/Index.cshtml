@@ -54,10 +54,10 @@
 
 <div class="shadow"></div>
 <div class="pop-up">
-    <p>Are you sure you want to delete board <span>Board1</span>?</p>
+    <p>Are you sure you want to delete board <br><span>Board1</span>?</p>
     <div class="pop-up__buttons">
-        <a href="">Delete</a>
-        <button>Cancel</button>
+        <a class="delete" href="">Delete</a>
+        <button class="cancel">Cancel</button>
     </div>
 </div>
 <div class="wrapper">
@@ -90,7 +90,7 @@
         <form class="new-group-form" asp-action="Create" asp-controller="Group">
             <div class="input-section">
                 <label asp-for="NewGroup.Name">Name</label>
-                <input name="Name" type="text">
+                <input maxlength="20" name="Name" type="text">
                 <input class="invited-members" name="Members" type="hidden" value="">
             </div>
             <div class="possible-members">

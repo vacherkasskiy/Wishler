@@ -24,10 +24,70 @@ header {
     opacity: 0.5;
 }
 
+/* POP UP STYLES */
+
+.pop-up {
+    z-index: 1000;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: fit-content;
+    background-color: white;
+    border: 3px #d3d3d4 solid;
+    border-radius: 5px;
+}
+
+.pop-up > * {
+    margin-bottom: 20px;
+}
+
+.pop-up > p {
+    text-align: center;
+}
+
+.pop-up > p > span {
+    color: #3059fa;
+    font-weight: 600;
+}
+
+.pop-up__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pop-up__buttons > * {
+    margin: 0 15px;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: white !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pop-up__buttons > .delete {
+    background-color: #3059fa;
+}
+
+.pop-up__buttons > .cancel {
+    background-color: red;
+}
+
 /* WRAPPER STYLES */
 
 .wrapper {
-    margin-top: 10px;
+    margin-top: 70px;
     display: flex;
     flex-direction: row;
 }
