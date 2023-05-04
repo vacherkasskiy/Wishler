@@ -47,6 +47,7 @@ public class GroupController : Controller
             return RedirectToAction("WrongRequest", "ErrorHandler");
 
         var user = _db.Users.Find(userId)!;
+        var groupName = _db.Groups.Find(groupId)!.Name;
 
         var userFriends = _db
             .Friends
@@ -80,6 +81,7 @@ public class GroupController : Controller
         {
             IsStarted = _db.Groups.Find(groupId)!.IsStarted,
             GroupId = groupId,
+            GroupName = groupName,
             GroupParticipants = groupParticipants,
             UsersInGroup = usersInGroup,
             PossibleMembers = possibleMembers
