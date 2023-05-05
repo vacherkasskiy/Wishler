@@ -23,10 +23,6 @@
         @RenderBody()
         <div class="line"></div>
         <div class="already-user">
-            @if (IsSectionDefined("YandexGoogle"))
-            {
-                @await RenderSectionAsync("YandexGoogle", true)
-            }
             <p class="redirect-user">
                 @if (IsSectionDefined("RedirectLink"))
                 {
