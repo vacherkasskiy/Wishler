@@ -145,9 +145,16 @@
         {
             @if (!Model.IsStarted)
             {
-                <button id="@Model.GroupId" class="start event">
-                    Start Event
-                </button>
+                @if (Model.GroupParticipants.Length >= 3)
+                {
+                    <button id="@Model.GroupId" class="start event">
+                        Start Event
+                    </button>
+                }
+                else
+                {
+                    <p id="@Model.GroupId" class="event-blocked">You need 3 or more participants to start the event</p>
+                }
             }
             else
             {

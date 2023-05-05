@@ -179,6 +179,12 @@ public class GroupController : Controller
             .Where(x => x.GroupId == groupId)
             .ToArray();
 
+        if (participants.Length < 3)
+        {
+            Response.Redirect("/bad-request");
+            return;
+        }
+
         GroupParticipant[] mixedParticipants;
         do
         {
@@ -258,6 +264,5 @@ public class GroupController : Controller
 
         _db.GroupParticipants.Add(newParticipant);
         _db.SaveChanges();
-        // Response.Redirect($"/group/{groupId}");
     }
 }

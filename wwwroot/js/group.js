@@ -70,7 +70,12 @@ shadow.addEventListener("click", ()=> {
 
 for (let i = 0; i < addMemberButtons.length; ++i) {
     addMemberButtons[i].addEventListener("click", (event)=> {
-        AddMember(eventButton.id, event.target.id);
+        if (eventButton == null) {
+            AddMember(document.querySelector(".event-blocked").id, event.target.id);
+        }
+        else {
+            AddMember(eventButton.id, event.target.id);
+        }
         setTimeout(() => {
             location.reload();
         }, 0);
