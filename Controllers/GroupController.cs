@@ -94,11 +94,8 @@ public class GroupController : Controller
     [HttpPost]
     public IActionResult Create(NewGroupViewModel newGroupViewModel)
     {
-        if (newGroupViewModel?.Members == null)
-        {
-            return RedirectToAction("Index", "Boards");
-        }
-        
+        if (newGroupViewModel?.Members == null) return RedirectToAction("Index", "Boards");
+
         var membersLine = newGroupViewModel.Members.TrimEnd();
 
         if (ModelState.IsValid && membersLine != null && membersLine.Split().Length >= 2)
@@ -129,8 +126,8 @@ public class GroupController : Controller
                     IsOwner = false
                 });
             _db.SaveChanges();
-            
-            return RedirectToAction("Index", new { groupId =  newGroup.Entity.Id});
+
+            return RedirectToAction("Index", new {groupId = newGroup.Entity.Id});
         }
 
         return RedirectToAction("Index", "Boards");

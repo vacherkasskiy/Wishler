@@ -50,36 +50,35 @@ let addNewMemberButton = document.querySelector(".add-new-member");
 let addMemberButtons = document.querySelectorAll(".member__delete-btn.add-member-btn");
 let shadow = document.querySelector(".shadow");
 
-addNewMemberButton?.addEventListener("click", ()=> {
+addNewMemberButton?.addEventListener("click", () => {
     shadow.classList.add("active");
     wishTextarea.style.display = "none";
     wishLabel.style.display = "none";
     newMemberForm.style.display = "block";
     saveButton.style.display = "none";
     wishBlock.classList.add("active");
-},true);
+}, true);
 
-shadow.addEventListener("click", ()=> {
+shadow.addEventListener("click", () => {
     shadow.classList.remove("active");
     wishTextarea.style.display = "block";
     wishLabel.style.display = "block";
     newMemberForm.style.display = "none";
     saveButton.style.display = "block";
     wishBlock.classList.remove("active");
-},true);
+}, true);
 
 for (let i = 0; i < addMemberButtons.length; ++i) {
-    addMemberButtons[i].addEventListener("click", (event)=> {
+    addMemberButtons[i].addEventListener("click", (event) => {
         if (eventButton == null) {
             AddMember(document.querySelector(".event-blocked").id, event.target.id);
-        }
-        else {
+        } else {
             AddMember(eventButton.id, event.target.id);
         }
         setTimeout(() => {
             location.reload();
         }, 0);
-    },true);
+    }, true);
 }
 
 eventButton?.addEventListener("click", () => {

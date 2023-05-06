@@ -47,8 +47,8 @@ public class BoardsController : Controller
         {
             var newBoard = _db.Boards.Add(board);
             _db.SaveChanges();
-            
-            return RedirectToAction("Index", "Board",new { id = newBoard.Entity.Id});
+
+            return RedirectToAction("Index", "Board", new {id = newBoard.Entity.Id});
         }
 
         return RedirectToAction("Index");

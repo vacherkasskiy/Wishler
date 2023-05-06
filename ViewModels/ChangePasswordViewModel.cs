@@ -7,7 +7,7 @@ public class ChangePasswordViewModel
     [DataType(DataType.Password)]
     [Required(ErrorMessage = "Enter your password")]
     public string OldPassword { get; set; }
-    
+
     [DataType(DataType.Password)]
     [MinLength(6, ErrorMessage = "Your new password must contain more than 6 letters")]
     [Required(ErrorMessage = "Enter new password")]

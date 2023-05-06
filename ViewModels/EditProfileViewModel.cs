@@ -6,7 +6,7 @@ public class EditProfileViewModel
 {
     [Required]
     [MaxLength(20)]
-    [MinLength(5)]
+    [MinLength(3)]
     public string Name { get; set; } = "";
 
     [Required] public int AvatarId { get; set; }

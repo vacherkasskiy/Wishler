@@ -101,16 +101,13 @@ public class ProfileController : Controller
     [HttpPost]
     public IActionResult ChangePassword(ChangePasswordViewModel model)
     {
-        if (!ModelState.IsValid)
-        {
-            return View();
-        }
-        
+        if (!ModelState.IsValid) return View();
+
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         var user = _db.Users.Find(userId)!;
         var passwordHasher = new PasswordHasher<User>();
         var result = passwordHasher.VerifyHashedPassword(user, user.Password, model.OldPassword);
-        
+
         if (result != PasswordVerificationResult.Success) ModelState.AddModelError("OldPassword", "Wrong password");
 
         if (ModelState.IsValid)
@@ -121,7 +118,7 @@ public class ProfileController : Controller
 
             return RedirectToAction("Index");
         }
-        
+
         return View();
     }
 }

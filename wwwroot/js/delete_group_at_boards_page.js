@@ -14,12 +14,12 @@ for (let i = 0; i < deleteGroupButtons.length; ++i) {
     }, true);
 }
 
-shadow.addEventListener("click", ()=> {
+shadow.addEventListener("click", () => {
     popUpBlock.style.display = "none";
     shadow.classList.remove("active");
 }, true);
 
-popUpCancelButton.addEventListener("click", ()=> {
+popUpCancelButton.addEventListener("click", () => {
     popUpBlock.style.display = "none";
     shadow.classList.remove("active");
 }, true);

@@ -2,17 +2,17 @@ let deleteGroupButton = document.querySelector(".wrapper > .delete.group");
 let popUpBlock = document.querySelector(".pop-up");
 let popUpCancelButton = document.querySelector(".pop-up__buttons > .cancel");
 
-deleteGroupButton?.addEventListener("click", ()=> {
+deleteGroupButton?.addEventListener("click", () => {
     popUpBlock.style.display = "flex";
     shadow.classList.add("active");
-},true);
+}, true);
 
-shadow.addEventListener("click", ()=> {
+shadow.addEventListener("click", () => {
     popUpBlock.style.display = "none";
     shadow.classList.remove("active");
 }, true);
 
-popUpCancelButton.addEventListener("click", ()=> {
+popUpCancelButton.addEventListener("click", () => {
     popUpBlock.style.display = "none";
     shadow.classList.remove("active");
 }, true);
