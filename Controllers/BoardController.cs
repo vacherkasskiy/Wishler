@@ -38,13 +38,6 @@ public class BoardController : Controller
         return View(param);
     }
 
-    [Route("/EditOrCreateColumn")]
-    [Authorize]
-    public IActionResult EditOrCreateColumn()
-    {
-        return RedirectToAction("Index");
-    }
-
     [HttpPost]
     [Route("/EditOrCreateColumn")]
     [Authorize]
@@ -60,13 +53,6 @@ public class BoardController : Controller
         _db.Update(column);
         _db.SaveChanges();
         return Json(new {colId = column.Id});
-    }
-
-    [Route("/EditOrCreateRow")]
-    [Authorize]
-    public IActionResult EditOrCreateRow()
-    {
-        return RedirectToAction("Index");
     }
 
     [HttpPost]
