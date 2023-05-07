@@ -6,21 +6,18 @@ let backgroundImages = document.querySelector(".avatars-images").children;
 let body = document.querySelector("body");
 
 changeInfoButton.addEventListener("click", (event) => {
-    //changeInfoButton.classList.remove("active");
     changeInfoForm.classList.add("active");
     shadow.classList.add("active");
     body.classList.add("noscroll");
 }, true);
 
 shadow.addEventListener("click", (event) => {
-    //changeInfoButton.classList.add("active");
     changeInfoForm.classList.remove("active");
     shadow.classList.remove("active");
     body.classList.remove("noscroll")
 }, true);
 
 cancelButton.addEventListener("click", (event) => {
-    //changeInfoButton.classList.add("active");
     changeInfoForm.classList.remove("active");
     shadow.classList.remove("active");
     body.classList.remove("noscroll")
