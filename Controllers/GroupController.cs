@@ -28,7 +28,7 @@ public class GroupController : Controller
         return mixedParticipants;
     }
 
-    private bool AreTheyUsersWithTheirOwnWish(GroupParticipant[] array1, GroupParticipant[] array2)
+    private bool AreThereUsersWithTheirOwnWish(GroupParticipant[] array1, GroupParticipant[] array2)
     {
         for (var i = 0; i < array1.Length; ++i)
             if (array1[i].UserId == array2[i].UserId)
@@ -186,7 +186,7 @@ public class GroupController : Controller
         do
         {
             mixedParticipants = MixParticipants(participants);
-        } while (AreTheyUsersWithTheirOwnWish(participants, mixedParticipants));
+        } while (AreThereUsersWithTheirOwnWish(participants, mixedParticipants));
 
         for (var i = 0; i < participants.Length; ++i)
         {
