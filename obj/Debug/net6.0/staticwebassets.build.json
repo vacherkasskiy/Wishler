@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1uiftky5tf7nKjAkN2MxyEJEkFtidL9TmHFkjQcub78=",
+  "Hash": "ua5m7+PxjiTUZkPbD6I7sa5EcsqiNdg0WDrKhiYF0v0=",
   "Source": "Wishler",
   "BasePath": "_content/Wishler",
   "Mode": "Default",
@@ -187,12 +187,12 @@
       "OriginalItemSpec": "wwwroot\\css\\shared_board.css"
     },
     {
-      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\css\\wrongRequest.css",
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\css\\wrong_request.css",
       "SourceId": "Wishler",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
       "BasePath": "_content/Wishler",
-      "RelativePath": "css/wrongRequest.css",
+      "RelativePath": "css/wrong_request.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -201,15 +201,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\wrongRequest.css"
+      "OriginalItemSpec": "wwwroot\\css\\wrong_request.css"
     },
     {
-      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\boards.js",
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\change_info_profile.js",
       "SourceId": "Wishler",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
       "BasePath": "_content/Wishler",
-      "RelativePath": "js/boards.js",
+      "RelativePath": "js/change_info_profile.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -218,15 +218,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\boards.js"
+      "OriginalItemSpec": "wwwroot\\js\\change_info_profile.js"
     },
     {
-      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\change-visibility.js",
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\change_visibility.js",
       "SourceId": "Wishler",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
       "BasePath": "_content/Wishler",
-      "RelativePath": "js/change-visibility.js",
+      "RelativePath": "js/change_visibility.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -235,7 +235,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\change-visibility.js"
+      "OriginalItemSpec": "wwwroot\\js\\change_visibility.js"
+    },
+    {
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\create_boards.js",
+      "SourceId": "Wishler",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
+      "BasePath": "_content/Wishler",
+      "RelativePath": "js/create_boards.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\create_boards.js"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\create_items.js",
@@ -408,12 +425,12 @@
       "OriginalItemSpec": "wwwroot\\js\\group.js"
     },
     {
-      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\main.js",
+      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\make_header_invisible.js",
       "SourceId": "Wishler",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
       "BasePath": "_content/Wishler",
-      "RelativePath": "js/main.js",
+      "RelativePath": "js/make_header_invisible.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -422,7 +439,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\main.js"
+      "OriginalItemSpec": "wwwroot\\js\\make_header_invisible.js"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\marquee.js",
@@ -457,23 +474,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\null_textareas.js"
-    },
-    {
-      "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\js\\profile.js",
-      "SourceId": "Wishler",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\",
-      "BasePath": "_content/Wishler",
-      "RelativePath": "js/profile.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\profile.js"
     },
     {
       "Identity": "C:\\Users\\cherk\\RiderProjects\\Wishler\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

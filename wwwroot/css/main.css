@@ -106,7 +106,7 @@ header {
     margin-right: 30px;
 }
 
-.button-circle > button {
+.button-circle > a {
     z-index: 2;
     position: relative;
     padding: 15px;
@@ -123,7 +123,7 @@ header {
     transition-timing-function: ease-in-out;
 }
 
-.button-circle > button > div {
+.button-circle > a > div {
     position: absolute;
     left: 0;
     top: 0;
@@ -134,7 +134,7 @@ header {
     align-items: center;
 }
 
-.button-circle > button > div > div {
+.button-circle > a > div > div {
     z-index: -1;
     position: relative;
     width: 0;
@@ -146,12 +146,12 @@ header {
     transition-timing-function: ease-in-out;
 }
 
-.button-circle > button:hover > div > div {
+.button-circle > a:hover > div > div {
     width: 1550px;
     height: 1550px;
 }
 
-.button-circle > button:hover {
+.button-circle > a:hover {
     color: white;
     border: 4px white solid;
 }
@@ -246,7 +246,7 @@ header {
     text-align: center;
 }
 
-.about-us button {
+.about-us a {
     margin: 0 auto 0 auto;
     padding: 15px;
     width: fit-content;
@@ -466,7 +466,7 @@ header {
     background-color: rgb(239, 239, 239);
 }
 
-.create-account .create-account_form button {
+.create-account .create-account_form a {
     padding: 14px;
     font-family: sans-serif;
     font-size: 20px;

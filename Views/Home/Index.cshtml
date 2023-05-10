@@ -35,12 +35,12 @@
     <p class="main-page_text">Make a wish!<br>With Wishler</p>
     <div class="button-circle">
         <img class="next-img" src="~/pictures/Home/next.png" alt="">
-        <button class="redirect-button">
+        <a asp-action="Login" asp-controller="Account" class="redirect-button">
             <div>
                 <div></div>
             </div>
             Get Started
-        </button>
+        </a>
     </div>
 </div>
 <div class="about-us">
@@ -76,7 +76,7 @@
             Manage your <strong>dreams</strong>, and build better version of you.
         </p>
     </div>
-    <button class="redirect-button">Start dreaming</button>
+    <a asp-action="Login" asp-controller="Account" class="redirect-button">Start dreaming</a>
 </div>
 <div class="quote">
     <p class="quote_text">
@@ -185,7 +185,7 @@
     <div class="create-account_form">
         <img src="~/pictures/Home/next.png" alt="">
         <input type="email" placeholder="example@gmail.com">
-        <button class="redirect-button">Sign Up</button>
+        <a asp-action="Register" asp-controller="Account" class="redirect-button">Sign Up</a>
     </div>
 </div>
 
