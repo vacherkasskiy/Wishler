@@ -1,6 +1,6 @@
 ﻿let newGroupForm = document.querySelector(".new-group-form");
 let createGroupButton = document.querySelector(".groups__create-new");
-let cancelButton = document.querySelector("button.cancel");
+let cancelButton = document.querySelector(".new-group-form .cancel");
 let memberButtons = document.querySelectorAll(".member button");
 let invitedMembersEmails = document.querySelector(".new-group-form .invited-members")
 
