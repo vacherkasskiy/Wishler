@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Wishler.Data;
@@ -11,9 +12,10 @@ using Wishler.Data;
 namespace Wishler.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231220180747_AddForeignKeys")]
+    partial class AddForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace Wishler.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("GroupOwners");
+                    b.ToTable("BoardOwners");
                 });
 
             modelBuilder.Entity("Wishler.Models.GroupParticipant", b =>
@@ -191,10 +193,6 @@ namespace Wishler.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("GroupParticipants");
                 });
@@ -253,32 +251,6 @@ namespace Wishler.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Wishler.Models.Wish", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Wish");
                 });
 
             modelBuilder.Entity("Wishler.Models.Board", b =>
@@ -371,25 +343,6 @@ namespace Wishler.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("Wishler.Models.GroupParticipant", b =>
-                {
-                    b.HasOne("Wishler.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Wishler.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Wishler.Models.Row", b =>
                 {
                     b.HasOne("Wishler.Models.Column", "Column")
@@ -399,25 +352,6 @@ namespace Wishler.Migrations
                         .IsRequired();
 
                     b.Navigation("Column");
-                });
-
-            modelBuilder.Entity("Wishler.Models.Wish", b =>
-                {
-                    b.HasOne("Wishler.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Wishler.Models.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-
-                    b.Navigation("Owner");
                 });
 #pragma warning restore 612, 618
         }

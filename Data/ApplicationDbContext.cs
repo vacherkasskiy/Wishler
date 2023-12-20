@@ -10,10 +10,11 @@ public class ApplicationDbContext : DbContext
     }
     
     public DbSet<User> Users { get; set; }
-    public DbSet<GroupOwner> BoardOwners { get; set; }
+    public DbSet<GroupOwner> GroupOwners { get; set; }
     public DbSet<Board> Boards { get; set; }
     public DbSet<Column> Columns { get; set; }
     public DbSet<Row> Rows { get; set; }
+    public DbSet<Wish> Wish { get; set; }
     public DbSet<FriendRequest> FriendRequests { get; set; }
     public DbSet<Friend> Friends { get; set; }
     public DbSet<Group> Groups { get; set; }
