@@ -10,6 +10,7 @@ public class ApplicationDbContext : DbContext
     }
     
     public DbSet<User> Users { get; set; }
+    public DbSet<GroupOwner> BoardOwners { get; set; }
     public DbSet<Board> Boards { get; set; }
     public DbSet<Column> Columns { get; set; }
     public DbSet<Row> Rows { get; set; }

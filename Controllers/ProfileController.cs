@@ -36,7 +36,7 @@ public class ProfileController : Controller
             },
             BoardsCreatedAmount = _db.Boards.Count(x => x.UserId == userId),
             GroupsParticipatedAmount = _db.GroupParticipants.Count(x => x.UserId == userId),
-            FriendsAddedAmount = _db.Friends.Count(x => x.OwnerEmail == userEmail)
+            // FriendsAddedAmount = _db.Friends.Count(x => x.OwnerEmail == userEmail)
         };
 
         return View(model);
@@ -85,7 +85,7 @@ public class ProfileController : Controller
             },
             BoardsCreatedAmount = _db.Boards.Count(x => x.UserId == userId),
             GroupsParticipatedAmount = _db.GroupParticipants.Count(x => x.UserId == userId),
-            FriendsAddedAmount = _db.Friends.Count(x => x.OwnerEmail == userEmail)
+            // FriendsAddedAmount = _db.Friends.Count(x => x.OwnerEmail == userEmail)
         };
 
         return View(model);

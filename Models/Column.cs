@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wishler.Models;
 
@@ -8,9 +9,12 @@ public class Column : IComparable
 
     [Required] [MaxLength(25)] public string Name { get; set; } = "";
 
+    [ForeignKey("Board")]
     public int BoardId { get; set; }
     public int Position { get; set; }
 
+    public Board Board { get; set; }
+    
     public int CompareTo(object? obj)
     {
         if (obj is Column)

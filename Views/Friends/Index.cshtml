@@ -57,19 +57,19 @@
 }
 
 <div class="main">
-    <form asp-controller="Friends" asp-action="Index" method="post">
-        <label asp-for="FriendRequest.ReceiverEmail">
-            <p class="header">
-                <strong>Search dreammate</strong>
-            </p>
-        </label>
-        <input asp-for="FriendRequest.ReceiverEmail" placeholder="example@mail.ru">
-        <span asp-validation-for="FriendRequest.ReceiverEmail"></span>
-        <input type="hidden" asp-for="FriendRequest.SenderEmail" value="@Model.UserEmail">
-        <button type="submit">Send friend request</button>
-    </form>
+    @* <form asp-controller="Friends" asp-action="Index" method="post"> *@
+    @*     <label asp-for="FriendRequest.ReceiverEmail"> *@
+    @*         <p class="header"> *@
+    @*             <strong>Search dreammate</strong> *@
+    @*         </p> *@
+    @*     </label> *@
+    @*     <input asp-for="FriendRequest.ReceiverEmail" placeholder="example@mail.ru"> *@
+    @*     <span asp-validation-for="FriendRequest.ReceiverEmail"></span> *@
+    @*     <input type="hidden" asp-for="FriendRequest.SenderEmail" value="@Model.UserEmail"> *@
+    @*     <button type="submit">Send friend request</button> *@
+    @* </form> *@
     @{
-        var requests = Model.FriendRequests.Where(x => x.ReceiverEmail == Model.UserEmail).ToArray();
+        var requests = Model.FriendRequests.ToArray(); //.Where(x => x.ReceiverEmail == Model.UserEmail).ToArray();
     }
     @if (requests.Length > 0)
     {
@@ -81,13 +81,13 @@
             {
                 <div class="friend">
                     <div class="friend__part">
-                        <img class="friend__photo" src="~/pictures/Users_icons/@avatars[Model.Users.First(x => x.Email == request.SenderEmail).AvatarId]" alt="">
+                        @* <img class="friend__photo" src="~/pictures/Users_icons/@avatars[Model.Users.First(x => x.Email == request.SenderEmail).AvatarId]" alt=""> *@
                         <div class="friend__info">
                             <p class="name">
-                                <strong>Name:</strong> @Model.Users.First(x => x.Email == request.SenderEmail).Name
+                                @* <strong>Name:</strong> @Model.Users.First(x => x.Email == request.SenderEmail).Name *@
                             </p>
                             <p class="email">
-                                <strong>Email:</strong> @request.SenderEmail
+                                @* <strong>Email:</strong> @request.SenderEmail *@
                             </p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
         </div>
     }
     @{
-        var friends = Model.Friends.Where(x => x.OwnerEmail == Model.UserEmail).ToArray();
+        var friends = Model.Friends.ToArray(); //.Where(x => x.OwnerEmail == Model.UserEmail).ToArray();
     }
     @if (friends.Length > 0)
     {
@@ -112,13 +112,13 @@
             {
                 <div class="friend">
                     <div class="friend__part">
-                        <img class="friend__photo" src="~/pictures/Users_icons/@avatars[Model.Users.First(x => x.Email == friend.FriendEmail).AvatarId]" alt="">
+                        @* <img class="friend__photo" src="~/pictures/Users_icons/@avatars[Model.Users.First(x => x.Email == friend.FriendEmail).AvatarId]" alt=""> *@
                         <div class="friend__info">
                             <p class="name">
-                                <strong>Name:</strong> @Model.Users.First(x => x.Email == friend.FriendEmail).Name
+                                @* <strong>Name:</strong> @Model.Users.First(x => x.Email == friend.FriendEmail).Name *@
                             </p>
                             <p class="email">
-                                <strong>Email:</strong> @friend.FriendEmail
+                                @* <strong>Email:</strong> @friend.FriendEmail *@
                             </p>
                         </div>
                     </div>

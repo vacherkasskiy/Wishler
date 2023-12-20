@@ -65,24 +65,24 @@ public class FriendsController : Controller
     [Route("/AcceptRequest")]
     public void ApproveFriendRequest(int requestId)
     {
-        var friendRequest = _db.FriendRequests.Find(requestId);
-        var ownerEmail = friendRequest!.SenderEmail;
-        var friendEmail = friendRequest.ReceiverEmail;
-
-        var owner = new Friend
-        {
-            OwnerEmail = ownerEmail,
-            FriendEmail = friendEmail
-        };
-
-        var friend = new Friend
-        {
-            OwnerEmail = friendEmail,
-            FriendEmail = ownerEmail
-        };
-
-        _db.Friends.Add(owner);
-        _db.Friends.Add(friend);
+        // var friendRequest = _db.FriendRequests.Find(requestId);
+        // var ownerEmail = friendRequest!.SenderEmail;
+        // var friendEmail = friendRequest.ReceiverEmail;
+        //
+        // var owner = new Friend
+        // {
+        //     OwnerEmail = ownerEmail,
+        //     FriendEmail = friendEmail
+        // };
+        //
+        // var friend = new Friend
+        // {
+        //     OwnerEmail = friendEmail,
+        //     FriendEmail = ownerEmail
+        // };
+        //
+        // _db.Friends.Add(owner);
+        // _db.Friends.Add(friend);
         _db.SaveChanges();
     }
 
@@ -105,13 +105,13 @@ public class FriendsController : Controller
     public IActionResult DeleteFriend(int friendId)
     {
         var ownerEmail = User.FindFirstValue(ClaimTypes.Email);
-        var friendEmail = _db.Friends.Find(friendId)!.FriendEmail;
+        // var friendEmail = _db.Friends.Find(friendId)!.FriendEmail;
+        //
+        // var owner = _db.Friends.First(x => x.OwnerEmail == ownerEmail && x.FriendEmail == friendEmail);
+        // var friend = _db.Friends.First(x => x.OwnerEmail == friendEmail && x.FriendEmail == ownerEmail);
 
-        var owner = _db.Friends.First(x => x.OwnerEmail == ownerEmail && x.FriendEmail == friendEmail);
-        var friend = _db.Friends.First(x => x.OwnerEmail == friendEmail && x.FriendEmail == ownerEmail);
-
-        _db.Friends.Remove(owner);
-        _db.Friends.Remove(friend);
+        // _db.Friends.Remove(owner);
+        // _db.Friends.Remove(friend);
         _db.SaveChanges();
 
         return RedirectToAction("Index");

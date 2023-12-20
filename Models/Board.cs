@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wishler.Models;
 
@@ -10,7 +11,11 @@ public class Board
     [Required]
     public string Name { get; set; } = "";
 
-    [Required] public int UserId { get; set; }
+    [Required]
+    [ForeignKey("User")]
+    public int UserId { get; set; }
     public string BackgroundId { get; set; } = "";
     public string VisibilityStatus { get; set; } = "private";
+    
+    public User User { get; set; }
 }

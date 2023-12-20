@@ -3,13 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wishler.Models;
 
-public class Group
+public class GroupOwner
 {
-    [Key] public int Id { get; set; }
+    [Key]
+    public int Id { get; set; }
     [ForeignKey("Owner")]
     public int OwnerId { get; set; }
-    public string Name { get; set; } = "";
-    public bool IsStarted { get; set; }
+    [ForeignKey("Group")]
+    public int GroupId { get; set; }
     
     public User Owner { get; set; }
+    public Group Group { get; set; }
 }

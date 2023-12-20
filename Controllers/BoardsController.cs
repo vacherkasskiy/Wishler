@@ -24,12 +24,12 @@ public class BoardsController : Controller
         var groupIds = _db.GroupParticipants.Where(x => x.UserId == userId).Select(x => x.GroupId);
         var groups = _db.Groups.Where(x => groupIds.Contains(x.Id)).ToArray();
         var user = _db.Users.Find(userId);
-        var userFriends = _db.Friends.Where(x => x.OwnerEmail == user!.Email).ToArray();
+        // var userFriends = _db.Friends.Where(x => x.OwnerEmail == user!.Email).ToArray();
 
         var param = new BoardsViewModel
         {
             NewGroup = new NewGroupViewModel(),
-            Friends = userFriends,
+            // Friends = userFriends,
             Boards = _db.Boards.Where(x => x.UserId == userId).ToArray(),
             Board = new Board(),
             UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)),

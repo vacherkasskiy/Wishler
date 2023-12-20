@@ -51,8 +51,8 @@ public class GroupController : Controller
 
         var userFriends = _db
             .Friends
-            .Where(x => x.OwnerEmail == user.Email)
-            .Select(x => x.FriendEmail)
+            // .Where(x => x.OwnerEmail == user.Email)
+            // .Select(x => x.FriendEmail)
             .ToArray();
 
         var groupParticipants = _db
@@ -74,7 +74,7 @@ public class GroupController : Controller
             .ToArray();
 
         var possibleMembers = _db.Users
-            .Where(x => userFriends.Contains(x.Email) && !groupParticipantEmails.Contains(x.Email))
+            // .Where(x => userFriends.Contains(x.Email) && !groupParticipantEmails.Contains(x.Email))
             .ToArray();
 
         var model = new GroupViewModel
@@ -115,7 +115,6 @@ public class GroupController : Controller
             {
                 UserId = ownerId,
                 GroupId = newGroup.Entity.Id,
-                IsOwner = true
             });
 
             foreach (var member in memberEmails)
@@ -123,7 +122,6 @@ public class GroupController : Controller
                 {
                     UserId = _db.Users.First(x => x.Email == member).Id,
                     GroupId = newGroup.Entity.Id,
-                    IsOwner = false
                 });
             _db.SaveChanges();
 
@@ -139,7 +137,7 @@ public class GroupController : Controller
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         if (!_db
                 .GroupParticipants
-                .Any(x => x.GroupId == groupId && x.UserId == userId && x.IsOwner))
+                .Any(x => x.GroupId == groupId && x.UserId == userId))// && x.IsOwner))
             return RedirectToAction("WrongRequest", "ErrorHandler");
 
         var group = _db.Groups.Find(groupId)!;
@@ -158,7 +156,7 @@ public class GroupController : Controller
     public void SaveWish(int participantId, string wish)
     {
         var participant = _db.GroupParticipants.Find(participantId)!;
-        participant.Wish = wish;
+        // participant.Wish = wish;
         _db.GroupParticipants.Update(participant);
         _db.SaveChanges();
     }
@@ -190,11 +188,11 @@ public class GroupController : Controller
 
         for (var i = 0; i < participants.Length; ++i)
         {
-            participants[i].OtherWish = mixedParticipants[i].Wish;
-            participants[i].OtherName = _db
-                .Users
-                .Find(mixedParticipants[i].UserId)!
-                .Name;
+            // participants[i].OtherWish = mixedParticipants[i].Wish;
+            // participants[i].OtherName = _db
+            //     .Users
+            //     .Find(mixedParticipants[i].UserId)!
+            //     .Name;
             _db.GroupParticipants.Update(participants[i]);
         }
 
@@ -235,7 +233,7 @@ public class GroupController : Controller
                 .GroupParticipants
                 .Any(x => x.GroupId == groupId &&
                           x.UserId == userId &&
-                          (x.IsOwner || userId == participantUserId) &&
+                          // (x.IsOwner || userId == participantUserId) &&
                           !group.IsStarted))
             Response.Redirect("/bad-request");
 
@@ -255,7 +253,6 @@ public class GroupController : Controller
         var newParticipant = new GroupParticipant
         {
             GroupId = groupId,
-            IsOwner = false,
             UserId = userId
         };
 

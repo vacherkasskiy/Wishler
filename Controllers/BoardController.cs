@@ -134,8 +134,8 @@ public class BoardController : Controller
 
         if (board.VisibilityStatus == "private") return RedirectToAction("WrongRequest", "ErrorHandler");
 
-        if (_db.Friends.Any(x => x.OwnerEmail == boardOwner.Email && x.FriendEmail == currentUser.Email))
-            return View(param);
+        // if (_db.Friends.Any(x => x.OwnerEmail == boardOwner.Email && x.FriendEmail == currentUser.Email))
+        //     return View(param);
 
         return RedirectToAction("WrongRequest", "ErrorHandler");
     }
