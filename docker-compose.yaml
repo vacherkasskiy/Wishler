@@ -1,0 +1,12 @@
+version: "1"
+services:
+  sehw-local:
+    image: postgres
+    restart: always
+    container_name: wishler
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "wishler"
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - 5432:5432

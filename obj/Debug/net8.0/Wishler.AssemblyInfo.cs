@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wishler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+778bf39dd07d5ae8f0e9e367505fc0fbe8ed3bfa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wishler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wishler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
